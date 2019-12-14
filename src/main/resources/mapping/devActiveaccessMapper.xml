@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.security.door.dao.devActiveaccessMapper">
+    <resultMap id="BaseResultMap" type="com.security.door.entity.devActiveaccess">
+        <id column="guid" jdbcType="VARCHAR" property="guid"/>
+        <result column="clientcode" jdbcType="VARCHAR" property="clientcode"/>
+        <result column="clientname" jdbcType="VARCHAR" property="clientname"/>
+        <result column="sn" jdbcType="VARCHAR" property="sn"/>
+        <result column="activecode" jdbcType="VARCHAR" property="activecode"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+    </resultMap>
+
+    <resultMap id="ActiveAccessResultMap" type="com.security.door.entity.devActiveDetails">
+        <id column="guid" jdbcType="VARCHAR" property="guid"/>
+        <result column="clientcode" jdbcType="VARCHAR" property="clientcode"/>
+        <result column="clientname" jdbcType="VARCHAR" property="clientname"/>
+        <result column="devicename" jdbcType="VARCHAR" property="devicename"/>
+        <result column="devicetopic" jdbcType="VARCHAR" property="devicetopic"/>
+        <result column="parentid" jdbcType="VARCHAR" property="parentid"/>
+        <result column="sn" jdbcType="VARCHAR" property="sn"/>
+        <result column="devicetypename" jdbcType="VARCHAR" property="devicetypename"/>
+        <result column="activename" jdbcType="VARCHAR" property="activename"/>
+        <result column="activecode" jdbcType="VARCHAR" property="activecode"/>
+        <result column="activeno" jdbcType="INTEGER" property="activeno"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        guid, clientcode, clientname, sn, activecode, creator, createtime
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dev_activeaccess
+        where guid = #{guid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from dev_activeaccess
+        where guid = #{guid,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.security.door.entity.devActiveaccess">
+        insert into dev_activeaccess (guid, clientcode, clientname, sn,
+        activecode, creator, createtime
+        )
+        values (#{guid,jdbcType=VARCHAR}, #{clientcode,jdbcType=VARCHAR}, #{clientname,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR},
+        #{activecode,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.security.door.entity.devActiveaccess">
+        insert into dev_activeaccess
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                guid,
+            </if>
+            <if test="clientcode != null">
+                clientcode,
+            </if>
+            <if test="clientname != null">
+                clientname,
+            </if>
+            <if test="sn != null">
+                sn,
+            </if>
+            <if test="activecode != null">
+                activecode,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createtime != null">
+                createtime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                #{guid,jdbcType=VARCHAR},
+            </if>
+            <if test="clientcode != null">
+                #{clientcode,jdbcType=VARCHAR},
+            </if>
+            <if test="clientname != null">
+                #{clientname,jdbcType=VARCHAR},
+            </if>
+            <if test="sn != null">
+                #{sn,jdbcType=VARCHAR},
+            </if>
+            <if test="activecode != null">
+                #{activecode,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.security.door.entity.devActiveaccess">
+        update dev_activeaccess
+        <set>
+            <if test="clientcode != null">
+                clientcode = #{clientcode,jdbcType=VARCHAR},
+            </if>
+            <if test="clientname != null">
+                clientname = #{clientname,jdbcType=VARCHAR},
+            </if>
+            <if test="sn != null">
+                sn = #{sn,jdbcType=VARCHAR},
+            </if>
+            <if test="activecode != null">
+                activecode = #{activecode,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.security.door.entity.devActiveaccess">
+        update dev_activeaccess
+        set clientcode = #{clientcode,jdbcType=VARCHAR},
+        clientname = #{clientname,jdbcType=VARCHAR},
+        sn = #{sn,jdbcType=VARCHAR},
+        activecode = #{activecode,jdbcType=VARCHAR},
+        creator = #{creator,jdbcType=VARCHAR},
+        createtime = #{createtime,jdbcType=TIMESTAMP}
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
+    <insert id="insertBatch" parameterType="java.util.List">
+        insert into dev_activeaccess (guid, clientcode, clientname, sn, activecode, creator,createtime)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            ( #{item.guid,jdbcType=VARCHAR},
+            #{item.clientcode,jdbcType=VARCHAR},
+            #{item.clientname,jdbcType=VARCHAR},
+            #{item.sn,jdbcType=VARCHAR},
+            #{item.activecode,jdbcType=VARCHAR},
+            #{item.creator,jdbcType=VARCHAR},
+            #{item.createtime,jdbcType=TIMESTAMP}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="deleteByClientCode" parameterType="java.util.Map">
+        delete from dev_activeaccess
+        where clientcode = #{clientcode,jdbcType=VARCHAR}
+    </delete>
+
+    <select id="selectSnAccessByClientCode" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM dev_activeaccess
+        WHERE clientcode = #{clientcode,jdbcType=VARCHAR}
+        AND sn = #{sn,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectAllAccessByClientCode" parameterType="com.security.door.entity.devActiveaccess"
+            resultMap="ActiveAccessResultMap">
+        SELECT * FROM (
+        select a.guid,
+        a.clientcode ,
+        a.clientname,
+        a.creator,
+        a.activecode,
+        a.createtime,
+        IFNULL(b.devicetopic,e.devicetopic) as devicetopic,
+        b.parentid,
+        b.devicename ,
+        b.sn ,
+        c.deviceTypeName ,
+        d.activename ,
+        d.activeno
+        from
+        (
+        select * from dev_activeaccess where clientcode = #{entity.clientcode,jdbcType=VARCHAR} or clientcode in
+        (select groupcode from cr_clientgroup where clientcode = #{entity.clientcode,jdbcType=VARCHAR})
+        ) a
+        LEFT JOIN dev_deviceinfo b on a.sn = b.sn
+        LEFT JOIN dev_devicetype c on b.devicetypecode = c.deviceTypeCode
+        LEFT JOIN dev_deviceactive d on a.activecode = d.activecode
+        LEFT JOIN dev_deviceinfo e ON e.devicecode = b.parentid
+        ) access
+        WHERE 1=1
+        <if test="entity.activename != null">
+            AND activename LIKE CONCAT('%',#{entity.activename,jdbcType=VARCHAR},'%')
+        </if>
+        ORDER BY sn
+        limit #{start},#{length}
+    </select>
+
+    <select id="getCountAccessByActive" parameterType="com.security.door.entity.devActiveaccess"
+            resultType="java.lang.Integer">
+        SELECT count(*) FROM (
+        select a.guid,
+        a.clientcode ,
+        a.clientname,
+        a.creator,
+        a.activecode,
+        a.createtime,
+        IFNULL(b.devicetopic,e.devicetopic) as devicetopic,
+        b.parentid,
+        b.devicename ,
+        b.sn ,
+        c.deviceTypeName ,
+        d.activename ,
+        d.activeno
+        from
+        (
+        select * from dev_activeaccess where clientcode = #{entity.clientcode,jdbcType=VARCHAR} or clientcode in
+        (select groupcode from cr_clientgroup where clientcode = #{entity.clientcode,jdbcType=VARCHAR})
+        ) a
+        LEFT JOIN dev_deviceinfo b on a.sn = b.sn
+        LEFT JOIN dev_devicetype c on b.devicetypecode = c.deviceTypeCode
+        LEFT JOIN dev_deviceactive d on a.activecode = d.activecode
+        LEFT JOIN dev_deviceinfo e ON e.devicecode = b.parentid
+        ) access
+        WHERE 1=1
+        <if test="entity.activename != null">
+            AND activename LIKE CONCAT('%',#{entity.activename,jdbcType=VARCHAR},'%')
+        </if>
+    </select>
+
+
+    <select id="HasPermission" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT  COUNT(0) FROM
+            (
+                SELECT
+                    *
+                FROM
+                    dev_activeaccess
+                WHERE
+                    clientcode = #{clientcode,jdbcType=VARCHAR}
+                OR clientcode IN (
+                    SELECT
+                        groupcode
+                    FROM
+                        cr_clientgroup
+                    WHERE
+                        clientcode = #{clientcode,jdbcType=VARCHAR}
+                )
+            ) b
+        WHERE
+            sn = #{sn,jdbcType=VARCHAR}
+        AND activecode = #{activecode,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectPermissionBySn" parameterType="java.lang.String"  resultMap="ActiveAccessResultMap">
+        SELECT
+        a.guid,
+        IFNULL(b.clientcode, a.clientcode) AS clientcode,
+        a.clientname,
+        a.sn,
+        a.activecode,
+        a.creator,
+        a.createtime,
+        c.activeno
+        FROM
+        (
+        SELECT
+        *
+        FROM
+        dev_activeaccess
+        WHERE
+        sn = #{sn,jdbcType=VARCHAR}
+        ) a
+        LEFT JOIN cr_clientgroup b ON a.clientcode = b.groupcode
+        LEFT JOIN dev_deviceactive c on a.activecode = c.activecode
+        ORDER BY clientcode
+    </select>
+    <delete id="deleteBySn" parameterType="java.lang.String">
+        delete from dev_activeaccess
+        where sn = #{sn,jdbcType=VARCHAR}
+    </delete>
+</mapper>

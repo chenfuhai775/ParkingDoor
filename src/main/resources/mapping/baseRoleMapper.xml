@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.security.door.dao.baseRoleMapper">
+    <resultMap id="BaseResultMap" type="com.security.door.entity.baseRole">
+        <id column="guid" jdbcType="VARCHAR" property="guid"/>
+        <result column="rolename" jdbcType="VARCHAR" property="rolename"/>
+        <result column="rolecode" jdbcType="INTEGER" property="rolecode"/>
+        <result column="clientcode" jdbcType="VARCHAR" property="clientcode"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="creatdate" jdbcType="TIMESTAMP" property="creatdate"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    guid, rolename, rolecode, clientcode, creator, creatdate, remark
+  </sql>
+    <delete id="deleteByGuid" parameterType="java.lang.String">
+    delete from base_role
+    WHERE guid in ( ${value} )
+  </delete>
+    <delete id="deleteByRoleCode" parameterType="java.lang.Integer">
+    delete from base_role
+    WHERE  rolecode = #{rolecode,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.security.door.entity.baseRole">
+    insert into base_role (guid, rolename, rolecode, clientcode,
+      creator, creatdate, remark)
+    values (#{guid,jdbcType=VARCHAR}, #{rolename,jdbcType=VARCHAR}, #{rolecode,jdbcType=INTEGER},
+      #{clientcode,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{creatdate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+    <update id="update" parameterType="com.security.door.entity.baseRole">
+    update base_role
+    SET rolename = #{rolename,jdbcType=VARCHAR},
+        rolecode = #{rolecode,jdbcType=INTEGER},
+        clientcode = #{clientcode,jdbcType=VARCHAR},
+        remark = #{remark,jdbcType=VARCHAR}
+        WHERE guid = #{guid,jdbcType=VARCHAR}
+  </update>
+    <select id="selectList" parameterType="com.security.door.pager.DatatablesView" resultMap="BaseResultMap">
+        SELECT * FROM (SELECT
+        <include refid="Base_Column_List"/>
+        FROM base_role
+        where 1=1
+        <if test="entity.clientcode != null">
+            AND clientcode =#{entity.clientcode}
+        </if>
+        <if test="entity.rolename != null">
+            AND rolename like CONCAT('%',#{entity.rolename},'%')
+        </if>
+        ) t ORDER by rolecode
+        limit #{start},#{length}
+    </select>
+    <select id="getMaxID" resultType="java.lang.Integer">
+    SELECT MAX(rolecode) + 1
+    FROM base_role
+  </select>
+    <select id="checkCode" parameterType="java.lang.String" resultType="java.lang.Integer">
+    SELECT count(*)
+    FROM base_role
+    WHERE rolecode = #{rolecode,jdbcType=INTEGER}
+  </select>
+</mapper>

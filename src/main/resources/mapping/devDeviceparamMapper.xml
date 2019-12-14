@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.security.door.dao.devDeviceparamMapper">
+    <resultMap id="BaseResultMap" type="com.security.door.entity.devDeviceparam">
+        <id column="guid" jdbcType="VARCHAR" property="guid"/>
+        <result column="sn" jdbcType="VARCHAR" property="sn"/>
+        <result column="activecode" jdbcType="VARCHAR" property="activecode"/>
+        <result column="displaykey" jdbcType="VARCHAR" property="displaykey"/>
+        <result column="createtime" jdbcType="DATE" property="createtime"/>
+        <result column="creater" jdbcType="VARCHAR" property="creater"/>
+        <result column="displayname" jdbcType="VARCHAR" property="displayname"/>
+        <result column="displayvalue" jdbcType="VARCHAR" property="displayvalue"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        guid, sn, activecode, displaykey, createtime, creater
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dev_deviceparam
+        where guid = #{guid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from dev_deviceparam
+    where guid = #{guid,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.security.door.entity.devDeviceparam">
+    insert into dev_deviceparam (guid, sn, activecode,
+    displaykey, createtime, creater
+    )
+    values (#{guid,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR}, #{activecode,jdbcType=VARCHAR},
+    #{displaykey,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, #{creater,jdbcType=VARCHAR}
+    )
+  </insert>
+    <insert id="insertSelective" parameterType="com.security.door.entity.devDeviceparam">
+        insert into dev_deviceparam
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                guid,
+            </if>
+            <if test="sn != null">
+                sn,
+            </if>
+            <if test="activecode != null">
+                activecode,
+            </if>
+            <if test="displayname != null">
+                displayname,
+            </if>
+            <if test="displaykey != null">
+                displaykey,
+            </if>
+            <if test="createtime != null">
+                createtime,
+            </if>
+            <if test="creater != null">
+                creater,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                #{guid,jdbcType=VARCHAR},
+            </if>
+            <if test="sn != null">
+                #{sn,jdbcType=VARCHAR},
+            </if>
+            <if test="activecode != null">
+                #{activecode,jdbcType=VARCHAR},
+            </if>
+            <if test="displayname != null">
+                #{displayname,jdbcType=VARCHAR},
+            </if>
+            <if test="displaykey != null">
+                #{displaykey,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=DATE},
+            </if>
+            <if test="creater != null">
+                #{creater,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.security.door.entity.devDeviceparam">
+        update dev_deviceparam
+        <set>
+            <if test="sn != null">
+                sn = #{sn,jdbcType=VARCHAR},
+            </if>
+            <if test="activecode != null">
+                activecode = #{activecode,jdbcType=VARCHAR},
+            </if>
+            <if test="displayname != null">
+                displayname = #{displayname,jdbcType=VARCHAR},
+            </if>
+            <if test="displaykey != null">
+                displaykey = #{displaykey,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=DATE},
+            </if>
+            <if test="creater != null">
+                creater = #{creater,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.security.door.entity.devDeviceparam">
+    update dev_deviceparam
+    set sn = #{sn,jdbcType=VARCHAR},
+    activecode = #{activecode,jdbcType=VARCHAR},
+    displayname = #{displayname,jdbcType=VARCHAR},
+    displaykey = #{displaykey,jdbcType=VARCHAR},
+    createtime = #{createtime,jdbcType=DATE},
+    creater = #{creater,jdbcType=VARCHAR}
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+    <insert id="insertBatch">
+        insert into dev_deviceparam (guid, sn, activecode,displayname,
+        displaykey, displayvalue,
+        createtime, creater)
+        values
+        <foreach collection="list" item="entity" separator=",">
+            (#{entity.guid,jdbcType=VARCHAR}, #{entity.sn,jdbcType=VARCHAR},
+            #{entity.activecode,jdbcType=VARCHAR},
+            #{entity.displayname,jdbcType=VARCHAR},
+            #{entity.displaykey,jdbcType=VARCHAR}, #{entity.displayvalue,jdbcType=VARCHAR},
+            #{entity.createtime,jdbcType=DATE}, #{entity.creater,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
+    <delete id="deleteByDeviceGuid" parameterType="com.security.door.entity.devDeviceparam">
+      delete from dev_deviceparam  where sn = #{sn,jdbcType=VARCHAR} and activecode = #{activecode,jdbcType=VARCHAR}
+    </delete>
+    <select id="dataCount" parameterType="com.security.door.entity.devDeviceparam" resultMap="BaseResultMap">
+    SELECT COUNT(*) FROM dev_deviceparam
+    WHERE sn = #{sn,jdbcType=VARCHAR} and activecode = #{activecode,jdbcType=VARCHAR}
+  </select>
+    <select id="selectParamsByActiveCode" parameterType="com.security.door.entity.devDeviceparam" resultMap="BaseResultMap">
+        select displaykey,displayvalue,displayname from dev_deviceparam
+        where sn = #{sn,jdbcType=VARCHAR}  and  activecode = #{activecode,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteBySn" parameterType="java.lang.String">
+        delete from dev_deviceparam
+        where sn = #{sn,jdbcType=VARCHAR}
+    </delete>
+</mapper>

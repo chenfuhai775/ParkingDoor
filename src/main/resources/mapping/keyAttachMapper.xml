@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.security.door.dao.keyAttachMapper">
+    <resultMap id="BaseResultMap" type="com.security.door.entity.keyAttach">
+        <id column="guid" jdbcType="VARCHAR" property="guid"/>
+        <result column="src" jdbcType="VARCHAR" property="src"/>
+        <result column="sequence" jdbcType="INTEGER" property="sequence"/>
+        <result column="vendor" jdbcType="VARCHAR" property="vendor"/>
+        <result column="sn" jdbcType="VARCHAR" property="sn"/>
+        <result column="version" jdbcType="VARCHAR" property="version"/>
+        <result column="k1" jdbcType="VARCHAR" property="k1"/>
+        <result column="token" jdbcType="VARCHAR" property="token"/>
+        <result column="signkey" jdbcType="VARCHAR" property="signkey"/>
+        <result column="active" jdbcType="BIT" property="active"/>
+        <result column="createTime" jdbcType="DATE" property="createtime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    guid, src, sequence, vendor, sn, version, k1, token, signkey, active, createTime
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from key_attach
+        where guid = #{guid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from key_attach
+    where guid = #{guid,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.security.door.entity.keyAttach">
+    insert into key_attach (guid, src, sequence, 
+      vendor, sn, version, 
+      k1, token, signkey, 
+      active, createTime)
+    values (#{guid,jdbcType=VARCHAR}, #{src,jdbcType=VARCHAR}, #{sequence,jdbcType=INTEGER}, 
+      #{vendor,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, 
+      #{k1,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{signkey,jdbcType=VARCHAR}, 
+      #{active,jdbcType=BIT}, #{createtime,jdbcType=DATE})
+  </insert>
+    <insert id="insertSelective" parameterType="com.security.door.entity.keyAttach">
+        insert into key_attach
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                guid,
+            </if>
+            <if test="src != null">
+                src,
+            </if>
+            <if test="sequence != null">
+                sequence,
+            </if>
+            <if test="vendor != null">
+                vendor,
+            </if>
+            <if test="sn != null">
+                sn,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+            <if test="k1 != null">
+                k1,
+            </if>
+            <if test="token != null">
+                token,
+            </if>
+            <if test="signkey != null">
+                signkey,
+            </if>
+            <if test="active != null">
+                active,
+            </if>
+            <if test="createtime != null">
+                createTime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                #{guid,jdbcType=VARCHAR},
+            </if>
+            <if test="src != null">
+                #{src,jdbcType=VARCHAR},
+            </if>
+            <if test="sequence != null">
+                #{sequence,jdbcType=INTEGER},
+            </if>
+            <if test="vendor != null">
+                #{vendor,jdbcType=VARCHAR},
+            </if>
+            <if test="sn != null">
+                #{sn,jdbcType=VARCHAR},
+            </if>
+            <if test="version != null">
+                #{version,jdbcType=VARCHAR},
+            </if>
+            <if test="k1 != null">
+                #{k1,jdbcType=VARCHAR},
+            </if>
+            <if test="token != null">
+                #{token,jdbcType=VARCHAR},
+            </if>
+            <if test="signkey != null">
+                #{signkey,jdbcType=VARCHAR},
+            </if>
+            <if test="active != null">
+                #{active,jdbcType=BIT},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=DATE},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.security.door.entity.keyAttach">
+        update key_attach
+        <set>
+            <if test="src != null">
+                src = #{src,jdbcType=VARCHAR},
+            </if>
+            <if test="sequence != null">
+                sequence = #{sequence,jdbcType=INTEGER},
+            </if>
+            <if test="vendor != null">
+                vendor = #{vendor,jdbcType=VARCHAR},
+            </if>
+            <if test="sn != null">
+                sn = #{sn,jdbcType=VARCHAR},
+            </if>
+            <if test="version != null">
+                version = #{version,jdbcType=VARCHAR},
+            </if>
+            <if test="k1 != null">
+                k1 = #{k1,jdbcType=VARCHAR},
+            </if>
+            <if test="token != null">
+                token = #{token,jdbcType=VARCHAR},
+            </if>
+            <if test="signkey != null">
+                signkey = #{signkey,jdbcType=VARCHAR},
+            </if>
+            <if test="active != null">
+                active = #{active,jdbcType=BIT},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=DATE},
+            </if>
+        </set>
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.security.door.entity.keyAttach">
+    update key_attach
+    set src = #{src,jdbcType=VARCHAR},
+      sequence = #{sequence,jdbcType=INTEGER},
+      vendor = #{vendor,jdbcType=VARCHAR},
+      sn = #{sn,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR},
+      k1 = #{k1,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
+      signkey = #{signkey,jdbcType=VARCHAR},
+      active = #{active,jdbcType=BIT},
+      createTime = #{createtime,jdbcType=DATE}
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+    <update id="updateStatus" parameterType="java.lang.String">
+    update key_attach
+    set
+    active = !active
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+    <select id="getActiveCount" resultType="java.lang.Integer">
+        select count(0) from key_attach where active = 1
+    </select>
+    <select id="getCount" resultType="java.lang.Integer">
+    select count(0) from key_attach
+  </select>
+    <select id="selectList" parameterType="com.security.door.pager.DatatablesView" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from key_attach
+        where 1=1
+        <if test="entity.src != null">
+            AND src like CONCAT('%',#{entity.src},'%')
+        </if>
+        <if test="entity.sn != null">
+            AND sn like CONCAT('%',#{entity.sn},'%')
+        </if>
+        limit #{start},#{length}
+    </select>
+
+    <select id="selectByToken" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from key_attach
+        where 1=1
+        and token =#{token} and active = 1
+    </select>
+
+    <update id="upDateBySrc" parameterType="com.security.door.entity.keyAttach">
+        update key_attach set token =#{token},signkey=#{signkey}  where src =#{src} and active = 1
+    </update>
+
+    <select id="selectBySrc" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from key_attach
+        where 1=1
+        and src =#{src} and active = 1
+    </select>
+
+    <update id="Deactive" parameterType="java.lang.String">
+        update key_attach set active =0  where src =#{src}
+    </update>
+
+    <select id="selectBySn" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from key_attach
+        where 1=1
+        and sn =#{sn} and active = 1
+    </select>
+
+</mapper>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.security.door.dao.devDeviceactiveMapper">
+    <resultMap id="BaseResultMap" type="com.security.door.entity.devDeviceactive">
+        <id column="guid" jdbcType="VARCHAR" property="guid"/>
+        <result column="activename" jdbcType="VARCHAR" property="activename"/>
+        <result column="activecode" jdbcType="VARCHAR" property="activecode"/>
+        <result column="activeno" jdbcType="INTEGER" property="activeno"/>
+        <result column="devicetypecode" jdbcType="VARCHAR" property="devicetypecode"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="expression" jdbcType="VARCHAR" property="expression"/>
+        <result column="creater" jdbcType="VARCHAR" property="creater"/>
+        <result column="createtime" jdbcType="DATE" property="createtime"/>
+    </resultMap>
+    <resultMap id="TreeResultMap" type="com.security.door.entity.treeData">
+        <result column="text" jdbcType="VARCHAR" property="text"/>
+        <result column="tags" jdbcType="VARCHAR" property="tags"/>
+        <result column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="pId" jdbcType="VARCHAR" property="pId"/>
+        <result column="levelCode" jdbcType="VARCHAR" property="levelCode"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="topic" jdbcType="VARCHAR" property="topic"/>
+        <result column="template" jdbcType="VARCHAR" property="template"/>
+        <result column="nodeLevel" jdbcType="VARCHAR" property="nodeLevel"/>
+        <result column="pName" jdbcType="VARCHAR" property="pName"/>
+    </resultMap>
+    <resultMap id="treeviewMap" type="com.security.door.entity.treeData">
+        <id column="guid" jdbcType="VARCHAR" property="guid"/>
+        <result column="text" jdbcType="VARCHAR" property="text"/>
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="pid" jdbcType="INTEGER" property="pid"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    guid, activename, activecode, activeno, devicetypecode, icon, expression, creater,
+    createtime
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dev_deviceactive
+        where guid = #{guid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from dev_deviceactive
+    where guid in ( ${value} )
+  </delete>
+    <insert id="insert" parameterType="com.security.door.entity.devDeviceactive">
+    insert into dev_deviceactive (guid, activename, activecode, 
+      activeno, devicetypecode, icon,
+      expression, creater, createtime
+      )
+    values (#{guid,jdbcType=VARCHAR}, #{activename,jdbcType=VARCHAR}, #{activecode,jdbcType=VARCHAR},
+      #{activeno,jdbcType=INTEGER}, #{devicetypecode,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR},
+      #{expression,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.security.door.entity.devDeviceactive">
+        insert into dev_deviceactive
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                guid,
+            </if>
+            <if test="activename != null">
+                activename,
+            </if>
+            <if test="activecode != null">
+                activecode,
+            </if>
+            <if test="activeno != null">
+                activeno,
+            </if>
+            <if test="devicetypecode != null">
+                devicetypecode,
+            </if>
+            <if test="icon != null">
+                icon,
+            </if>
+            <if test="expression != null">
+                expression,
+            </if>
+            <if test="creater != null">
+                creater,
+            </if>
+            <if test="createtime != null">
+                createtime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                #{guid,jdbcType=VARCHAR},
+            </if>
+            <if test="activename != null">
+                #{activename,jdbcType=VARCHAR},
+            </if>
+            <if test="activecode != null">
+                #{activecode,jdbcType=VARCHAR},
+            </if>
+            <if test="activeno != null">
+                #{activeno,jdbcType=INTEGER},
+            </if>
+            <if test="devicetypecode != null">
+                #{devicetypecode,jdbcType=VARCHAR},
+            </if>
+            <if test="icon != null">
+                #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="expression != null">
+                #{expression,jdbcType=VARCHAR},
+            </if>
+            <if test="creater != null">
+                #{creater,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=DATE},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.security.door.entity.devDeviceactive">
+        update dev_deviceactive
+        <set>
+            <if test="activename != null">
+                activename = #{activename,jdbcType=VARCHAR},
+            </if>
+            <if test="activecode != null">
+                activecode = #{activecode,jdbcType=VARCHAR},
+            </if>
+            <if test="activeno != null">
+                activeno = #{activeno,jdbcType=INTEGER},
+            </if>
+            <if test="devicetypecode != null">
+                devicetypecode = #{devicetypecode,jdbcType=VARCHAR},
+            </if>
+            <if test="icon != null">
+                icon = #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="expression != null">
+                expression = #{expression,jdbcType=VARCHAR},
+            </if>
+            <if test="creater != null">
+                creater = #{creater,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=DATE},
+            </if>
+        </set>
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.security.door.entity.devDeviceactive">
+    update dev_deviceactive
+    set activename = #{activename,jdbcType=VARCHAR},
+      activecode = #{activecode,jdbcType=VARCHAR},
+      activeno = #{activeno,jdbcType=INTEGER},
+      devicetypecode = #{devicetypecode,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      expression = #{expression,jdbcType=VARCHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=DATE}
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+
+    <select id="selectDevtypeTree" resultMap="treeviewMap">
+    SELECT guid,deviceTypeCode id ,deviceTypeName text,'' icon, 0 parentid FROM dev_devicetype
+  </select>
+    <select id="selectList" parameterType="com.security.door.pager.DatatablesView" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from dev_deviceactive
+        where 1=1
+        <if test="entity.activename != null">
+            AND activename like CONCAT('%',#{entity.activename},'%')
+        </if>
+        <if test="entity.devicetypecode != null">
+            AND devicetypecode = #{entity.devicetypecode}
+        </if>
+        limit #{start},#{length}
+    </select>
+    <select id="getCount" resultType="java.lang.Integer" parameterType="com.security.door.entity.devDeviceactive">
+        select count(0) from dev_deviceactive
+        where 1=1
+        <if test="devicetypecode != null">
+            and devicetypecode = #{devicetypecode}
+        </if>
+    </select>
+    <select id="SelectTreeParantData" parameterType="com.security.door.entity.devDeviceactive" resultMap="TreeResultMap">
+        SELECT guid AS id ,deviceName AS text,null AS tags,deviceCode AS code,'' AS pId,icon AS icon ,'' AS topic, '' AS
+        template,
+        1 AS nodeLevel,'功能' AS pName
+        FROM dev_deviceinfo
+        WHERE 1=1
+        <if test="guid != null">
+            AND guid = #{guid,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <select id="selectFuncTreeData" parameterType="com.security.door.entity.devDeviceactive" resultMap="TreeResultMap">
+    SELECT    fcf.guid AS id, fcf.activename AS text, fcf.activecode AS code, fcf.deviceCode AS pId, activecode AS topic, expression AS template,
+    fcf.icon AS icon,2 AS nodeLevel,df.deviceName AS pName
+    from dev_deviceactive fcf
+    LEFT JOIN dev_deviceinfo df
+    on fcf.deviceCode = df.deviceCode
+  </select>
+    <select id="selectActive" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM dev_deviceactive
+        WHERE 1=1
+        <if test="devicetypecode != null">
+            AND devicetypecode = #{devicetypecode,jdbcType=VARCHAR}
+        </if>
+        <if test="activecode != null">
+            AND activecode = #{activecode,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <select id="selectActiveByClientCode" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM dev_deviceactive
+        WHERE devicetypecode = #{devicetypecode,jdbcType=VARCHAR}
+        <if test="pclientcode != null">
+            AND activecode in
+            (
+            SELECT
+            activecode
+            FROM
+            dev_activeaccess
+            WHERE
+            clientcode = #{pclientcode,jdbcType=VARCHAR}
+            OR clientcode IN (
+            SELECT
+            groupcode
+            FROM
+            cr_clientgroup
+            WHERE
+            clientcode = #{pclientcode,jdbcType=VARCHAR}
+            )
+            )
+        </if>
+    </select>
+    <select id="hasActiveNo" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT
+        COUNT(0)
+        FROM dev_deviceactive
+        WHERE devicetypecode = #{devicetypecode,jdbcType=VARCHAR}
+        AND  activeno = #{activeno}
+    </select>
+    <select id="selectByActiveCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM dev_deviceactive
+        WHERE activecode = #{activecode,jdbcType=VARCHAR}
+    </select>
+</mapper>

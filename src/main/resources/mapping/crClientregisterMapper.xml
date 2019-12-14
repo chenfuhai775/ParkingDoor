@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.security.door.dao.crClientregisterMapper">
+    <resultMap id="BaseResultMap" type="com.security.door.entity.crClientregister">
+        <id column="guid" jdbcType="VARCHAR" property="guid"/>
+        <result column="clientname" jdbcType="VARCHAR" property="clientname"/>
+        <result column="loginname" jdbcType="VARCHAR" property="loginname"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="clientcode" jdbcType="VARCHAR" property="clientcode"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="pclientcode" jdbcType="VARCHAR" property="pclientcode"/>
+        <result column="province" jdbcType="INTEGER" property="province"/>
+        <result column="city" jdbcType="INTEGER" property="city"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="logo" jdbcType="VARCHAR" property="logo"/>
+        <result column="pem" jdbcType="VARCHAR" property="pem"/>
+        <result column="routerule" jdbcType="VARCHAR" property="routerule"/>
+        <result column="rolecode" jdbcType="VARCHAR" property="rolecode"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="rolename" jdbcType="VARCHAR" property="rolename"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.security.door.entity.crClientregister">
+        <result column="pem" jdbcType="LONGVARCHAR" property="pem"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    guid, clientname, loginname, password, clientcode, phone, pclientcode, province, city, address, logo, pem,
+    routerule, rolecode, creator, createtime
+  </sql>
+    <sql id="Blob_Column_List">
+    pem
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from cr_clientregister
+        where guid = #{guid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cr_clientregister
+    where guid = #{guid,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.security.door.entity.crClientregister">
+    insert into cr_clientregister (guid, clientname, loginname,
+    password, clientcode, phone,
+    pclientcode, province, city, address, logo,
+    routerule, rolecode, creator,
+    createtime, pem)
+    values (#{guid,jdbcType=VARCHAR}, #{clientname,jdbcType=VARCHAR}, #{loginname,jdbcType=VARCHAR},
+    #{password,jdbcType=VARCHAR}, #{clientcode,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+    #{pclientcode,jdbcType=VARCHAR},#{province,jdbcType=INTEGER}, #{city,jdbcType=INTEGER},
+     #{address,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR},
+    #{routerule,jdbcType=VARCHAR}, #{rolecode,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR},
+    #{createtime,jdbcType=TIMESTAMP}, #{pem,jdbcType=LONGVARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.security.door.entity.crClientregister">
+        insert into cr_clientregister
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                guid,
+            </if>
+            <if test="clientname != null">
+                clientname,
+            </if>
+            <if test="loginname != null">
+                loginname,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="clientcode != null">
+                clientcode,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="pclientcode != null">
+                pclientcode,
+            </if>
+            <if test="province != null">
+                province,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="logo != null">
+                logo,
+            </if>
+            <if test="routerule != null">
+                routerule,
+            </if>
+            <if test="rolecode != null">
+                rolecode,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createtime != null">
+                createtime,
+            </if>
+            <if test="pem != null">
+                pem,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                #{guid,jdbcType=VARCHAR},
+            </if>
+            <if test="clientname != null">
+                #{clientname,jdbcType=VARCHAR},
+            </if>
+            <if test="loginname != null">
+                #{loginname,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="clientcode != null">
+                #{clientcode,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                #{province,jdbcType=INTEGER},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=INTEGER},
+            </if>
+            <if test="pclientcode != null">
+                #{pclientcode,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="logo != null">
+                #{logo,jdbcType=VARCHAR},
+            </if>
+            <if test="routerule != null">
+                #{routerule,jdbcType=VARCHAR},
+            </if>
+            <if test="rolecode != null">
+                #{rolecode,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="pem != null">
+                #{pem,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.security.door.entity.crClientregister">
+        update cr_clientregister
+        <set>
+            <if test="clientname != null">
+                clientname = #{clientname,jdbcType=VARCHAR},
+            </if>
+            <if test="loginname != null">
+                loginname = #{loginname,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="clientcode != null">
+                clientcode = #{clientcode,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="pclientcode != null">
+                pclientcode = #{pclientcode,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                #{province,jdbcType=INTEGER},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=INTEGER},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="logo != null">
+                logo = #{logo,jdbcType=VARCHAR},
+            </if>
+            <if test="routerule != null">
+                routerule = #{routerule,jdbcType=VARCHAR},
+            </if>
+            <if test="rolecode != null">
+                rolecode = #{rolecode,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="pem != null">
+                pem = #{pem,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.security.door.entity.crClientregister">
+    update cr_clientregister
+    set clientname = #{clientname,jdbcType=VARCHAR},
+    loginname = #{loginname,jdbcType=VARCHAR},
+    password = #{password,jdbcType=VARCHAR},
+    clientcode = #{clientcode,jdbcType=VARCHAR},
+    phone = #{phone,jdbcType=VARCHAR},
+    pclientcode = #{pclientcode,jdbcType=VARCHAR},
+    province = #{province,jdbcType=INTEGER},
+    city = #{city,jdbcType=INTEGER},
+    address = #{address,jdbcType=VARCHAR},
+    logo = #{logo,jdbcType=VARCHAR},
+    routerule = #{routerule,jdbcType=VARCHAR},
+    rolecode = #{rolecode,jdbcType=VARCHAR},
+    creator = #{creator,jdbcType=VARCHAR},
+    createtime = #{createtime,jdbcType=TIMESTAMP},
+    pem = #{pem,jdbcType=LONGVARCHAR}
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.security.door.entity.crClientregister">
+    update cr_clientregister
+    set clientname = #{clientname,jdbcType=VARCHAR},
+    loginname = #{loginname,jdbcType=VARCHAR},
+    password = #{password,jdbcType=VARCHAR},
+    clientcode = #{clientcode,jdbcType=VARCHAR},
+    phone = #{phone,jdbcType=VARCHAR},
+    pclientcode = #{pclientcode,jdbcType=VARCHAR},
+    province = #{province,jdbcType=INTEGER},
+    city = #{city,jdbcType=INTEGER},
+    address = #{address,jdbcType=VARCHAR},
+    pem = #{pem,jdbcType=VARCHAR},
+    logo = #{logo,jdbcType=VARCHAR},
+    routerule = #{routerule,jdbcType=VARCHAR},
+    rolecode = #{rolecode,jdbcType=VARCHAR},
+    creator = #{creator,jdbcType=VARCHAR},
+    createtime = #{createtime,jdbcType=TIMESTAMP}
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+    <select id="getCount" parameterType="com.security.door.pager.DatatablesView" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM cr_clientregister
+        WHERE 1 = 1
+        <if test="entity.pclientcode != null">
+            AND pclientcode = #{entity.pclientcode,jdbcType=VARCHAR}
+        </if>
+        <if test="entity.clientname != null">
+            AND clientname like CONCAT('%',#{entity.clientname},'%')
+        </if>
+    </select>
+
+    <select id="selectList" parameterType="com.security.door.pager.DatatablesView" resultMap="BaseResultMap">
+        select
+        a.*, b.rolename
+        from cr_clientregister a
+        JOIN base_role b ON a.rolecode = b.rolecode
+        where 1=1
+        <if test="entity.pclientcode != null">
+            AND a.pclientcode = #{entity.pclientcode,jdbcType=VARCHAR}
+        </if>
+        <if test="entity.clientname != null">
+            AND a.clientname like CONCAT('%',#{entity.clientname},'%')
+        </if>
+        limit #{start},#{length}
+    </select>
+    <select id="selectByClientCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cr_clientregister
+        where clientcode = #{clientcode,jdbcType=VARCHAR}
+        limit 0,1;
+    </select>
+    <select id="selectByLoginName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cr_clientregister
+        where loginname = #{loginname,jdbcType=VARCHAR}
+        limit 0,1;
+    </select>
+    <select id="selectBySrc" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cr_clientregister
+        where clientsrc = #{src,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteMore" parameterType="java.util.Map">
+    delete from cr_clientregister
+    where guid in (${guid})
+  </delete>
+    <select id="hasRoleCode" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+      select
+       COUNT(0)
+       from cr_clientregister
+       where rolecode = #{rolecode,jdbcType=INTEGER}
+    </select>
+    <select id="selectOneByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cr_clientregister
+        where phone = #{phone,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByguid" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cr_clientregister
+        where guid = #{guid,jdbcType=VARCHAR}
+    </select>
+</mapper>

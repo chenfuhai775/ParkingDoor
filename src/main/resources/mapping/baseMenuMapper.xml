@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.security.door.dao.baseMenuMapper">
+    <resultMap id="BaseResultMap" type="com.security.door.entity.baseMenu">
+        <id column="guid" jdbcType="VARCHAR" property="guid"/>
+        <result column="menutype" jdbcType="INTEGER" property="menutype"/>
+        <result column="menuname" jdbcType="VARCHAR" property="menuname"/>
+        <result column="parentid" jdbcType="VARCHAR" property="parentid"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="active" jdbcType="BIT" property="active"/>
+        <result column="sortno" jdbcType="INTEGER" property="sortno"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="menuid" jdbcType="VARCHAR" property="menuid"/>
+        <result column="menuid" jdbcType="INTEGER" property="id"/>
+        <result column="menuname" jdbcType="VARCHAR" property="text"/>
+    </resultMap>
+    <resultMap id="BaseDataResultMap" type="com.security.door.entity.baseDatadict">
+        <id column="guid" jdbcType="VARCHAR" property="guid"/>
+        <result column="modelName" jdbcType="VARCHAR" property="modelname"/>
+        <result column="modelKey" jdbcType="VARCHAR" property="modelkey"/>
+        <result column="modelValue" jdbcType="VARCHAR" property="modelvalue"/>
+        <result column="parentModelKey" jdbcType="VARCHAR" property="parentmodelkey"/>
+        <result column="modelLevel" jdbcType="VARCHAR" property="modellevel"/>
+        <result column="sortNo" jdbcType="INTEGER" property="sortno"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="createTime" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="levelcode" jdbcType="VARCHAR" property="levelcode"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+    </resultMap>
+
+    <resultMap id="TreeResultMap" type="com.security.door.entity.menuTreeView">
+        <id column="guid" jdbcType="VARCHAR" property="guid"/>
+        <result column="menuname" jdbcType="VARCHAR" property="name"/>
+        <result column="url" jdbcType="VARCHAR" property="controller"/>
+        <result column="menuid" jdbcType="INTEGER" property="id"/>
+        <result column="parentid" jdbcType="INTEGER" property="parentid"/>
+        <result column="icon" jdbcType="INTEGER" property="icon"/>
+    </resultMap>
+
+    <resultMap id="ListResultMap" type="com.security.door.entity.baseMenuList">
+        <id column="guid" jdbcType="VARCHAR" property="guid"/>
+        <result column="menutype" jdbcType="INTEGER" property="menutype"/>
+        <result column="menuname" jdbcType="VARCHAR" property="menuname"/>
+        <result column="parentid" jdbcType="VARCHAR" property="parentid"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="sortno" jdbcType="INTEGER" property="sortno"/>
+        <result column="levels" jdbcType="INTEGER" property="levels"/>
+        <result column="paths" jdbcType="VARCHAR" property="paths"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+  guid, menutype, menuname, parentid,menuid, url, icon, active, sortno, creator, createtime, remark
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from base_menu
+        where guid = #{guid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByGuid" parameterType="java.lang.String">
+    delete from base_menu
+    where  guid in ( ${value} )
+  </delete>
+    <insert id="insert" parameterType="com.security.door.entity.baseMenu">
+    insert into base_menu (guid, menutype, menuname, 
+      parentid, url, icon, active,
+      sortno, creator, createtime,
+      remark)
+    values (#{guid,jdbcType=VARCHAR}, #{menutype,jdbcType=INTEGER}, #{menuname,jdbcType=VARCHAR},
+      #{parentid,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{active,jdbcType=BIT},
+      #{sortno,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP},
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.security.door.entity.baseMenu">
+        insert into base_menu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                guid,
+            </if>
+            <if test="menutype != null">
+                menutype,
+            </if>
+            <if test="menuname != null">
+                menuname,
+            </if>
+            <if test="parentid != null">
+                parentid,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+            <if test="icon != null">
+                icon,
+            </if>
+            <if test="active != null">
+                active,
+            </if>
+            <if test="sortno != null">
+                sortno,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createtime != null">
+                createtime,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                #{guid,jdbcType=VARCHAR},
+            </if>
+            <if test="menutype != null">
+                #{menutype,jdbcType=INTEGER},
+            </if>
+            <if test="menuname != null">
+                #{menuname,jdbcType=VARCHAR},
+            </if>
+            <if test="parentid != null">
+                #{parentid,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="icon != null">
+                #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="active != null">
+                #{active,jdbcType=BIT},
+            </if>
+            <if test="sortno != null">
+                #{sortno,jdbcType=INTEGER},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.security.door.entity.baseMenu">
+        update base_menu
+        <set>
+            <if test="menutype != null">
+                menutype = #{menutype,jdbcType=INTEGER},
+            </if>
+            <if test="menuname != null">
+                menuname = #{menuname,jdbcType=VARCHAR},
+            </if>
+            <if test="parentid != null">
+                parentid = #{parentid,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="icon != null">
+                icon = #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="active != null">
+                active = #{active,jdbcType=BIT},
+            </if>
+            <if test="sortno != null">
+                sortno = #{sortno,jdbcType=INTEGER},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByGuid" parameterType="com.security.door.entity.baseMenu">
+    update base_menu
+    set menutype = #{menutype,jdbcType=INTEGER},
+      menuname = #{menuname,jdbcType=VARCHAR},
+      parentid = #{parentid,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      active = #{active,jdbcType=BIT},
+      sortno = #{sortno,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where guid = #{guid,jdbcType=VARCHAR}
+  </update>
+    <select id="selectList" parameterType="java.lang.String" resultMap="ListResultMap">
+    SELECT guid ,parentid ,levels, paths,menuname,url,menutype,sortno,icon FROM (
+          SELECT guid,parentid,menuname,url,menutype,sortno,icon,
+          @le:= IF (parentid = 0 ,0,
+          IF( LOCATE( CONCAT('|',parentid,':'),@pathlevel)  > 0 ,
+          SUBSTRING_INDEX( SUBSTRING_INDEX(@pathlevel,CONCAT('|',parentid,':'),-1),'|',1) +1
+          ,@le+1) ) levels
+          , @pathlevel:= CONCAT(@pathlevel,'|',guid,':', @le ,'|') pathlevel
+          , @pathnodes:= IF( parentid =0,'0',
+          CONCAT_WS(',',
+          IF( LOCATE( CONCAT('|',parentid,':'),@pathall) > 0 ,
+          SUBSTRING_INDEX( SUBSTRING_INDEX(@pathall,CONCAT('|',parentid,':'),-1),'|',1)
+          ,@pathnodes ) ,parentid ) )paths
+          ,@pathall:=CONCAT(@pathall,'|',guid,':', @pathnodes ,'|') pathall
+          FROM base_menu,
+          (SELECT @le:=0,@pathlevel:='', @pathall:='',@pathnodes:='') vv
+          where active = 1 ORDER BY parentid,guid
+          ) src
+          ORDER BY sortno
+  </select>
+    <select id="getMaxID" resultType="java.lang.Integer">
+        select max(menuid) + 1 from base_menu
+    </select>
+    <select id="getCount" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM base_menu
+  </select>
+    <select id="selectAll" parameterType="com.security.door.pager.DatatablesView" resultMap="BaseResultMap">
+        SELECT * FROM (select
+        <include refid="Base_Column_List"/>
+        from base_menu
+        where 1=1
+        <if test="entity.menuname != null">
+            AND menuname like CONCAT('%',#{entity.menuname},'%')
+        </if>
+        ORDER BY sortno
+        ) a
+        limit #{start},#{length}
+    </select>
+    <select id="selectParent" resultMap="BaseResultMap">
+    select menuid ,menuname from base_menu where FIND_IN_SET(menuid,getMenuChildList(0)) order by sortno;
+  </select>
+    <select id="SelectTreeList" parameterType="java.util.Map" resultMap="TreeResultMap">
+      select * from base_menu bm join base_roleauth br on bm.guid  = br.menuid where br.rolecode=#{rolecode} and FIND_IN_SET(bm.menuid,getMenuChildList(#{index})) order by sortno
+    </select>
+</mapper>

@@ -1,0 +1,33 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: admin
+  freemarker:
+    template-loader-path: classpath:/templates/
+    request-context-attribute: req
+    suffix: .ftl
+    content-type: text/html
+    enabled: true
+    cache: false
+    charset: UTF-8
+    settings:
+      number_format: '0.##'
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/baseCloud?serverTimezone=UTC
+    username: root
+    password: 123456
+    useUnicode: true
+    characterEncoding: utf-8
+  config:
+    Location: ./application.xml
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.security.door.entity
+logging:
+  level:
+    root: INFO
+    controller: INFO
+    org.springframework.web: INFO
+    com.security.door: DEBUG

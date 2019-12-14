@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.security.door.dao.baseDatadictMapper">
+    <resultMap id="BaseResultMap" type="com.security.door.entity.baseDatadict">
+        <id column="guid" jdbcType="VARCHAR" property="guid"/>
+        <result column="modelname" jdbcType="VARCHAR" property="modelname"/>
+        <result column="modelkey" jdbcType="INTEGER" property="modelkey"/>
+        <result column="modelvalue" jdbcType="INTEGER" property="modelvalue"/>
+        <result column="parentmodelkey" jdbcType="INTEGER" property="parentmodelkey"/>
+        <result column="sortno" jdbcType="INTEGER" property="sortno"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="createTime" jdbcType="TIMESTAMP" property="createtime"/>
+    </resultMap>
+    <resultMap id="TreeResultMap" type="com.security.door.entity.treeView">
+        <id column="guid" jdbcType="VARCHAR" property="guid"/>
+        <result column="modelname" jdbcType="VARCHAR" property="text"/>
+        <result column="modelkey" jdbcType="INTEGER" property="id"/>
+        <result column="modelvalue" jdbcType="INTEGER" property="code"/>
+        <result column="parentmodelkey" jdbcType="INTEGER" property="parentid"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="sortno" jdbcType="INTEGER" property="sortno"/>
+        <result column="parentname" jdbcType="VARCHAR" property="parentname"/>
+    </resultMap>
+    <resultMap id="dictEntityMap" type="com.security.door.entity.dictEntity">
+        <result column="id" jdbcType="VARCHAR" property="id" />
+        <result column="text" jdbcType="VARCHAR" property="text" />
+        <result column="tag" jdbcType="VARCHAR" property="tag" />
+    </resultMap>
+    <sql id="Base_Column_List">
+      guid, modelname, modelkey, modelvalue, parentmodelkey, sortno, icon, remark, creator, createTime
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from base_datadict
+        where guid = #{guid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+     delete from base_datadict where guid = #{guid,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.security.door.entity.baseDatadict">
+    insert into base_datadict (guid, modelname, modelkey,
+    modelvalue, parentmodelkey, sortno,
+    icon, remark, creator,
+    createTime)
+    values (#{guid,jdbcType=VARCHAR}, #{modelname,jdbcType=VARCHAR}, #{modelkey,jdbcType=INTEGER},
+    #{modelvalue,jdbcType=INTEGER}, #{parentmodelkey,jdbcType=INTEGER}, #{sortno,jdbcType=INTEGER},
+    #{icon,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR},
+    #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.security.door.entity.baseDatadict">
+        insert into base_datadict
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                guid,
+            </if>
+            <if test="modelname != null">
+                modelname,
+            </if>
+            <if test="modelkey != null">
+                modelkey,
+            </if>
+            <if test="modelvalue != null">
+                modelvalue,
+            </if>
+            <if test="parentmodelkey != null">
+                parentmodelkey,
+            </if>
+            <if test="sortno != null">
+                sortno,
+            </if>
+            <if test="icon != null">
+                icon,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createtime != null">
+                createTime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                #{guid,jdbcType=VARCHAR},
+            </if>
+            <if test="modelname != null">
+                #{modelname,jdbcType=VARCHAR},
+            </if>
+            <if test="modelkey != null">
+                #{modelkey,jdbcType=INTEGER},
+            </if>
+            <if test="modelvalue != null">
+                #{modelvalue,jdbcType=INTEGER},
+            </if>
+            <if test="parentmodelkey != null">
+                #{parentmodelkey,jdbcType=INTEGER},
+            </if>
+            <if test="sortno != null">
+                #{sortno,jdbcType=INTEGER},
+            </if>
+            <if test="icon != null">
+                #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.security.door.entity.baseDatadict">
+        update base_datadict
+        <set>
+            <if test="modelname != null">
+                modelname = #{modelname,jdbcType=VARCHAR},
+            </if>
+            <if test="modelkey != null">
+                modelkey = #{modelkey,jdbcType=INTEGER},
+            </if>
+            <if test="modelvalue != null">
+                modelvalue = #{modelvalue,jdbcType=INTEGER},
+            </if>
+            <if test="parentmodelkey != null">
+                parentmodelkey = #{parentmodelkey,jdbcType=INTEGER},
+            </if>
+            <if test="sortno != null">
+                sortno = #{sortno,jdbcType=INTEGER},
+            </if>
+            <if test="icon != null">
+                icon = #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.security.door.entity.baseDatadict">
+        update base_datadict
+        set modelname = #{modelname,jdbcType=VARCHAR},
+        modelkey = #{modelkey,jdbcType=INTEGER},
+        modelvalue = #{modelvalue,jdbcType=INTEGER},
+        parentmodelkey = #{parentmodelkey,jdbcType=INTEGER},
+        sortno = #{sortno,jdbcType=INTEGER},
+        icon = #{icon,jdbcType=VARCHAR},
+        remark = #{remark,jdbcType=VARCHAR}
+        where guid = #{guid,jdbcType=VARCHAR}
+   </update>
+    <select id="SelectTreeList" parameterType="java.lang.Integer" resultMap="TreeResultMap">
+      select * from base_datadict where FIND_IN_SET(modelkey,getDicChildList(#{index,jdbcType=INTEGER})) order by sortno
+    </select>
+    <select id="getMaxModelkey" resultType="java.lang.Integer">
+         select max(modelkey) from base_datadict
+    </select>
+    <select id="selectDictByPK" parameterType="java.lang.String" resultMap="dictEntityMap">
+        SELECT modelname as text,modelValue as id
+        FROM base_datadict
+        where parentmodelkey = #{parentmodelkey,jdbcType=VARCHAR}
+        order by sortno;
+    </select>
+    <select id="getDatadictByID" parameterType="java.lang.String" resultMap="TreeResultMap" >
+        SELECT bs.* , cd.modelname parentname FROM base_datadict bs
+         left join base_datadict cd
+        on bs.parentmodelkey = cd.modelkey
+      where bs.guid = #{guid,jdbcType=VARCHAR}
+    </select>
+</mapper>
