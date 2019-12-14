@@ -16,6 +16,7 @@
 
     <properties>
         <java.version>11</java.version>
+        <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
     </properties>
 
     <dependencies>
@@ -84,6 +85,21 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.46</version>
         </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox-swagger2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox-swagger2.version}</version>
+        </dependency>
+
+
 <!--        &lt;!&ndash; 分布式缓存 &ndash;&gt;-->
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.session</groupId>-->

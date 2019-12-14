@@ -10,8 +10,9 @@ $(function () {
         "pagingType": "full_numbers",
         "serverSide": true,
         "ajax": {
-            "url": "/Role/selectList",
+            "url": "/Users/selectList",
             "cache": false,  //禁用缓存
+            "contentType": 'application/json',
             "data": function (data) {
                 return data;
             },
@@ -39,7 +40,7 @@ $(function () {
                 "sLast": "末页"
             }
         },
-        "dom": "<'row'<'col-xs-2'l><'#mytool.col-xs-7'><'col-xs-2'f>r>" +
+        "dom": "<'row'<'col-xs-2'l><'#mytool.col-xs-8'><'col-xs-2'f>r>" +
             "t" +
             "<'row'<'col-xs-6'i><'col-xs-6'p>>",
         "initComplete": function () {
@@ -58,19 +59,20 @@ $(function () {
         },
         "columns": [
             {
-                "data": null, "orderable": false, "render":
-                    function (row) {
-                        return "<input type=\"checkbox\" id=\"" + row.guid + "\">"
-                    }
-            },
-            {"data": "rolecode"},
-            {"data": "rolename"},
-            {
-                "data": null, "render": function (row) {
-                    return dateFtt("yyyy年MM月dd日", new Date(row.creatdate));
+                "data": null, "orderable": false,
+                "render": function (data, type, row, meta) {
+                    var no = meta.settings._iDisplayStart + meta.row + 1;
+                    return no;
                 }
             },
-            {"data": "remark"},
+            {"data": "username"},
+            {"data": "realname"},
+            {"data": "usercode"},
+            {
+                "data": null, "render": function (row) {
+                    return dateFtt("yyyy年MM月dd日", new Date(row.createtime));
+                }
+            },
             {
                 "data": null, "width": "120px", "render": function (row) {
                     return "<i class=\"glyphicon glyphicon-edit\" style='cursor: pointer'   title=\"编辑\" value=\"" + row.guid + "\" onclick=\"editRowData(this)\" operate=\"edit\"></i>&nbsp;&nbsp;<i class=\"glyphicon glyphicon-trash\" style='cursor: pointer'  title=\"删除\" value=\"" + row.guid + "\" onclick=\"delRowData(this)\"></i>";
@@ -78,21 +80,6 @@ $(function () {
             }
         ]
     });
-
-    $("#baseRoleList").delegate("tbody tr[role='row']", "click", function (row) {
-        var table = $('#baseRoleList').DataTable();
-        var tr = $(this).closest("tr");
-        $("#baseRoleList").find("tbody tr[role='row']").closest("tr").css("color", "#000000");
-        $("#baseRoleList").find("tbody tr[role='row']").closest("tr").css("background-color", "#FFFFFF");
-        tr.css("color", "#FFFFFF");
-        tr.css("background-color", "#428bca");
-        if (undefined != row) {
-            var tds = table.row($(this).closest('tr')).data();
-        }
-        var rolecode = tds.rolecode;
-        selectUsers(rolecode);
-    });
-
 });
 
 function showFormPanel() {
@@ -119,7 +106,7 @@ function editRowData(row) {
 }
 
 function delRowData(row) {
-    var rolecode = null;
+    var guid = null;
     var table = $('#baseRoleList').DataTable();
     if (undefined == row) {
         var row = $("#baseRoleList").find("tbody tr input[type='checkbox']:checked");
@@ -128,11 +115,11 @@ function delRowData(row) {
             return false;
         } else {
             var tds = table.row($(row[0]).closest('tr')).data();
-            rolecode = tds.rolecode;
+            guid = tds.guid;
         }
     } else {
         var tds = table.row($(row).closest('tr')).data();
-        rolecode = tds.rolecode;
+        guid = tds.guid;
     }
 
     modals.confirm("确认删除", function () {
@@ -140,7 +127,7 @@ function delRowData(row) {
             dateType: "json",
             async: false,
             contentType: 'application/json',
-            url: "../Role/delRole/" + rolecode,
+            url: "../User/delBaseUser/" + guid,
             success: function (result) {
                 var result = JSON.parse(result)
                 if (result.result)
@@ -155,70 +142,73 @@ function delRowData(row) {
 }
 
 function Save() {
-    var check = "";
-    if ($("#checkcode").val() != $("#rolecode").val()) {
-        $.ajax({
-            dataType: "json",
-            async: false,
-            type: "POST",
-            contentType: 'application/json',
-            url: "/Role/checkCode/" + $("#rolecode").val(),
-            success: function (data) {
-                if (data > 0) {
-                    check = "false";
-                }
-            }, error: function () {
-                modals.info("验证过程出现错误");
-                return false;
-            }
-        });
-    }
-    if (check == "false") {
-        modals.info("角色编码编码已存在，请换一个!");
-        return false;
-    }
     var JsonData = {};
     JsonData.guid = $("#guid").val();
-    JsonData.rolename = $("#rolename").val();
-    JsonData.rolecode = $("#rolecode").val();
-    JsonData.remark = $("#remark").val();
+    JsonData.username = $("#username").val();
+    JsonData.password = $("#password").val();
+    JsonData.realname = $("#realname").val();
+    JsonData.usercode = $("#usercode").val();
+
+    if ([null, undefined, ""].includes(JsonData.username)) {
+        modals.info("请填写用户名称");
+        return false;
+    }
+    if ([null, undefined, ""].includes(JsonData.password)) {
+        modals.info("请填写密码");
+        return false;
+    }
+
     $.ajax({
         dataType: "json",
         async: false,
         type: "POST",
         contentType: 'application/json',
-        url: "../Role/addBaseRole",
+        url: "/User/checkCode",
         data: JSON.stringify(JsonData),
-        success: function (result) {
-            if (result.result) {
-                $("#editModal").modal('hide');
-                $("#baseRoleList").dataTable().fnDraw(false);
-            } else
-                modals.info(result.msg);
-        },
-        error: function (result) {
+        success: function (data) {
+            if (!data) {
+                modals.info("用户名已存在");
+                return false;
+            } else {
+                $.ajax({
+                    dataType: "json",
+                    async: false,
+                    type: "POST",
+                    contentType: 'application/json',
+                    url: "../User/addBaseUser",
+                    data: JSON.stringify(JsonData),
+                    success: function (result) {
+                        if (result.result) {
+                            $("#editModal").modal('hide');
+                            $("#baseRoleList").dataTable().fnDraw(false);
+                        } else
+                            modals.info(result.msg);
+                    },
+                    error: function (result) {
+                    }
+                });
+            }
+        }, error: function () {
+            modals.info("验证过程出现错误");
+            return false;
         }
     });
 }
 
-function selectUsers(roleId) {
-    console.info(roleId);
-}
-
 function setValue(rowObject) {
-    $("#checkcode").val(rowObject.rolecode);
     $("#guid").val(rowObject.guid);
-    $("#rolecode").val(rowObject.rolecode);
-    $("#rolename").val(rowObject.rolename);
-    $("#remark").val(rowObject.remark);
+    $("#username").val(rowObject.username);
+    $("#password").val(rowObject.password);
+    $("#realname").val(rowObject.realname);
+    $("#usercode").val(rowObject.usercode);
 }
 
 function clearValue() {
-    $("#checkcode").val("");
     $("#guid").val("");
-    $("#rolecode").val("");
-    $("#rolename").val("");
-    $("#remark").val("");
+    $("#username").val("");
+    $("#password").val("");
+    $("#realname").val("");
+    $("#usercode").val("");
 }
 
 function SelectAll(ckb) {

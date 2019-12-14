@@ -244,67 +244,36 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                角色
-                <small>权限</small>
+                用户
+                <small>列表</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="../index"><i class="fa fa-dashboard"></i>首页</a></li>
-                <li class="active">角色权限</li>
+                <li class="active">用户列表</li>
             </ol>
         </section>
         <!-- Main content -->
         <section class="content">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title"><i class="fa fa-tag"></i>角色管理</h3>
-                        </div>
-                        <div class="box-body">
-                            <table id="baseRoleList" class="table table-bordered table-hover dataTable"
-                                   style="overflow: visible;">
-                                <thead>
-                                <tr>
-                                    <th aria-sort="none" aria-label="" width="60px">
-                                        <input type="checkbox" id="AllChange" onclick="SelectAll(this)"/>
-                                    </th>
-                                    <th>角色编号</th>
-                                    <th>角色名称</th>
-                                    <th>创建时间</th>
-                                    <th>备注</th>
-                                    <th>编辑</th>
-                                </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title"><i class="fa fa-tag"></i>用户列表管理</h3>
                 </div>
-                <div class="col-md-4">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title"><i class="glyphicon glyphicon-user"></i>角色人员</h3>
-                            <span  style="float: right" >
-                                <input type="hidden" name="roleId" id="roleId">
-                                <button type="button" class="btn btn-default" onclick="authRoleFunc()">授权</button>
-                                <button type="button" class="btn btn-default" onclick="deleteRoleFunc()">移除</button>
-                            </span>
-                        </div>
-                        <div class="box-body">
-                            <table id="baseUserList" class="table table-bordered table-hover dataTable"
-                                   style="overflow: visible;">
-                                <thead>
-                                <tr>
-                                    <th aria-sort="none" aria-label="">
-                                        <input type="checkbox" id="AllChange" onclick="SelectList(this)"/></th>
-                                    <th>用户名</th>
-                                    <th>系统名称</th>
-                                    <th>用户编码</th>
-                                    <th>权限下载</th>
-                                </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
+                <div class="box-body">
+                    <table id="baseRoleList" class="table table-bordered table-hover dataTable"
+                           style="overflow: visible;">
+                        <thead>
+                        <tr>
+                            <th aria-sort="none" aria-label="" width="60px">
+                                <input type="checkbox" id="AllChange" onclick="SelectAll(this)"/>
+                            </th>
+                            <th>用户名</th>
+                            <th>系统名称</th>
+                            <th>用户编码</th>
+                            <th>创建时间</th>
+                            <th>编辑</th>
+                        </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
             <div class="modal fade " id="editModal" role="dialog" aria-labelledby="myModalLabel1">
@@ -313,34 +282,32 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span></button>
-                            <h4 class="modal-title">角色管理</h4>
+                            <h4 class="modal-title">用户管理</h4>
                         </div>
                         <div class="modal-body">
                             <table class="table table-bordered"
                                    style="overflow: visible;">
-                                <span type="hidden" id="checkcode"></span>
-                                <span type="hidden" id="rolecode"></span>
                                 <span type="hidden" id="guid"></span>
                                 <tr>
-                                    <td class="col-sm-2">角色名称</td>
-                                    <td class="col-sm-8"><input type="text" class="form-control" id="rolename"></td>
+                                    <td class="col-sm-2">用户名</td>
+                                    <td class="col-sm-8"><input type="text" class="form-control" id="username"></td>
                                 </tr>
                                 <tr>
-                                    <td class="col-sm-2">备注</td>
-                                    <td class="col-sm-8">
-                                        <textarea placeholder="备注"
-                                                  class="form-control"
-                                                  rows="6"
-                                                  name="remark"
-                                                  id="remark"></textarea>
-                                    </td>
+                                    <td class="col-sm-2">密码</td>
+                                    <td class="col-sm-8"><input type="text" class="form-control" id="password"></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-2">系统名称</td>
+                                    <td class="col-sm-8"><input type="text" class="form-control" id="realname"></td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-2">系统编码</td>
+                                    <td class="col-sm-8"><input type="text" class="form-control" id="usercode"></td>
                                 </tr>
                             </table>
                         </div>
                         <div class="modal-footer">
-                            <button onclick="Save()" type="button" class="btn btn-default glyphicon glyphicon-ok">
-                                &nbsp;保存
-                            </button>
+                            <button onclick="Save()" type="button" class="btn btn-default glyphicon glyphicon-ok">&nbsp;保存</button>
                             &nbsp;
                             <button type="button" class="btn btn-default glyphicon glyphicon-remove"
                                     data-dismiss="modal">&nbsp;关闭
@@ -441,6 +408,6 @@
 <script src="../staticResource/js/commHelper.js"></script>
 <script src="../staticResource/js/siderbarMenu.js"></script>
 <script src="../staticResource/js/base-model.js"></script>
-<script src="../staticResource/js/accessManage/baseRole.js"></script>
+<script src="../staticResource/js/accessManage/baseUsers.js"></script>
 </body>
 </html>

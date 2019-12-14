@@ -261,6 +261,9 @@
                 <!-- /.col -->
                 <div class="col-md-8">
                     <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><i class="fa fa-user"></i>角色列表</h3>
+                        </div>
                         <div class="box-body">
                             <table id="roleAuthList" class="table table-bordered table-striped table-hover dataTable no-footer"
                                    style="overflow: visible;">

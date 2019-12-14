@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.security.door.dao.baseUsersMapper">
+    <resultMap id="BaseResultMap" type="com.security.door.entity.baseUsers">
+        <id column="guid" jdbcType="INTEGER" property="guid"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="usercode" jdbcType="VARCHAR" property="usercode"/>
+        <result column="realname" jdbcType="VARCHAR" property="realname"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    guid, username, password, usercode, realname, creator, createtime
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from base_users
+        where guid = #{guid,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from base_users
+    where guid = #{guid,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.security.door.entity.baseUsers">
+    insert into base_users (guid, username, password,
+      usercode, realname, creator,
+      createtime)
+    values (#{guid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{usercode,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR},
+      #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.security.door.entity.baseUsers">
+        insert into base_users
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                guid,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="usercode != null">
+                usercode,
+            </if>
+            <if test="realname != null">
+                realname,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createtime != null">
+                createtime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                #{guid,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="usercode != null">
+                #{usercode,jdbcType=VARCHAR},
+            </if>
+            <if test="realname != null">
+                #{realname,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.security.door.entity.baseUsers">
+        update base_users
+        <set>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="usercode != null">
+                usercode = #{usercode,jdbcType=VARCHAR},
+            </if>
+            <if test="realname != null">
+                realname = #{realname,jdbcType=VARCHAR},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where guid = #{guid,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.security.door.entity.baseUsers">
+    update base_users
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      usercode = #{usercode,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where guid = #{guid,jdbcType=INTEGER}
+  </update>
+
+    <select id="selectList" parameterType="com.security.door.pager.DatatablesView" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM base_users
+        where 1=1
+        <if test="keyWord != null">
+            AND (
+            username like CONCAT('%',#{keyWord},'%')
+            OR realname like CONCAT('%',#{keyWord},'%')
+            OR usercode like CONCAT('%',#{keyWord},'%')
+            )
+        </if>
+        limit #{start},#{length}
+    </select>
+
+    <select id="checkCode" parameterType="com.security.door.entity.baseUsers" resultType="java.lang.Integer">
+    SELECT count(*)
+    FROM base_users
+    WHERE  username = #{username,jdbcType=VARCHAR}
+    And guid <![CDATA[ <> ]]> #{guid,jdbcType=VARCHAR}
+  </select>
+
+</mapper>
