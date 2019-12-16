@@ -22,7 +22,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="../staticResource/adminlte/dist/css/skins/_all-skins.css">
     <link rel="stylesheet" href="../staticResource/adminlte/bootstrap/css/bootstrap.min.css">
 
-    <link rel="stylesheet" type="text/css" href="../staticResource/adminlte/plugins/datatables/dataTables.bootstrap.css  "/>
+    <link rel="stylesheet" type="text/css"
+          href="../staticResource/adminlte/plugins/datatables/dataTables.bootstrap.css  "/>
     <link rel="stylesheet" type="text/css" href="../staticResource/adminlte/plugins/select2/select2.min.css  "/>
 
     <script src="../staticResource/adminlte/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -80,8 +81,8 @@ desired effect
                     <li class="dropdown messages-menu">
                         <!-- Menu toggle button -->
                         <#--<a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
-                            <#--<i class="fa fa-envelope-o"></i>-->
-                            <#--<span class="label label-success">4</span>-->
+                        <#--<i class="fa fa-envelope-o"></i>-->
+                        <#--<span class="label label-success">4</span>-->
                         <#--</a>-->
                         <ul class="dropdown-menu">
                             <li class="header">You have 4 messages</li>
@@ -92,7 +93,8 @@ desired effect
                                         <a href="#">
                                             <div class="pull-left">
                                                 <!-- User Image -->
-                                                <img src="../staticResource/dist/img/user2-160x160.jpg" class="img-circle"
+                                                <img src="../staticResource/dist/img/user2-160x160.jpg"
+                                                     class="img-circle"
                                                      alt="User Image">
                                             </div>
                                             <!-- Message title and timestamp -->
@@ -117,8 +119,8 @@ desired effect
                     <li class="dropdown notifications-menu">
                         <!-- Menu toggle button -->
                         <#--<a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
-                            <#--<i class="fa fa-bell-o"></i>-->
-                            <#--<span class="label label-warning">10</span>-->
+                        <#--<i class="fa fa-bell-o"></i>-->
+                        <#--<span class="label label-warning">10</span>-->
                         <#--</a>-->
                         <ul class="dropdown-menu">
                             <li class="header">You have 10 notifications</li>
@@ -140,8 +142,8 @@ desired effect
                     <li class="dropdown tasks-menu">
                         <!-- Menu Toggle Button -->
                         <#--<a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
-                            <#--<i class="fa fa-flag-o"></i>-->
-                            <#--<span class="label label-danger">9</span>-->
+                        <#--<i class="fa fa-flag-o"></i>-->
+                        <#--<span class="label label-danger">9</span>-->
                         <#--</a>-->
                         <ul class="dropdown-menu">
                             <li class="header">You have 9 tasks</li>
@@ -289,7 +291,8 @@ desired effect
                 <div class="box-body">
                     <table id="tbGrid" class="table table-bordered table-hover dataTable">
                         <thead>
-                        <th aria-sort="none" aria-label="" width="60px"><input type="checkbox" id="AllChange" onclick="SelectAll(this)"/>全选
+                        <th aria-sort="none" aria-label="" width="60px"><input type="checkbox" id="AllChange"
+                                                                               onclick="SelectAll(this)"/>全选
                         </th>
                         <th>SN</th>
                         <th>版本</th>

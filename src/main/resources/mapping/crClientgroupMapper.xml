@@ -9,8 +9,8 @@
         <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
     </resultMap>
     <sql id="Base_Column_List">
-    guid, clientcode, groupcode, creator, createtime
-  </sql>
+        guid, clientcode, groupcode, creator, createtime
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -18,15 +18,15 @@
         where guid = #{guid,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from cr_clientgroup
-    where guid = #{guid,jdbcType=VARCHAR}
-  </delete>
+        delete from cr_clientgroup
+        where guid = #{guid,jdbcType=VARCHAR}
+    </delete>
     <insert id="insert" parameterType="com.security.door.entity.crClientgroup">
-    insert into cr_clientgroup (guid, clientcode, groupcode, 
-      creator, createtime)
-    values (#{guid,jdbcType=VARCHAR}, #{clientcode,jdbcType=VARCHAR}, #{groupcode,jdbcType=VARCHAR}, 
-      #{creator,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP})
-  </insert>
+        insert into cr_clientgroup (guid, clientcode, groupcode,
+        creator, createtime)
+        values (#{guid,jdbcType=VARCHAR}, #{clientcode,jdbcType=VARCHAR}, #{groupcode,jdbcType=VARCHAR},
+        #{creator,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP})
+    </insert>
     <insert id="insertSelective" parameterType="com.security.door.entity.crClientgroup">
         insert into cr_clientgroup
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -83,13 +83,13 @@
         where guid = #{guid,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.security.door.entity.crClientgroup">
-    update cr_clientgroup
-    set clientcode = #{clientcode,jdbcType=VARCHAR},
-      groupcode = #{groupcode,jdbcType=VARCHAR},
-      creator = #{creator,jdbcType=VARCHAR},
-      createtime = #{createtime,jdbcType=TIMESTAMP}
-    where guid = #{guid,jdbcType=VARCHAR}
-  </update>
+        update cr_clientgroup
+        set clientcode = #{clientcode,jdbcType=VARCHAR},
+        groupcode = #{groupcode,jdbcType=VARCHAR},
+        creator = #{creator,jdbcType=VARCHAR},
+        createtime = #{createtime,jdbcType=TIMESTAMP}
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
     <select id="selectByGroupCode" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

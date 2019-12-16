@@ -15,8 +15,8 @@
         <result column="createTime" jdbcType="DATE" property="createtime"/>
     </resultMap>
     <sql id="Base_Column_List">
-    guid, src, sequence, vendor, sn, version, k1, token, signkey, active, createTime
-  </sql>
+        guid, src, sequence, vendor, sn, version, k1, token, signkey, active, createTime
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -24,19 +24,19 @@
         where guid = #{guid,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from key_attach
-    where guid = #{guid,jdbcType=VARCHAR}
-  </delete>
+        delete from key_attach
+        where guid = #{guid,jdbcType=VARCHAR}
+    </delete>
     <insert id="insert" parameterType="com.security.door.entity.keyAttach">
-    insert into key_attach (guid, src, sequence, 
-      vendor, sn, version, 
-      k1, token, signkey, 
-      active, createTime)
-    values (#{guid,jdbcType=VARCHAR}, #{src,jdbcType=VARCHAR}, #{sequence,jdbcType=INTEGER}, 
-      #{vendor,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, 
-      #{k1,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{signkey,jdbcType=VARCHAR}, 
-      #{active,jdbcType=BIT}, #{createtime,jdbcType=DATE})
-  </insert>
+        insert into key_attach (guid, src, sequence,
+        vendor, sn, version,
+        k1, token, signkey,
+        active, createTime)
+        values (#{guid,jdbcType=VARCHAR}, #{src,jdbcType=VARCHAR}, #{sequence,jdbcType=INTEGER},
+        #{vendor,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR},
+        #{k1,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{signkey,jdbcType=VARCHAR},
+        #{active,jdbcType=BIT}, #{createtime,jdbcType=DATE})
+    </insert>
     <insert id="insertSelective" parameterType="com.security.door.entity.keyAttach">
         insert into key_attach
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -147,31 +147,31 @@
         where guid = #{guid,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.security.door.entity.keyAttach">
-    update key_attach
-    set src = #{src,jdbcType=VARCHAR},
-      sequence = #{sequence,jdbcType=INTEGER},
-      vendor = #{vendor,jdbcType=VARCHAR},
-      sn = #{sn,jdbcType=VARCHAR},
-      version = #{version,jdbcType=VARCHAR},
-      k1 = #{k1,jdbcType=VARCHAR},
-      token = #{token,jdbcType=VARCHAR},
-      signkey = #{signkey,jdbcType=VARCHAR},
-      active = #{active,jdbcType=BIT},
-      createTime = #{createtime,jdbcType=DATE}
-    where guid = #{guid,jdbcType=VARCHAR}
-  </update>
+        update key_attach
+        set src = #{src,jdbcType=VARCHAR},
+        sequence = #{sequence,jdbcType=INTEGER},
+        vendor = #{vendor,jdbcType=VARCHAR},
+        sn = #{sn,jdbcType=VARCHAR},
+        version = #{version,jdbcType=VARCHAR},
+        k1 = #{k1,jdbcType=VARCHAR},
+        token = #{token,jdbcType=VARCHAR},
+        signkey = #{signkey,jdbcType=VARCHAR},
+        active = #{active,jdbcType=BIT},
+        createTime = #{createtime,jdbcType=DATE}
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
     <update id="updateStatus" parameterType="java.lang.String">
-    update key_attach
-    set
-    active = !active
-    where guid = #{guid,jdbcType=VARCHAR}
-  </update>
+        update key_attach
+        set
+        active = !active
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
     <select id="getActiveCount" resultType="java.lang.Integer">
         select count(0) from key_attach where active = 1
     </select>
     <select id="getCount" resultType="java.lang.Integer">
-    select count(0) from key_attach
-  </select>
+        select count(0) from key_attach
+    </select>
     <select id="selectList" parameterType="com.security.door.pager.DatatablesView" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -195,7 +195,7 @@
     </select>
 
     <update id="upDateBySrc" parameterType="com.security.door.entity.keyAttach">
-        update key_attach set token =#{token},signkey=#{signkey}  where src =#{src} and active = 1
+        update key_attach set token =#{token},signkey=#{signkey} where src =#{src} and active = 1
     </update>
 
     <select id="selectBySrc" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -207,7 +207,7 @@
     </select>
 
     <update id="Deactive" parameterType="java.lang.String">
-        update key_attach set active =0  where src =#{src}
+        update key_attach set active =0 where src =#{src}
     </update>
 
     <select id="selectBySn" parameterType="java.lang.String" resultMap="BaseResultMap">

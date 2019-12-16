@@ -89,8 +89,8 @@ $(function () {
         if (undefined != row) {
             var tds = table.row($(this).closest('tr')).data();
         }
-        var guid = tds.guid;
-        selectUsers(guid);
+        var rolecode = tds.rolecode;
+        selectUsers(rolecode);
     });
 
 });
@@ -201,9 +201,9 @@ function Save() {
     });
 }
 
-function selectUsers(roleId) {
-    if (![null, undefined, ""].includes(roleId)) {
-        $("#roleid").val(roleId);
+function selectUsers(roleCode) {
+    if (![null, undefined, ""].includes(roleCode)) {
+        $("#roleCode").val(roleCode);
         $("#baseUserList").dataTable({
             "lengthChange": true,
             "searching": false,
@@ -216,7 +216,7 @@ function selectUsers(roleId) {
             "pagingType": "full_numbers",
             "serverSide": true,
             "ajax": {
-                "url": "/UserRole/getUsers/" + roleId,
+                "url": "/UserRole/getUsers/" + roleCode,
                 "cache": false,  //禁用缓存
                 "data": function (data) {
                     return data;
@@ -293,7 +293,7 @@ function SelectAll(ckb) {
 }
 
 function authRoleFunc() {
-    if ([null, undefined, ""].includes($("#roleid").val())) {
+    if ([null, undefined, ""].includes($("#roleCode").val())) {
         modals.info("请选择一个角色");
         return false;
     }
@@ -370,7 +370,7 @@ function authRoleFunc() {
             var tds = table.row($(this).closest('tr')).data();
         }
         var JsonData = {}
-        JsonData.roleid = $("#roleid").val();
+        JsonData.rolecode = $("#roleCode").val();
         JsonData.userid = tds.guid;
         $.ajax({
             dataType: "json",
@@ -395,7 +395,7 @@ function authRoleFunc() {
 }
 
 function deleteRoleFunc() {
-    if ([null, undefined, ""].includes($("#roleid").val())) {
+    if ([null, undefined, ""].includes($("#roleCode").val())) {
         modals.info("请选择一个角色");
         return false;
     }
@@ -405,7 +405,7 @@ function deleteRoleFunc() {
         return false;
     }
     var JsonData = {}
-    JsonData.roleid = $("#roleid").val();
+    JsonData.rolecode = $("#roleCode").val();
     JsonData.userid = $("#userid").val();
     $.ajax({
         dataType: "json",

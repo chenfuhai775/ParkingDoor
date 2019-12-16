@@ -23,7 +23,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="../staticResource/adminlte/dist/css/skins/_all-skins.css">
     <link rel="stylesheet" href="../staticResource/adminlte/bootstrap/css/bootstrap.min.css">
 
-    <link rel="stylesheet" type="text/css" href="../staticResource/adminlte/plugins/datatables/dataTables.bootstrap.css  "/>
+    <link rel="stylesheet" type="text/css"
+          href="../staticResource/adminlte/plugins/datatables/dataTables.bootstrap.css  "/>
     <link rel="stylesheet" type="text/css" href="../staticResource/adminlte/plugins/select2/select2.min.css  "/>
 
     <script src="../staticResource/adminlte/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -34,9 +35,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="../staticResource/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
 
     <!--imageupload-->
-    <link href="../staticResource/adminlte/plugins/fileupload/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
-    <link href="../staticResource/adminlte/plugins/fileupload/css/fileinput-rtl.css" media="all" rel="stylesheet" type="text/css"/>
-    <link href="../staticResource/adminlte/plugins/fileupload/themes/explorer-fa/theme.css" rel="stylesheet" type="text/css"/>
+    <link href="../staticResource/adminlte/plugins/fileupload/css/fileinput.css" media="all" rel="stylesheet"
+          type="text/css"/>
+    <link href="../staticResource/adminlte/plugins/fileupload/css/fileinput-rtl.css" media="all" rel="stylesheet"
+          type="text/css"/>
+    <link href="../staticResource/adminlte/plugins/fileupload/themes/explorer-fa/theme.css" rel="stylesheet"
+          type="text/css"/>
 
     <script src="../staticResource/adminlte/plugins/fileupload/js/plugins/sortable.js"></script>
     <script src="../staticResource/adminlte/plugins/fileupload/js/fileinput.js"></script>
@@ -217,7 +221,7 @@ desired effect
                                     <a href="#" class="btn btn-default btn-flat">设置</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a id="existSytem" class="btn btn-default btn-flat">退出登录</a>                                </div>
+                                    <a id="existSytem" class="btn btn-default btn-flat">退出登录</a></div>
                             </li>
                         </ul>
                     </li>
@@ -292,7 +296,7 @@ desired effect
                     <table id="tbGrid" class="table table-bordered table-hover dataTable">
                         <thead>
                         <th aria-sort="none" aria-label="" width="60px"><input type="checkbox" id="AllChange"
-                                                                  onclick="SelectAll(this)"/>全选
+                                                                               onclick="SelectAll(this)"/>全选
                         </th>
                         <th>设备类型编号</th>
                         <th>设备类型名称</th>
@@ -334,9 +338,10 @@ desired effect
                                 </tr>
                                 <tr>
                                     <td><label>产品类型图片</label></td>
-                                    <td  id="DeviceTypeimage" class="col-sm-9" colspan="3">
+                                    <td id="DeviceTypeimage" class="col-sm-9" colspan="3">
                                         <div class="file-loading" style="width: 100%">
-                                            <input id="txtDeviceTypeimage" name="txtDeviceTypeimage" type="file" class="file">
+                                            <input id="txtDeviceTypeimage" name="txtDeviceTypeimage" type="file"
+                                                   class="file">
                                         </div>
                                         <p class="help-block">支持jpg、jpeg、bmp、png格式</p>
                                     </td>
@@ -344,9 +349,13 @@ desired effect
                             </table>
                         </div>
                         <div class="modal-footer">
-                            <button id="btnDeviceTypeSave" type="button" class="btn btn-default glyphicon glyphicon-ok">&nbsp;保存</button>
+                            <button id="btnDeviceTypeSave" type="button" class="btn btn-default glyphicon glyphicon-ok">
+                                &nbsp;保存
+                            </button>
                             &nbsp;
-                            <button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">&nbsp;关闭</button>
+                            <button type="button" class="btn btn-default glyphicon glyphicon-remove"
+                                    data-dismiss="modal">&nbsp;关闭
+                            </button>
                         </div>
                     </div>
                     <!-- /.modal-content -->

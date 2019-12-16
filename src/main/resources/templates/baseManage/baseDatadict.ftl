@@ -23,7 +23,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="../staticResource/adminlte/dist/css/skins/_all-skins.css">
     <link rel="stylesheet" href="../staticResource/adminlte/bootstrap/css/bootstrap.css">
 
-    <link rel="stylesheet" type="text/css" href="../staticResource/adminlte/plugins/datatables/dataTables.bootstrap.css  "/>
+    <link rel="stylesheet" type="text/css"
+          href="../staticResource/adminlte/plugins/datatables/dataTables.bootstrap.css  "/>
     <link rel="stylesheet" type="text/css" href="../staticResource/adminlte/plugins/select2/select2.min.css  "/>
 
     <script src="../staticResource/adminlte/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -33,7 +34,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="../staticResource/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="../staticResource/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
 
-    <link  href="../staticResource/adminlte/plugins/treeview/css/bootstrap-treeview.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../staticResource/adminlte/plugins/treeview/css/bootstrap-treeview.min.css" rel="stylesheet"
+          type="text/css"/>
     <script src="../staticResource/adminlte/plugins/treeview/js/bootstrap-treeview.min.js"></script>
     <script src="../staticResource/js/base-form.js"></script>
     <script src="../staticResource/js/base-model.js"></script>
@@ -214,7 +216,7 @@ desired effect
                                     <a href="#" class="btn btn-default btn-flat">设置</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a id="existSytem" class="btn btn-default btn-flat">退出登录</a>                                </div>
+                                    <a id="existSytem" class="btn btn-default btn-flat">退出登录</a></div>
                             </li>
                         </ul>
                     </li>
@@ -296,10 +298,18 @@ desired effect
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-default" data-btn-type="addRoot"><li class="fa fa-plus">&nbsp;新增根字典</li></button>
-                                <button type="button" class="btn btn-default" data-btn-type="add"><li class="fa fa-plus">&nbsp;新增下级字典</li></button>
-                                <button type="button" class="btn btn-default" data-btn-type="edit"><li class="fa fa-edit">&nbsp;编辑当前字典</li></button>
-                                <button type="button" class="btn btn-default" data-btn-type="delete"><li class="fa fa-remove">&nbsp;删除当前字典</li></button>
+                                <button type="button" class="btn btn-default" data-btn-type="addRoot">
+                                    <li class="fa fa-plus">&nbsp;新增根字典</li>
+                                </button>
+                                <button type="button" class="btn btn-default" data-btn-type="add">
+                                    <li class="fa fa-plus">&nbsp;新增下级字典</li>
+                                </button>
+                                <button type="button" class="btn btn-default" data-btn-type="edit">
+                                    <li class="fa fa-edit">&nbsp;编辑当前字典</li>
+                                </button>
+                                <button type="button" class="btn btn-default" data-btn-type="delete">
+                                    <li class="fa fa-remove">&nbsp;删除当前字典</li>
+                                </button>
                             </div>
                             <!-- /.box-tools -->
                         </div>
@@ -312,7 +322,8 @@ desired effect
                                     <label for="pName" class="col-sm-2 control-label">上级</label>
 
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" disabled="disabled" id="parentname" name="parentname" placeholder="上级" readonly="readonly">
+                                        <input type="text" class="form-control" disabled="disabled" id="parentname"
+                                               name="parentname" placeholder="上级" readonly="readonly">
                                     </div>
                                 </div>
 
@@ -320,30 +331,36 @@ desired effect
                                     <label for="modelName" class="col-sm-2 control-label">名称</label>
 
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="text" name="text" placeholder="名称" readonly="readonly" data-bv-field="text">
+                                        <input type="text" class="form-control" id="text" name="text" placeholder="名称"
+                                               readonly="readonly" data-bv-field="text">
                                     </div>
                                 </div>
                                 <div class="form-group has-feedback">
                                     <label for="modelName" class="col-sm-2 control-label">值</label>
 
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="code" name="code" placeholder="值" readonly="readonly" data-bv-field="code">
+                                        <input type="text" class="form-control" id="code" name="code" placeholder="值"
+                                               readonly="readonly" data-bv-field="code">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="sortno" class="col-sm-2 control-label">序号</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="sortno" name="sortno" placeholder="序号" readonly="readonly" data-bv-field="sortno" >
+                                        <input type="text" class="form-control" id="sortno" name="sortno"
+                                               placeholder="序号" readonly="readonly" data-bv-field="sortno">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="icon" class="col-sm-2 control-label">图标</label>
                                     <div class="col-sm-7">
-                                        <i data-bv-icon-for="icon" id="icon_i" class="form-control-feedback fa fa-table" style="right:15px"></i>
-                                        <input type="text" class="form-control" id="icon" name="icon" placeholder="图标" readonly="readonly" data-bv-field="icon">
+                                        <i data-bv-icon-for="icon" id="icon_i" class="form-control-feedback fa fa-table"
+                                           style="right:15px"></i>
+                                        <input type="text" class="form-control" id="icon" name="icon" placeholder="图标"
+                                               readonly="readonly" data-bv-field="icon">
                                     </div>
                                     <div class="col-sm-2">
-                                        <button type="button" id="selectIcon" class="btn btn-primary disabled" data-btn-type="selectIcon">
+                                        <button type="button" id="selectIcon" class="btn btn-primary disabled"
+                                                data-btn-type="selectIcon">
                                             <i class="fa fa-hand-pointer-o">&nbsp;选择图标</i>
                                         </button>
                                     </div>
@@ -352,8 +369,9 @@ desired effect
                                     <label for="remark" class="col-sm-2 control-label">备注</label>
 
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="remark" name="remark" placeholder="备注" readonly="readonly" data-bv-field="remark">
-                                    </i>
+                                        <input type="text" class="form-control" id="remark" name="remark"
+                                               placeholder="备注" readonly="readonly" data-bv-field="remark">
+                                        </i>
                                     </div>
                                 </div>
                                 <div class="box-footer" style="display:none">

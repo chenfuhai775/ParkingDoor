@@ -20,11 +20,11 @@
         <result column="clientname" jdbcType="VARCHAR" property="clientname"/>
     </resultMap>
     <sql id="Base_Column_List">
-    guid, deviceTypeCode, deviceTypeName,productline, deviceTypeImage, creator, createTime
-  </sql>
+        guid, deviceTypeCode, deviceTypeName,productline, deviceTypeImage, creator, createTime
+    </sql>
     <select id="selectDevTypeList" resultMap="SelectDataMap">
-       SELECT deviceTypeCode as id,deviceTypeName as text,guid as tag FROM dev_devicetype
-  </select>
+        SELECT deviceTypeCode as id,deviceTypeName as text,guid as tag FROM dev_devicetype
+    </select>
     <select id="selectclientname" resultMap="ResultMap" parameterType="java.lang.String">
         SELECT clientcode,clientname FROM cr_orgregister
         <if test="value != null">
@@ -58,17 +58,18 @@
         </if>
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from dev_devicetype
+        delete from dev_devicetype
         where guid in ( ${value} )
-  </delete>
+    </delete>
     <insert id="insert" parameterType="com.security.door.entity.devDevicetype">
-    insert into dev_devicetype (guid, deviceTypeCode, deviceTypeName, productline,
-      deviceTypeImage, creator, createTime
-      )
-    values (#{guid,jdbcType=VARCHAR}, #{devicetypecode,jdbcType=VARCHAR}, #{devicetypename,jdbcType=VARCHAR}, 
-      #{productline,jdbcType=VARCHAR},#{devicetypeimage,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
-      )
-  </insert>
+        insert into dev_devicetype (guid, deviceTypeCode, deviceTypeName, productline,
+        deviceTypeImage, creator, createTime
+        )
+        values (#{guid,jdbcType=VARCHAR}, #{devicetypecode,jdbcType=VARCHAR}, #{devicetypename,jdbcType=VARCHAR},
+        #{productline,jdbcType=VARCHAR},#{devicetypeimage,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR},
+        #{createtime,jdbcType=TIMESTAMP}
+        )
+    </insert>
     <insert id="insertSelective" parameterType="com.security.door.entity.devDevicetype">
         insert into dev_devicetype
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -143,19 +144,19 @@
         where guid = #{guid,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.security.door.entity.devDevicetype">
-    update dev_devicetype
-    set deviceTypeCode = #{devicetypecode,jdbcType=VARCHAR},
-      deviceTypeName = #{devicetypename,jdbcType=VARCHAR},
-      productline = #{productline,jdbcType=VARCHAR},
-      deviceTypeImage = #{devicetypeimage,jdbcType=VARCHAR},
-      creator = #{creator,jdbcType=VARCHAR},
-      createTime = #{createtime,jdbcType=TIMESTAMP}
-    where guid = #{guid,jdbcType=VARCHAR}
-  </update>
+        update dev_devicetype
+        set deviceTypeCode = #{devicetypecode,jdbcType=VARCHAR},
+        deviceTypeName = #{devicetypename,jdbcType=VARCHAR},
+        productline = #{productline,jdbcType=VARCHAR},
+        deviceTypeImage = #{devicetypeimage,jdbcType=VARCHAR},
+        creator = #{creator,jdbcType=VARCHAR},
+        createTime = #{createtime,jdbcType=TIMESTAMP}
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
 
     <select id="hasExists" parameterType="java.lang.String" resultType="java.lang.Integer">
-    select count(0) from dev_devicetype
-    where   deviceTypeCode = #{devicetypecode,jdbcType=VARCHAR}
-  </select>
+        select count(0) from dev_devicetype
+        where deviceTypeCode = #{devicetypecode,jdbcType=VARCHAR}
+    </select>
 
 </mapper>

@@ -52,8 +52,8 @@
         <result column="paths" jdbcType="VARCHAR" property="paths"/>
     </resultMap>
     <sql id="Base_Column_List">
-  guid, menutype, menuname, parentid,menuid, url, icon, active, sortno, creator, createtime, remark
-  </sql>
+        guid, menutype, menuname, parentid,menuid, url, icon, active, sortno, creator, createtime, remark
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -61,19 +61,19 @@
         where guid = #{guid,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByGuid" parameterType="java.lang.String">
-    delete from base_menu
-    where  guid in ( ${value} )
-  </delete>
+        delete from base_menu
+        where guid in ( ${value} )
+    </delete>
     <insert id="insert" parameterType="com.security.door.entity.baseMenu">
-    insert into base_menu (guid, menutype, menuname, 
-      parentid, url, icon, active,
-      sortno, creator, createtime,
-      remark)
-    values (#{guid,jdbcType=VARCHAR}, #{menutype,jdbcType=INTEGER}, #{menuname,jdbcType=VARCHAR},
-      #{parentid,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{active,jdbcType=BIT},
-      #{sortno,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP},
-      #{remark,jdbcType=VARCHAR})
-  </insert>
+        insert into base_menu (guid, menutype, menuname,
+        parentid, url, icon, active,
+        sortno, creator, createtime,
+        remark)
+        values (#{guid,jdbcType=VARCHAR}, #{menutype,jdbcType=INTEGER}, #{menuname,jdbcType=VARCHAR},
+        #{parentid,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{active,jdbcType=BIT},
+        #{sortno,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP},
+        #{remark,jdbcType=VARCHAR})
+    </insert>
     <insert id="insertSelective" parameterType="com.security.door.entity.baseMenu">
         insert into base_menu
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -184,43 +184,43 @@
         where guid = #{guid,jdbcType=VARCHAR}
     </update>
     <update id="updateByGuid" parameterType="com.security.door.entity.baseMenu">
-    update base_menu
-    set menutype = #{menutype,jdbcType=INTEGER},
-      menuname = #{menuname,jdbcType=VARCHAR},
-      parentid = #{parentid,jdbcType=VARCHAR},
-      url = #{url,jdbcType=VARCHAR},
-      icon = #{icon,jdbcType=VARCHAR},
-      active = #{active,jdbcType=BIT},
-      sortno = #{sortno,jdbcType=INTEGER},
-      remark = #{remark,jdbcType=VARCHAR}
-    where guid = #{guid,jdbcType=VARCHAR}
-  </update>
+        update base_menu
+        set menutype = #{menutype,jdbcType=INTEGER},
+        menuname = #{menuname,jdbcType=VARCHAR},
+        parentid = #{parentid,jdbcType=VARCHAR},
+        url = #{url,jdbcType=VARCHAR},
+        icon = #{icon,jdbcType=VARCHAR},
+        active = #{active,jdbcType=BIT},
+        sortno = #{sortno,jdbcType=INTEGER},
+        remark = #{remark,jdbcType=VARCHAR}
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
     <select id="selectList" parameterType="java.lang.String" resultMap="ListResultMap">
-    SELECT guid ,parentid ,levels, paths,menuname,url,menutype,sortno,icon FROM (
-          SELECT guid,parentid,menuname,url,menutype,sortno,icon,
-          @le:= IF (parentid = 0 ,0,
-          IF( LOCATE( CONCAT('|',parentid,':'),@pathlevel)  > 0 ,
-          SUBSTRING_INDEX( SUBSTRING_INDEX(@pathlevel,CONCAT('|',parentid,':'),-1),'|',1) +1
-          ,@le+1) ) levels
-          , @pathlevel:= CONCAT(@pathlevel,'|',guid,':', @le ,'|') pathlevel
-          , @pathnodes:= IF( parentid =0,'0',
-          CONCAT_WS(',',
-          IF( LOCATE( CONCAT('|',parentid,':'),@pathall) > 0 ,
-          SUBSTRING_INDEX( SUBSTRING_INDEX(@pathall,CONCAT('|',parentid,':'),-1),'|',1)
-          ,@pathnodes ) ,parentid ) )paths
-          ,@pathall:=CONCAT(@pathall,'|',guid,':', @pathnodes ,'|') pathall
-          FROM base_menu,
-          (SELECT @le:=0,@pathlevel:='', @pathall:='',@pathnodes:='') vv
-          where active = 1 ORDER BY parentid,guid
-          ) src
-          ORDER BY sortno
-  </select>
+        SELECT guid ,parentid ,levels, paths,menuname,url,menutype,sortno,icon FROM (
+        SELECT guid,parentid,menuname,url,menutype,sortno,icon,
+        @le:= IF (parentid = 0 ,0,
+        IF( LOCATE( CONCAT('|',parentid,':'),@pathlevel) > 0 ,
+        SUBSTRING_INDEX( SUBSTRING_INDEX(@pathlevel,CONCAT('|',parentid,':'),-1),'|',1) +1
+        ,@le+1) ) levels
+        , @pathlevel:= CONCAT(@pathlevel,'|',guid,':', @le ,'|') pathlevel
+        , @pathnodes:= IF( parentid =0,'0',
+        CONCAT_WS(',',
+        IF( LOCATE( CONCAT('|',parentid,':'),@pathall) > 0 ,
+        SUBSTRING_INDEX( SUBSTRING_INDEX(@pathall,CONCAT('|',parentid,':'),-1),'|',1)
+        ,@pathnodes ) ,parentid ) )paths
+        ,@pathall:=CONCAT(@pathall,'|',guid,':', @pathnodes ,'|') pathall
+        FROM base_menu,
+        (SELECT @le:=0,@pathlevel:='', @pathall:='',@pathnodes:='') vv
+        where active = 1 ORDER BY parentid,guid
+        ) src
+        ORDER BY sortno
+    </select>
     <select id="getMaxID" resultType="java.lang.Integer">
         select max(menuid) + 1 from base_menu
     </select>
     <select id="getCount" resultType="java.lang.Integer">
-    SELECT COUNT(*) FROM base_menu
-  </select>
+        SELECT COUNT(*) FROM base_menu
+    </select>
     <select id="selectAll" parameterType="com.security.door.pager.DatatablesView" resultMap="BaseResultMap">
         SELECT * FROM (select
         <include refid="Base_Column_List"/>
@@ -234,9 +234,11 @@
         limit #{start},#{length}
     </select>
     <select id="selectParent" resultMap="BaseResultMap">
-    select menuid ,menuname from base_menu where FIND_IN_SET(menuid,getMenuChildList(0)) order by sortno;
-  </select>
+        select menuid ,menuname from base_menu where FIND_IN_SET(menuid,getMenuChildList(0)) order by sortno;
+    </select>
     <select id="SelectTreeList" parameterType="java.util.Map" resultMap="TreeResultMap">
-      select * from base_menu bm join base_roleauth br on bm.guid  = br.menuid where br.rolecode=#{rolecode} and FIND_IN_SET(bm.menuid,getMenuChildList(#{index})) order by sortno
+        select * from base_menu bm join base_roleauth br on bm.guid = br.menuid where
+         br.rolecode in (#{rolecode})
+         and FIND_IN_SET(bm.menuid,getMenuChildList(#{index})) order by sortno
     </select>
 </mapper>

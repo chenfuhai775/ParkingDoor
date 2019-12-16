@@ -1,201 +1,202 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.security.door.dao.crCardinfoMapper">
-  <resultMap id="BaseResultMap" type="com.security.door.entity.crCardinfo">
-    <id column="guid" jdbcType="VARCHAR" property="guid" />
-    <result column="cardno" jdbcType="VARCHAR" property="cardno" />
-    <result column="cardname" jdbcType="VARCHAR" property="cardname" />
-    <result column="cardtype" jdbcType="INTEGER" property="cardtype" />
-    <result column="certificatetype" jdbcType="INTEGER" property="certificatetype" />
-    <result column="clientcode" jdbcType="VARCHAR" property="clientcode" />
-    <result column="starttime" jdbcType="TIMESTAMP" property="starttime" />
-    <result column="endtime" jdbcType="TIMESTAMP" property="endtime" />
-    <result column="state" jdbcType="INTEGER" property="state" />
-    <result column="creator" jdbcType="VARCHAR" property="creator" />
-    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="statename" jdbcType="VARCHAR" property="statename" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    guid, cardno, cardname, cardtype,certificatetype, clientcode, starttime, endtime, state, creator,
-    createtime
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from cr_cardinfo
-    where guid = #{guid,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from cr_cardinfo
-    where guid = #{guid,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.security.door.entity.crCardinfo">
-    insert into cr_cardinfo (guid, cardno, cardname, 
-      cardtype,certificatetype, clientcode, starttime,
-      endtime, state, creator, 
-      createtime)
-    values (#{guid,jdbcType=VARCHAR}, #{cardno,jdbcType=VARCHAR}, #{cardname,jdbcType=VARCHAR}, 
-      #{cardtype,jdbcType=INTEGER},#{certificatetype,jdbcType=INTEGER},  #{clientcode,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP},
-      #{endtime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR}, 
-      #{createtime,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="com.security.door.entity.crCardinfo">
-    insert into cr_cardinfo
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="guid != null">
-        guid,
-      </if>
-      <if test="cardno != null">
-        cardno,
-      </if>
-      <if test="cardname != null">
-        cardname,
-      </if>
-      <if test="cardtype != null">
-        cardtype,
-      </if>
-      <if test="certificatetype != null">
-        certificatetype,
-      </if>
-      <if test="clientcode != null">
-        clientcode,
-      </if>
-      <if test="starttime != null">
-        starttime,
-      </if>
-      <if test="endtime != null">
-        endtime,
-      </if>
-      <if test="state != null">
-        state,
-      </if>
-      <if test="creator != null">
-        creator,
-      </if>
-      <if test="createtime != null">
-        createtime,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="guid != null">
-        #{guid,jdbcType=VARCHAR},
-      </if>
-      <if test="cardno != null">
-        #{cardno,jdbcType=VARCHAR},
-      </if>
-      <if test="cardname != null">
-        #{cardname,jdbcType=VARCHAR},
-      </if>
-      <if test="cardtype != null">
-        #{cardtype,jdbcType=INTEGER},
-      </if>
-      <if test="certificatetype != null">
-        #{certificatetype,jdbcType=INTEGER},
-      </if>
-      <if test="clientcode != null">
-        #{clientcode,jdbcType=VARCHAR},
-      </if>
-      <if test="starttime != null">
+    <resultMap id="BaseResultMap" type="com.security.door.entity.crCardinfo">
+        <id column="guid" jdbcType="VARCHAR" property="guid"/>
+        <result column="cardno" jdbcType="VARCHAR" property="cardno"/>
+        <result column="cardname" jdbcType="VARCHAR" property="cardname"/>
+        <result column="cardtype" jdbcType="INTEGER" property="cardtype"/>
+        <result column="certificatetype" jdbcType="INTEGER" property="certificatetype"/>
+        <result column="clientcode" jdbcType="VARCHAR" property="clientcode"/>
+        <result column="starttime" jdbcType="TIMESTAMP" property="starttime"/>
+        <result column="endtime" jdbcType="TIMESTAMP" property="endtime"/>
+        <result column="state" jdbcType="INTEGER" property="state"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="statename" jdbcType="VARCHAR" property="statename"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        guid, cardno, cardname, cardtype,certificatetype, clientcode, starttime, endtime, state, creator,
+        createtime
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cr_cardinfo
+        where guid = #{guid,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from cr_cardinfo
+        where guid = #{guid,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.security.door.entity.crCardinfo">
+        insert into cr_cardinfo (guid, cardno, cardname,
+        cardtype,certificatetype, clientcode, starttime,
+        endtime, state, creator,
+        createtime)
+        values (#{guid,jdbcType=VARCHAR}, #{cardno,jdbcType=VARCHAR}, #{cardname,jdbcType=VARCHAR},
+        #{cardtype,jdbcType=INTEGER},#{certificatetype,jdbcType=INTEGER}, #{clientcode,jdbcType=VARCHAR},
         #{starttime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endtime != null">
-        #{endtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="state != null">
-        #{state,jdbcType=INTEGER},
-      </if>
-      <if test="creator != null">
-        #{creator,jdbcType=VARCHAR},
-      </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.security.door.entity.crCardinfo">
-    update cr_cardinfo
-    <set>
-      <if test="cardno != null">
-        cardno = #{cardno,jdbcType=VARCHAR},
-      </if>
-      <if test="cardname != null">
+        #{endtime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER}, #{creator,jdbcType=VARCHAR},
+        #{createtime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.security.door.entity.crCardinfo">
+        insert into cr_cardinfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                guid,
+            </if>
+            <if test="cardno != null">
+                cardno,
+            </if>
+            <if test="cardname != null">
+                cardname,
+            </if>
+            <if test="cardtype != null">
+                cardtype,
+            </if>
+            <if test="certificatetype != null">
+                certificatetype,
+            </if>
+            <if test="clientcode != null">
+                clientcode,
+            </if>
+            <if test="starttime != null">
+                starttime,
+            </if>
+            <if test="endtime != null">
+                endtime,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createtime != null">
+                createtime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="guid != null">
+                #{guid,jdbcType=VARCHAR},
+            </if>
+            <if test="cardno != null">
+                #{cardno,jdbcType=VARCHAR},
+            </if>
+            <if test="cardname != null">
+                #{cardname,jdbcType=VARCHAR},
+            </if>
+            <if test="cardtype != null">
+                #{cardtype,jdbcType=INTEGER},
+            </if>
+            <if test="certificatetype != null">
+                #{certificatetype,jdbcType=INTEGER},
+            </if>
+            <if test="clientcode != null">
+                #{clientcode,jdbcType=VARCHAR},
+            </if>
+            <if test="starttime != null">
+                #{starttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endtime != null">
+                #{endtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=INTEGER},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.security.door.entity.crCardinfo">
+        update cr_cardinfo
+        <set>
+            <if test="cardno != null">
+                cardno = #{cardno,jdbcType=VARCHAR},
+            </if>
+            <if test="cardname != null">
+                cardname = #{cardname,jdbcType=VARCHAR},
+            </if>
+            <if test="cardtype != null">
+                cardtype = #{cardtype,jdbcType=INTEGER},
+            </if>
+            <if test="certificatetype != null">
+                certificatetype = #{certificatetype,jdbcType=INTEGER},
+            </if>
+            <if test="clientcode != null">
+                clientcode = #{clientcode,jdbcType=VARCHAR},
+            </if>
+            <if test="starttime != null">
+                starttime = #{starttime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endtime != null">
+                endtime = #{endtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=INTEGER},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.security.door.entity.crCardinfo">
+        update cr_cardinfo
+        set cardno = #{cardno,jdbcType=VARCHAR},
         cardname = #{cardname,jdbcType=VARCHAR},
-      </if>
-      <if test="cardtype != null">
         cardtype = #{cardtype,jdbcType=INTEGER},
-      </if>
-      <if test="certificatetype != null">
         certificatetype = #{certificatetype,jdbcType=INTEGER},
-      </if>
-      <if test="clientcode != null">
         clientcode = #{clientcode,jdbcType=VARCHAR},
-      </if>
-      <if test="starttime != null">
         starttime = #{starttime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endtime != null">
         endtime = #{endtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="state != null">
         state = #{state,jdbcType=INTEGER},
-      </if>
-      <if test="creator != null">
         creator = #{creator,jdbcType=VARCHAR},
-      </if>
-      <if test="createtime != null">
-        createtime = #{createtime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where guid = #{guid,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.security.door.entity.crCardinfo">
-    update cr_cardinfo
-    set cardno = #{cardno,jdbcType=VARCHAR},
-      cardname = #{cardname,jdbcType=VARCHAR},
-      cardtype = #{cardtype,jdbcType=INTEGER},
-      certificatetype = #{certificatetype,jdbcType=INTEGER},
-      clientcode = #{clientcode,jdbcType=VARCHAR},
-      starttime = #{starttime,jdbcType=TIMESTAMP},
-      endtime = #{endtime,jdbcType=TIMESTAMP},
-      state = #{state,jdbcType=INTEGER},
-      creator = #{creator,jdbcType=VARCHAR},
-      createtime = #{createtime,jdbcType=TIMESTAMP}
-    where guid = #{guid,jdbcType=VARCHAR}
-  </update>
+        createtime = #{createtime,jdbcType=TIMESTAMP}
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
 
-  <select id="selectList" parameterType="com.security.door.pager.DatatablesView" resultMap="BaseResultMap">
-    SELECT a.*,b.modelname as statename FROM (
-    select
-    <include refid="Base_Column_List"/>
-    from cr_cardinfo
-    where 1=1
-    <if test="entity.creator != null">
-    AND (clientcode = #{entity.creator,jdbcType=VARCHAR} or creator = #{entity.creator,jdbcType=VARCHAR})
-    </if>
-    <if test="entity.cardno != null">
-      AND cardno like CONCAT('%',#{entity.cardno},'%')
-    </if>
-    <if test="entity.clientcode != null">
-      AND clientcode = #{entity.clientcode,jdbcType=VARCHAR}
-    </if>
-    limit #{start},#{length}
-    ) a
-    LEFT JOIN base_datadict b on a.state = b.modelvalue
-    ORDER BY a.cardno
-  </select>
-  <delete id="deleteMore" parameterType="java.util.Map">
-    delete from cr_cardinfo where guid in (${guid})
-  </delete>
-  <select id="getCount" resultType="java.lang.Integer">
-    SELECT COUNT(*) FROM cr_cardinfo
-  </select>
-  <select id="checkCardNo" parameterType="com.security.door.entity.crCardinfo" resultType="java.lang.Integer">
-    select
-    COUNT(0)
-    from cr_cardinfo
-    where
-    cardno = #{cardno,jdbcType=VARCHAR}
-    and
-    clientcode = #{clientcode,jdbcType=VARCHAR}
-  </select>
+    <select id="selectList" parameterType="com.security.door.pager.DatatablesView" resultMap="BaseResultMap">
+        SELECT a.*,b.modelname as statename FROM (
+        select
+        <include refid="Base_Column_List"/>
+        from cr_cardinfo
+        where 1=1
+        <if test="entity.creator != null">
+            AND (clientcode = #{entity.creator,jdbcType=VARCHAR} or creator = #{entity.creator,jdbcType=VARCHAR})
+        </if>
+        <if test="entity.cardno != null">
+            AND cardno like CONCAT('%',#{entity.cardno},'%')
+        </if>
+        <if test="entity.clientcode != null">
+            AND clientcode = #{entity.clientcode,jdbcType=VARCHAR}
+        </if>
+        limit #{start},#{length}
+        ) a
+        LEFT JOIN base_datadict b on a.state = b.modelvalue
+        ORDER BY a.cardno
+    </select>
+    <delete id="deleteMore" parameterType="java.util.Map">
+        delete from cr_cardinfo where guid in (${guid})
+    </delete>
+    <select id="getCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM cr_cardinfo
+    </select>
+    <select id="checkCardNo" parameterType="com.security.door.entity.crCardinfo" resultType="java.lang.Integer">
+        select
+        COUNT(0)
+        from cr_cardinfo
+        where
+        cardno = #{cardno,jdbcType=VARCHAR}
+        and
+        clientcode = #{clientcode,jdbcType=VARCHAR}
+    </select>
 </mapper>

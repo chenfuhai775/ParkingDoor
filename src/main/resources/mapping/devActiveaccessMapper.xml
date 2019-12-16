@@ -44,7 +44,8 @@
         insert into dev_activeaccess (guid, clientcode, clientname, sn,
         activecode, creator, createtime
         )
-        values (#{guid,jdbcType=VARCHAR}, #{clientcode,jdbcType=VARCHAR}, #{clientname,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR},
+        values (#{guid,jdbcType=VARCHAR}, #{clientcode,jdbcType=VARCHAR}, #{clientname,jdbcType=VARCHAR},
+        #{sn,jdbcType=VARCHAR},
         #{activecode,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
         )
     </insert>
@@ -227,29 +228,29 @@
 
 
     <select id="HasPermission" parameterType="java.util.Map" resultType="java.lang.Integer">
-        SELECT  COUNT(0) FROM
-            (
-                SELECT
-                    *
-                FROM
-                    dev_activeaccess
-                WHERE
-                    clientcode = #{clientcode,jdbcType=VARCHAR}
-                OR clientcode IN (
-                    SELECT
-                        groupcode
-                    FROM
-                        cr_clientgroup
-                    WHERE
-                        clientcode = #{clientcode,jdbcType=VARCHAR}
-                )
-            ) b
+        SELECT COUNT(0) FROM
+        (
+        SELECT
+        *
+        FROM
+        dev_activeaccess
         WHERE
-            sn = #{sn,jdbcType=VARCHAR}
+        clientcode = #{clientcode,jdbcType=VARCHAR}
+        OR clientcode IN (
+        SELECT
+        groupcode
+        FROM
+        cr_clientgroup
+        WHERE
+        clientcode = #{clientcode,jdbcType=VARCHAR}
+        )
+        ) b
+        WHERE
+        sn = #{sn,jdbcType=VARCHAR}
         AND activecode = #{activecode,jdbcType=VARCHAR}
     </select>
 
-    <select id="selectPermissionBySn" parameterType="java.lang.String"  resultMap="ActiveAccessResultMap">
+    <select id="selectPermissionBySn" parameterType="java.lang.String" resultMap="ActiveAccessResultMap">
         SELECT
         a.guid,
         IFNULL(b.clientcode, a.clientcode) AS clientcode,

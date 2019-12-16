@@ -642,7 +642,7 @@ function saveOrg() {
         $.ajax({
             dataType: "json",
             async: false,
-            url: "/Access/checkcode/"+$("#orgGroupCode").val(),
+            url: "/Access/checkcode/" + $("#orgGroupCode").val(),
             success: function (data) {
                 if (data > 0) {
                     check = "false";

@@ -30,7 +30,7 @@
     <script src="../staticResource/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="../staticResource/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
     <script src="../staticResource/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
-<#--treeview 插件-->
+    <#--treeview 插件-->
     <link href="../staticResource/adminlte/plugins/treeview/css/bootstrap-treeview.min.css" rel="stylesheet"
           type="text/css"/>
 

@@ -44,8 +44,8 @@ $(function () {
             }
         },
         "dom": "<'row'<'col-xs-2'l><'#mytool.col-xs-8'><'col-xs-2'f>r>" +
-        "t" +
-        "<'row'<'col-xs-6'i><'col-xs-6'p>>",
+            "t" +
+            "<'row'<'col-xs-6'i><'col-xs-6'p>>",
         "columns": [
             {
                 "data": null, "orderable": false, "render":

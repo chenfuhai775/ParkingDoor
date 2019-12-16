@@ -15,8 +15,7 @@ $(function () {
                             "<image src='../staticResource/image/timg.jpg' >" + "</br>" + this.devicename + "</image>").appendTo("body");
                     }
                 });
-            }
-            else
+            } else
                 modals.info(json.msg);
         },
         error: function (data) {

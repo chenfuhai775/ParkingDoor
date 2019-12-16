@@ -290,7 +290,7 @@
                         <div class="box-body">
                             <table id="baseUserList" class="table table-bordered table-hover dataTable"
                                    style="overflow: visible;">
-                                <span type="hidden" id="roleid"></span>
+                                <span type="hidden" id="roleCode"></span>
                                 <span type="hidden" id="userid"></span>
                                 <thead>
                                 <tr>
@@ -462,11 +462,6 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button id="btnactiveAccessSave" type="button"
-                        class="btn btn-default glyphicon glyphicon-ok">
-                    &nbsp;保存
-                </button>
-                &nbsp;
                 <button type="button" class="btn btn-default glyphicon glyphicon-remove"
                         data-dismiss="modal">
                     &nbsp;关闭

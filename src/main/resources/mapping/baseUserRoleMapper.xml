@@ -4,13 +4,13 @@
     <resultMap id="BaseResultMap" type="com.security.door.entity.baseUserRole">
         <id column="guid" jdbcType="VARCHAR" property="guid"/>
         <result column="userid" jdbcType="VARCHAR" property="userid"/>
-        <result column="roleid" jdbcType="VARCHAR" property="roleid"/>
+        <result column="rolecode" jdbcType="VARCHAR" property="rolecode"/>
         <result column="creator" jdbcType="VARCHAR" property="creator"/>
         <result column="creatdate" jdbcType="TIMESTAMP" property="creatdate"/>
     </resultMap>
     <sql id="Base_Column_List">
-    guid, userid, roleid, creator, creatdate
-  </sql>
+        guid, userid, rolecode, creator, creatdate
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -18,15 +18,15 @@
         where guid = #{guid,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from base_userrole
-    where guid = #{guid,jdbcType=VARCHAR}
-  </delete>
+        delete from base_userrole
+        where guid = #{guid,jdbcType=VARCHAR}
+    </delete>
     <insert id="insert" parameterType="com.security.door.entity.baseUserRole">
-    insert into base_userrole (guid, userid, roleid, 
-      creator, creatdate)
-    values (#{guid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{roleid,jdbcType=VARCHAR}, 
-      #{creator,jdbcType=VARCHAR}, #{creatdate,jdbcType=TIMESTAMP})
-  </insert>
+        insert into base_userrole (guid, userid, rolecode,
+        creator, creatdate)
+        values (#{guid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{rolecode,jdbcType=VARCHAR},
+        #{creator,jdbcType=VARCHAR}, #{creatdate,jdbcType=TIMESTAMP})
+    </insert>
     <insert id="insertSelective" parameterType="com.security.door.entity.baseUserRole">
         insert into base_userrole
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -36,8 +36,8 @@
             <if test="userid != null">
                 userid,
             </if>
-            <if test="roleid != null">
-                roleid,
+            <if test="rolecode != null">
+                rolecode,
             </if>
             <if test="creator != null">
                 creator,
@@ -53,8 +53,8 @@
             <if test="userid != null">
                 #{userid,jdbcType=VARCHAR},
             </if>
-            <if test="roleid != null">
-                #{roleid,jdbcType=VARCHAR},
+            <if test="rolecode != null">
+                #{rolecode,jdbcType=VARCHAR},
             </if>
             <if test="creator != null">
                 #{creator,jdbcType=VARCHAR},
@@ -70,8 +70,8 @@
             <if test="userid != null">
                 userid = #{userid,jdbcType=VARCHAR},
             </if>
-            <if test="roleid != null">
-                roleid = #{roleid,jdbcType=VARCHAR},
+            <if test="rolecode != null">
+                rolecode = #{rolecode,jdbcType=VARCHAR},
             </if>
             <if test="creator != null">
                 creator = #{creator,jdbcType=VARCHAR},
@@ -83,40 +83,48 @@
         where guid = #{guid,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.security.door.entity.baseUserRole">
-    update base_userrole
-    set userid = #{userid,jdbcType=VARCHAR},
-      roleid = #{roleid,jdbcType=VARCHAR},
-      creator = #{creator,jdbcType=VARCHAR},
-      creatdate = #{creatdate,jdbcType=TIMESTAMP}
-    where guid = #{guid,jdbcType=VARCHAR}
-  </update>
+        update base_userrole
+        set userid = #{userid,jdbcType=VARCHAR},
+        rolecode = #{rolecode,jdbcType=VARCHAR},
+        creator = #{creator,jdbcType=VARCHAR},
+        creatdate = #{creatdate,jdbcType=TIMESTAMP}
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
 
     <select id="hasRegister" parameterType="com.security.door.entity.baseUserRole"
             resultType="java.lang.Integer">
         SELECT count(*)
         FROM base_userrole
         WHERE userid = #{userid,jdbcType=VARCHAR}
-        AND  roleid = #{roleid,jdbcType=VARCHAR}
+        AND rolecode = #{rolecode,jdbcType=VARCHAR}
     </select>
 
     <select id="selectList" parameterType="com.security.door.pager.DatatablesView"
             resultType="com.security.door.entity.dto.dtoBaseUserRole">
         SELECT
-        a.roleid,a.userid,b.username,b.realname,b.usercode
+        a.rolecode,a.userid,b.username,b.realname,b.usercode
         FROM
         base_userrole a
         LEFT JOIN base_users b ON a.userid = b.guid
         where 1=1
-        <if test="entity.roleId != null">
-            AND roleid = #{entity.roleid}
+        <if test="entity.rolecode != null">
+            AND rolecode = #{entity.rolecode}
         </if>
         limit #{start},#{length}
     </select>
 
     <delete id="deleteRoleUsers" parameterType="com.security.door.entity.baseUserRole">
-    delete from base_userrole
-    where roleid = #{roleid,jdbcType=VARCHAR}
-    AND userid = #{userid,jdbcType=VARCHAR}
-  </delete>
+        delete from base_userrole
+        where rolecode = #{rolecode,jdbcType=VARCHAR}
+        AND userid = #{userid,jdbcType=VARCHAR}
+    </delete>
+
+    <select id="selectRoleByUserId" parameterType="java.lang.String" resultType="com.security.door.entity.baseUserRole">
+        SELECT
+        rolecode
+        FROM
+        base_userrole
+        where userid = #{userid,jdbcType=VARCHAR}
+    </select>
 
 </mapper>

@@ -224,7 +224,7 @@ function Save() {
     JsonData.remark = $("#remark").val();
     $.ajax({
         dataType: "json",
-        type:"POST",
+        type: "POST",
         contentType: 'application/json',
         async: false,
         url: "/baseMenu/Add",

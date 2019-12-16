@@ -36,7 +36,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="../staticResource/adminlte/plugins/inputmask/jquery.inputmask.js"></script>
     <script src="../staticResource/adminlte/plugins/inputmask/jquery.inputmask.extensions.js"></script>
 
-<#--treeview 插件-->
+    <#--treeview 插件-->
     <link href="../staticResource/adminlte/plugins/treeview/css/bootstrap-treeview.min.css" rel="stylesheet"
           type="text/css"/>
     <script src="../staticResource/adminlte/plugins/treeview/js/bootstrap-treeview.min.js"></script>
@@ -48,12 +48,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="../staticResource/js/icheck.min.js"></script>
     <script src="../staticResource/js/base.js"></script>
 
-<#--fileupload 插件-->
+    <#--fileupload 插件-->
     <link href="../staticResource/adminlte/plugins/fileupload/css/fileinput.css" media="all" rel="stylesheet"
           type="text/css"/>
     <link href="../staticResource/adminlte/plugins/fileupload/themes/explorer-fa/theme.css" rel="stylesheet"
           type="text/css"/>
-<#--fileupload 插件-->
+    <#--fileupload 插件-->
     <script src="../staticResource/adminlte/plugins/fileupload/js/plugins/sortable.js"></script>
     <script src="../staticResource/adminlte/plugins/fileupload/js/fileinput.js"></script>
     <script src="../staticResource/adminlte/plugins/fileupload/js/locales/zh.js"></script>
@@ -311,7 +311,7 @@ desired effect
                         <div class="box-body box-profile">
 
                             <h4><strong><i class="fa fa-university"></i>${Session["usr"]["clientname"]?default("公司")}
-                            </strong></h4>
+                                </strong></h4>
                             <div id="tree" class="treeview" style="max-height: 720px;overflow: auto">
                             </div>
                         </div>
@@ -324,11 +324,11 @@ desired effect
                         <div class="nav-tabs-custom">
                             <ul id="maintab" class="nav nav-tabs">
                                 <li class="active"><a href="#control-sidebar-tab-main1" data-toggle="tab">
-                                    <h4>基础信息</h4>
-                                </a></li>
+                                        <h4>基础信息</h4>
+                                    </a></li>
                                 <li><a href="#control-sidebar-tab-main2" onclick="deviceSetTab()" data-toggle="tab">
-                                    <h4>设备配置</h4>
-                                </a></li>
+                                        <h4>设备配置</h4>
+                                    </a></li>
                             </ul>
                             <div class="tab-content" style="padding: 0;margin: 0px">
                                 <div id="control-sidebar-tab-main1"
@@ -337,12 +337,12 @@ desired effect
                                         <div class="box box-primary">
                                             <div class="box-body">
                                                 <div class="form-group">
-                                                <#--<div class="btn-group" id="funcHeader">-->
-                                                <#--<button type="button" class="btn btn-default" data-btn-type="addRoot"><li class="fa fa-plus">&nbsp;新增根字典</li></button>-->
-                                                <#--<button type="button" class="btn btn-default" data-btn-type="add"><li class="fa fa-plus">&nbsp;新增下级字典</li></button>-->
-                                                <#--<button type="button" class="btn btn-default" data-btn-type="edit"><li class="fa fa-edit">&nbsp;编辑当前字典</li></button>-->
-                                                <#--<button type="button" class="btn btn-default" data-btn-type="delete"><li class="fa fa-remove">&nbsp;删除当前字典</li></button>-->
-                                                <#--</div>-->
+                                                    <#--<div class="btn-group" id="funcHeader">-->
+                                                    <#--<button type="button" class="btn btn-default" data-btn-type="addRoot"><li class="fa fa-plus">&nbsp;新增根字典</li></button>-->
+                                                    <#--<button type="button" class="btn btn-default" data-btn-type="add"><li class="fa fa-plus">&nbsp;新增下级字典</li></button>-->
+                                                    <#--<button type="button" class="btn btn-default" data-btn-type="edit"><li class="fa fa-edit">&nbsp;编辑当前字典</li></button>-->
+                                                    <#--<button type="button" class="btn btn-default" data-btn-type="delete"><li class="fa fa-remove">&nbsp;删除当前字典</li></button>-->
+                                                    <#--</div>-->
                                                 </div>
                                                 <input type="hidden" id="hdGuid">
                                                 <input type="hidden" id="hdPid">
@@ -713,7 +713,7 @@ desired effect
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                            <#--<td class="col-sm-1" style="vertical-align: middle" rowspan="4" name="serialnum"></td>-->
+                                                                <#--<td class="col-sm-1" style="vertical-align: middle" rowspan="4" name="serialnum"></td>-->
                                                                 <td class="col-sm-1">有效时段</td>
                                                                 <td class="col-sm-4">
                                                                     <div class="input-group">
@@ -1368,36 +1368,36 @@ desired effect
                                         <ul id="grantTab" class="nav nav-tabs-b">
                                             <li class="active"><a href="#control-sidebar-tab1-1"
                                                                   activecode="changedevip" data-toggle="tab">
-                                                <h5>修改设备IP</h5>
-                                            </a></li>
+                                                    <h5>修改设备IP</h5>
+                                                </a></li>
                                             <li><a href="#control-sidebar-tab1-2" activecode="changeservice"
                                                    data-toggle="tab">
-                                                <h5>修改服务器地址</h5>
-                                            </a></li>
+                                                    <h5>修改服务器地址</h5>
+                                                </a></li>
                                             <li><a href="#control-sidebar-tab1-3" activecode="initdev"
                                                    data-toggle="tab">
-                                                <h5>恢复出厂设置</h5>
-                                            </a></li>
+                                                    <h5>恢复出厂设置</h5>
+                                                </a></li>
                                             <li><a href="#control-sidebar-tab1-4" activecode="timeing"
                                                    data-toggle="tab">
-                                                <h5>设备校时</h5>
-                                            </a></li>
+                                                    <h5>设备校时</h5>
+                                                </a></li>
                                             <li><a href="#control-sidebar-tab1-5" activecode="changemac"
                                                    data-toggle="tab">
-                                                <h5>修改MAC地址</h5>
-                                            </a></li>
+                                                    <h5>修改MAC地址</h5>
+                                                </a></li>
                                             <li><a href="#control-sidebar-tab1-7" activecode="downtimepower"
                                                    data-toggle="tab">
-                                                <h5>下载时间组权限</h5>
-                                            </a></li>
+                                                    <h5>下载时间组权限</h5>
+                                                </a></li>
                                             <li><a href="#control-sidebar-tab1-9" activecode="downfaceinfo"
                                                    data-toggle="tab">
-                                                <h5>下载人脸信息</h5>
-                                            </a></li>
+                                                    <h5>下载人脸信息</h5>
+                                                </a></li>
                                             <li><a href="#control-sidebar-tab1-10" activecode="updatefaceinfo"
                                                    data-toggle="tab">
-                                                <h5>更新人脸信息</h5>
-                                            </a></li>
+                                                    <h5>更新人脸信息</h5>
+                                                </a></li>
                                         </ul>
                                     </div>
                                     <div id="CN1002" style="display: none" class="nav-tabs-custom">
@@ -1601,12 +1601,12 @@ desired effect
                                         <ul id="grantTab" class="nav nav-tabs-b">
                                             <li class="active"><a href="#control-sidebar-tab2-1" activecode="opendoor"
                                                                   data-toggle="tab">
-                                                <h5>下发开门指令</h5>
-                                            </a></li>
+                                                    <h5>下发开门指令</h5>
+                                                </a></li>
                                             <li><a href="#control-sidebar-tab2-2" activecode="setpassinfo"
                                                    data-toggle="tab">
-                                                <h5>设置通道参数</h5>
-                                            </a></li>
+                                                    <h5>设置通道参数</h5>
+                                                </a></li>
                                         </ul>
                                     </div>
                                     <div id="CN1003" style="display: none" class="nav-tabs-custom">
@@ -1643,7 +1643,8 @@ desired effect
                                                                         </div>
                                                                         <input type="number"
                                                                                oninput="if(value.length>7)value=value.slice(0,7)"
-                                                                               class="form-control" id="CN1003_01_boxport">
+                                                                               class="form-control"
+                                                                               id="CN1003_01_boxport">
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -1654,7 +1655,8 @@ desired effect
                                                                         <div class="input-group-addon">
                                                                             <i class="fa fa-laptop"></i>
                                                                         </div>
-                                                                        <input id="CN1003_01_cameraipaddress" type="text"
+                                                                        <input id="CN1003_01_cameraipaddress"
+                                                                               type="text"
                                                                                class="form-control"
                                                                                data-inputmask="'alias': 'ip'"
                                                                                data-mask="">
@@ -1668,7 +1670,8 @@ desired effect
                                                                         </div>
                                                                         <input type="number"
                                                                                oninput="if(value.length>7)value=value.slice(0,7)"
-                                                                               class="form-control" id="CN1003_01_cameraport">
+                                                                               class="form-control"
+                                                                               id="CN1003_01_cameraport">
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -1711,8 +1714,8 @@ desired effect
                                         <ul id="grantTab" class="nav nav-tabs-b">
                                             <li class="active"><a href="#control-sidebar-tab3-1"
                                                                   activecode="createfacedev" data-toggle="tab">
-                                                <h5>人脸识别相机</h5>
-                                            </a></li>
+                                                    <h5>人脸识别相机</h5>
+                                                </a></li>
                                         </ul>
                                     </div>
                                     <div id="CN1004" style="display: none" class="nav-tabs-custom">
@@ -1821,8 +1824,8 @@ desired effect
                                         <!-- Create the tabs -->
                                         <ul id="grantTab" class="nav nav-tabs-b">
                                             <li class="active"><a href="#control-sidebar-role-tab" data-toggle="tab">
-                                                <h5>LED信息下载</h5>
-                                            </a></li>
+                                                    <h5>LED信息下载</h5>
+                                                </a></li>
                                         </ul>
                                     </div>
                                     <div id="CN1005" style="display: none" class="nav-tabs-custom">
@@ -1901,12 +1904,12 @@ desired effect
                                         <ul id="grantTab" class="nav nav-tabs-b">
                                             <li class="active"><a activecode="playsound" href="#control-sidebar-tab5-1"
                                                                   data-toggle="tab">
-                                                <h5>语言播放</h5>
-                                            </a></li>
+                                                    <h5>语言播放</h5>
+                                                </a></li>
                                             <li><a activecode="soundvolumn" href="#control-sidebar-tab5-2"
                                                    data-toggle="tab">
-                                                <h5>音量设置</h5>
-                                            </a></li>
+                                                    <h5>音量设置</h5>
+                                                </a></li>
                                         </ul>
                                     </div>
                                 </div>

@@ -20,7 +20,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <#--<link rel="stylesheet" href="adminlte/dist/css/skins/skin-blue.min.css">-->
     <link rel="stylesheet" href="staticResource/adminlte/bootstrap/css/bootstrap.css">
 
-    <link rel="stylesheet" type="text/css" href="staticResource/adminlte/plugins/datatables/dataTables.bootstrap.css  "/>
+    <link rel="stylesheet" type="text/css"
+          href="staticResource/adminlte/plugins/datatables/dataTables.bootstrap.css  "/>
     <link rel="stylesheet" type="text/css" href="staticResource/adminlte/plugins/select2/select2.min.css  "/>
     <link rel="stylesheet" href="staticResource/adminlte/dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="staticResource/adminlte/dist/css/skins/_all-skins.css">
@@ -89,7 +90,7 @@ desired effect
                                         <a href="#">
                                             <div class="pull-left">
                                                 <!-- User Image -->
-                                                <img src=${photo!} class="img-circle" alt="User Image">
+                                                <img src="" class="img-circle" alt="User Image">
                                             </div>
                                             <!-- Message title and timestamp -->
                                             <h4>
@@ -169,17 +170,17 @@ desired effect
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src=${usr.logo!} class="user-image" alt="User Image">
+                            <img src= class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">${usr.clientname!}</span>
+                            <span class="hidden-xs">测试</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src=${usr.logo!} class="img-circle" alt="User Image">
+                                <img src="" class="img-circle" alt="User Image">
 
                                 <p>
-                                    ${usr.clientname!} - Web Developer
+                                    "" - Web Developer
                                     <small>Member since Nov. 2012</small>
                                 </p>
                             </li>
@@ -226,10 +227,10 @@ desired effect
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src=${usr.logo!} class="img-circle" alt="User Image">
+                    <img src= class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>${usr.clientname!}</p>
+                    <p></p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
@@ -278,7 +279,7 @@ desired effect
                     <!-- small box -->
                     <div class="small-box bg-yellow">
                         <div class="inner">
-                            <h3>${usr.map.userCount!}</h3>
+                            <h3></h3>
                             <p>我的用户</p>
                         </div>
                         <div class="icon">
@@ -292,7 +293,7 @@ desired effect
                     <!-- small box -->
                     <div class="small-box bg-aqua">
                         <div class="inner">
-                            <h3>${usr.map.deviceCount!}</h3>
+                            <h3></h3>
                             <p>我的设备</p>
                         </div>
                         <div class="icon">
@@ -306,13 +307,14 @@ desired effect
                     <!-- small box -->
                     <div class="small-box bg-green">
                         <div class="inner">
-                            <h3>${usr.map.devfuncCount!}</h3>
+                            <h3></h3>
                             <p>我的权限</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="access/accessPoint" class="small-box-footer">更多 <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="access/accessPoint" class="small-box-footer">更多 <i
+                                    class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -320,7 +322,7 @@ desired effect
                     <!-- small box -->
                     <div class="small-box bg-red">
                         <div class="inner">
-                            <h3>${usr.map.attachCount!}</h3>
+                            <h3></h3>
                             <p>认证数</p>
                         </div>
                         <div class="icon">

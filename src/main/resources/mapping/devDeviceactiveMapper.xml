@@ -33,9 +33,9 @@
         <result column="pid" jdbcType="INTEGER" property="pid"/>
     </resultMap>
     <sql id="Base_Column_List">
-    guid, activename, activecode, activeno, devicetypecode, icon, expression, creater,
-    createtime
-  </sql>
+        guid, activename, activecode, activeno, devicetypecode, icon, expression, creater,
+        createtime
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -43,19 +43,19 @@
         where guid = #{guid,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from dev_deviceactive
-    where guid in ( ${value} )
-  </delete>
+        delete from dev_deviceactive
+        where guid in ( ${value} )
+    </delete>
     <insert id="insert" parameterType="com.security.door.entity.devDeviceactive">
-    insert into dev_deviceactive (guid, activename, activecode, 
-      activeno, devicetypecode, icon,
-      expression, creater, createtime
-      )
-    values (#{guid,jdbcType=VARCHAR}, #{activename,jdbcType=VARCHAR}, #{activecode,jdbcType=VARCHAR},
-      #{activeno,jdbcType=INTEGER}, #{devicetypecode,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR},
-      #{expression,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}
-      )
-  </insert>
+        insert into dev_deviceactive (guid, activename, activecode,
+        activeno, devicetypecode, icon,
+        expression, creater, createtime
+        )
+        values (#{guid,jdbcType=VARCHAR}, #{activename,jdbcType=VARCHAR}, #{activecode,jdbcType=VARCHAR},
+        #{activeno,jdbcType=INTEGER}, #{devicetypecode,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR},
+        #{expression,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}
+        )
+    </insert>
     <insert id="insertSelective" parameterType="com.security.door.entity.devDeviceactive">
         insert into dev_deviceactive
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -148,21 +148,21 @@
         where guid = #{guid,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.security.door.entity.devDeviceactive">
-    update dev_deviceactive
-    set activename = #{activename,jdbcType=VARCHAR},
-      activecode = #{activecode,jdbcType=VARCHAR},
-      activeno = #{activeno,jdbcType=INTEGER},
-      devicetypecode = #{devicetypecode,jdbcType=VARCHAR},
-      icon = #{icon,jdbcType=VARCHAR},
-      expression = #{expression,jdbcType=VARCHAR},
-      creater = #{creater,jdbcType=VARCHAR},
-      createtime = #{createtime,jdbcType=DATE}
-    where guid = #{guid,jdbcType=VARCHAR}
-  </update>
+        update dev_deviceactive
+        set activename = #{activename,jdbcType=VARCHAR},
+        activecode = #{activecode,jdbcType=VARCHAR},
+        activeno = #{activeno,jdbcType=INTEGER},
+        devicetypecode = #{devicetypecode,jdbcType=VARCHAR},
+        icon = #{icon,jdbcType=VARCHAR},
+        expression = #{expression,jdbcType=VARCHAR},
+        creater = #{creater,jdbcType=VARCHAR},
+        createtime = #{createtime,jdbcType=DATE}
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
 
     <select id="selectDevtypeTree" resultMap="treeviewMap">
-    SELECT guid,deviceTypeCode id ,deviceTypeName text,'' icon, 0 parentid FROM dev_devicetype
-  </select>
+        SELECT guid,deviceTypeCode id ,deviceTypeName text,'' icon, 0 parentid FROM dev_devicetype
+    </select>
     <select id="selectList" parameterType="com.security.door.pager.DatatablesView" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -183,7 +183,8 @@
             and devicetypecode = #{devicetypecode}
         </if>
     </select>
-    <select id="SelectTreeParantData" parameterType="com.security.door.entity.devDeviceactive" resultMap="TreeResultMap">
+    <select id="SelectTreeParantData" parameterType="com.security.door.entity.devDeviceactive"
+            resultMap="TreeResultMap">
         SELECT guid AS id ,deviceName AS text,null AS tags,deviceCode AS code,'' AS pId,icon AS icon ,'' AS topic, '' AS
         template,
         1 AS nodeLevel,'功能' AS pName
@@ -194,12 +195,13 @@
         </if>
     </select>
     <select id="selectFuncTreeData" parameterType="com.security.door.entity.devDeviceactive" resultMap="TreeResultMap">
-    SELECT    fcf.guid AS id, fcf.activename AS text, fcf.activecode AS code, fcf.deviceCode AS pId, activecode AS topic, expression AS template,
-    fcf.icon AS icon,2 AS nodeLevel,df.deviceName AS pName
-    from dev_deviceactive fcf
-    LEFT JOIN dev_deviceinfo df
-    on fcf.deviceCode = df.deviceCode
-  </select>
+        SELECT fcf.guid AS id, fcf.activename AS text, fcf.activecode AS code, fcf.deviceCode AS pId, activecode AS
+        topic, expression AS template,
+        fcf.icon AS icon,2 AS nodeLevel,df.deviceName AS pName
+        from dev_deviceactive fcf
+        LEFT JOIN dev_deviceinfo df
+        on fcf.deviceCode = df.deviceCode
+    </select>
     <select id="selectActive" parameterType="java.util.Map" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
@@ -243,7 +245,7 @@
         COUNT(0)
         FROM dev_deviceactive
         WHERE devicetypecode = #{devicetypecode,jdbcType=VARCHAR}
-        AND  activeno = #{activeno}
+        AND activeno = #{activeno}
     </select>
     <select id="selectByActiveCode" parameterType="java.lang.String" resultMap="BaseResultMap">
         SELECT

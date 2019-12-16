@@ -40,8 +40,8 @@ $(function () {
             }
         },
         "dom": "<'row'<'col-xs-2'l><'#mytool.col-xs-8'><'col-xs-2'f>r>" +
-        "t" +
-        "<'row'<'col-xs-6'i><'col-xs-6'p>>",
+            "t" +
+            "<'row'<'col-xs-6'i><'col-xs-6'p>>",
         "columns": [
             {
                 "width": "60px",
@@ -57,8 +57,10 @@ $(function () {
             {"data": "sn"},
             {"data": "version"},
             {"data": "k1"},
-            {"data": "token",
-                "defaultContent": ""},
+            {
+                "data": "token",
+                "defaultContent": ""
+            },
             {"data": "signkey", "defaultContent": ""},
             {
                 "data": "active", "render": function (row) {

@@ -372,8 +372,7 @@
                         var validator = form.data('bootstrapValidator');
                         if (validator && validator.options.fields[el_name])
                             validator.updateStatus(el_name, 'NOT_VALIDATED', null);
-                    }
-                    else
+                    } else
                         $(elem).val(value);
 
                 } else {

@@ -40,8 +40,8 @@ $(function () {
             }
         },
         "dom": "<'row'<'col-xs-2'l><'#mytool.col-xs-8'><'col-xs-2'f>r>" +
-        "t" +
-        "<'row'<'col-xs-6'i><'col-xs-6'p>>",
+            "t" +
+            "<'row'<'col-xs-6'i><'col-xs-6'p>>",
         "initComplete": function () {
             /* $("#mytool").append('<button id="dataDel" style="float: right" type="button" class="btn btn-flat btn-default glyphicon glyphicon-minus" data-toggle="modal" data-target="#myModal">&nbsp;删除</button>');
              $("#mytool").append('<button id="dataEdit" style="float: right" type="button" class="btn btn-flat btn-default glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal">&nbsp;修改</button>');
@@ -89,14 +89,12 @@ function editRowData(row) {
     if (undefined != row) {
         var tds = table.row($(row).closest('tr')).data();
         setValue(tds);
-    }
-    else {
+    } else {
         var row = $("#accessPointList").find("tbody tr input[type='checkbox']:checked").eq(0);
         if (0 == row.length) {
             modals.info("请选择一条记录");
             return false;
-        }
-        else {
+        } else {
             var tds = table.row($(row).closest('tr')).data();
             setValue(tds);
         }

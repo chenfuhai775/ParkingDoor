@@ -29,7 +29,7 @@ function initCardList(clientcode) {
         "ajax": {
             "url": "/card/selectListByClientCode",
             "cache": false,  //禁用缓存
-            "data":{"clientcode": clientcode},
+            "data": {"clientcode": clientcode},
             "dataFilter": function (json) {//json是服务器端返回的数据
                 json = JSON.parse(json);
                 var returnData = {};
@@ -55,8 +55,8 @@ function initCardList(clientcode) {
             }
         },
         "dom": "<'row'<'col-xs-2'l><'#cardtool.col-xs-7'><'col-xs-3'f>r>" +
-        "t" +
-        "<'row'<'col-xs-6'i><'col-xs-6'p>>",
+            "t" +
+            "<'row'<'col-xs-6'i><'col-xs-6'p>>",
         "initComplete": function () {
             $("#cardtool").append('<button id="dataCardDel" style="float: right" type="button" class="btn btn-flat btn-default glyphicon glyphicon-minus" data-toggle="modal" data-target="#myModal">&nbsp;删除</button>');
             $("#cardtool").append('<button id="dataCardEdit" style="float: right" type="button" class="btn btn-flat btn-default glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal">&nbsp;修改</button>');

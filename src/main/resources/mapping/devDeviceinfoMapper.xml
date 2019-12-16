@@ -36,7 +36,7 @@
         <result column="total" jdbcType="INTEGER" property="qty"/>
     </resultMap>
     <sql id="Base_Column_List">
-        guid, devicename, devicecode, devicetypecode,  ipaddress, deviceport,
+        guid, devicename, devicecode, devicetypecode, ipaddress, deviceport,
         icon, sn, devicetopic, single, parentid, sessiontime,creator, createTime
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -51,7 +51,7 @@
     </delete>
     <insert id="insert" parameterType="com.security.door.entity.devDeviceinfo">
         insert into dev_deviceinfo (guid, devicename, devicecode,
-        devicetypecode,  ipaddress,
+        devicetypecode, ipaddress,
         deviceport, icon, sn,
         devicetopic, single, parentid,
         creator, createTime)
@@ -244,55 +244,56 @@
         <include refid="Select_Pageing_List"/>
     </select>
     <select id="selectTreeData" parameterType="java.util.Map" resultMap="TreeBaseResultMap">
-        select * from dev_deviceinfo where  FIND_IN_SET(devicecode,getDevChildList(#{devicecode,jdbcType=INTEGER}));
+        select * from dev_deviceinfo where FIND_IN_SET(devicecode,getDevChildList(#{devicecode,jdbcType=INTEGER}));
     </select>
     <select id="statisticDeviceinfo" parameterType="java.lang.String" resultMap="statisticResultMap">
         SELECT
-            deviceTypeName as name,
-            COUNT(*) AS total
+        deviceTypeName as name,
+        COUNT(*) AS total
         FROM
-            (
-                SELECT
-                    a.devicetypecode,
-                    a.devicename,
-                    b.deviceTypeName
-                FROM
-                    dev_deviceinfo a
-                LEFT JOIN dev_devicetype b ON a.devicetypecode = b.deviceTypeCode
-            ) c
+        (
+        SELECT
+        a.devicetypecode,
+        a.devicename,
+        b.deviceTypeName
+        FROM
+        dev_deviceinfo a
+        LEFT JOIN dev_devicetype b ON a.devicetypecode = b.deviceTypeCode
+        ) c
         GROUP BY
-            c.devicetypecode
+        c.devicetypecode
     </select>
     <select id="attachstatistic" parameterType="java.lang.String" resultMap="statisticResultMap">
-        select count(*) as total,createtime as name  from key_attach group by createtime;
+        select count(*) as total,createtime as name from key_attach group by createtime;
     </select>
     <select id="selectLeaderNode" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select * from dev_deviceinfo where FIND_IN_SET(devicecode,getDevParList(#{devicecode,jdbcType=INTEGER})) and single = 1;
+        select * from dev_deviceinfo where FIND_IN_SET(devicecode,getDevParList(#{devicecode,jdbcType=INTEGER})) and
+        single = 1;
     </select>
     <select id="selectDeviceBySn" parameterType="java.lang.String" resultMap="BaseResultMap">
-        select  * from dev_deviceinfo where  sn = #{sn,jdbcType=VARCHAR};
+        select * from dev_deviceinfo where sn = #{sn,jdbcType=VARCHAR};
     </select>
     <select id="selectAllTree" resultMap="TreeBaseResultMap">
         select * from dev_deviceinfo where FIND_IN_SET(devicecode,getDevChildList(0));
     </select>
     <select id="selectMaxDeviceCode" resultType="java.lang.Integer">
-        SELECT   IFNULL(MAX(cast(devicecode as SIGNED INTEGER)),0) + 1 FROM dev_deviceinfo
+        SELECT IFNULL(MAX(cast(devicecode as SIGNED INTEGER)),0) + 1 FROM dev_deviceinfo
     </select>
     <select id="selectTreeByClientCode" parameterType="java.lang.String" resultMap="TreeBaseResultMap">
         select * from (
         select * from dev_deviceinfo where FIND_IN_SET(devicecode,getDevChildList(0))
         ) a
-        where sn  in (
+        where sn in (
         select sn from dev_deviceaccess where clientcode = #{clientcode,jdbcType=VARCHAR}
         )
     </select>
     <select id="selectAccessAllByClientCode" parameterType="java.lang.String" resultMap="TreeBaseResultMap">
-      select * from (
+        select * from (
         select * from dev_deviceinfo where FIND_IN_SET(devicecode,getDevChildList(0))
-      ) a
-      where sn in (select sn from dev_deviceaccess where clientcode = #{clientcode,jdbcType=VARCHAR}
-       or clientcode in(select groupcode from cr_clientgroup where clientcode = #{clientcode,jdbcType=VARCHAR})
-      )
+        ) a
+        where sn in (select sn from dev_deviceaccess where clientcode = #{clientcode,jdbcType=VARCHAR}
+        or clientcode in(select groupcode from cr_clientgroup where clientcode = #{clientcode,jdbcType=VARCHAR})
+        )
     </select>
     <select id="selectListByClientCode" parameterType="java.lang.String" resultMap="BaseResultMap">
         SELECT df.*,tp.deviceTypeName as typename,CONCAT(devparent.sn,' - ',devparent.devicename) as parentname FROM (
@@ -302,8 +303,8 @@
         where sn in (select sn from dev_deviceaccess where clientcode = #{clientcode,jdbcType=VARCHAR}
         or clientcode in(select groupcode from cr_clientgroup where clientcode = #{clientcode,jdbcType=VARCHAR})
         )) df
-         LEFT JOIN dev_devicetype tp ON df.devicetypecode = tp.deviceTypeCode
-         LEFT JOIN dev_deviceinfo devparent ON df.parentid = devparent.devicecode
+        LEFT JOIN dev_devicetype tp ON df.devicetypecode = tp.deviceTypeCode
+        LEFT JOIN dev_deviceinfo devparent ON df.parentid = devparent.devicecode
     </select>
     <delete id="deleteBySn" parameterType="java.lang.String">
         delete from dev_deviceinfo

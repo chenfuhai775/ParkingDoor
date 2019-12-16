@@ -144,8 +144,7 @@ function changeGroup(object) {
     } else if (radioval == 2) {
         $(object).closest("tr").next("tr").find("div[name='CN1001_07_timegroupholiday']").hide();
         initMonthday(object);
-    }
-    else {
+    } else {
         $(object).closest("tr").next("tr").find("div[name='CN1001_07_timegroup']").empty();
         $(object).closest("tr").next("tr").find("div[name='CN1001_07_timegroupholiday']").show();
     }
@@ -219,8 +218,7 @@ function weekList() {
 //保存时间组权限！！！！！
 function SaveDowntimepower() {
     var selected = $('#tree').treeview('getSelected');
-    if(0 == selected.length)
-    {
+    if (0 == selected.length) {
         modals.info("请先选择设备!");
         return false;
     }
@@ -244,8 +242,7 @@ function SaveDowntimepower() {
         if (timegroup.timetype == 0) {
             timegroup.timegroup = $(this).find("select[name=CN1001_8_select]").val();
             timegroup.times = $(this).find("input[name=CN1001_8_input]").val();
-        }
-        else {
+        } else {
             $(this).find("div[name='CN1001_07_timegroup'] input[type='checkbox']").each(function () {
                 if ($(this).attr("name") != "all")
                     strDate += $(this).prop("checked") ? "1" : "0";
@@ -260,8 +257,7 @@ function SaveDowntimepower() {
 
 function SendDowntimepower() {
     var selected = $('#tree').treeview('getSelected');
-    if(0 == selected.length)
-    {
+    if (0 == selected.length) {
         modals.info("请先选择设备!");
         return false;
     }
@@ -285,8 +281,7 @@ function SendDowntimepower() {
         if (timegroup.timetype == 0) {
             timegroup.timegroup = $(this).find("select[name=CN1001_8_select]").val();
             timegroup.times = $(this).find("input[name=CN1001_8_input]").val();
-        }
-        else {
+        } else {
             $(this).find("div[name='CN1001_07_timegroup'] input[type='checkbox']").each(function () {
                 if ($(this).attr("name") != "all")
                     strDate += $(this).prop("checked") ? "1" : "0";

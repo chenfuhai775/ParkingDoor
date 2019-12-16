@@ -19,7 +19,8 @@
     <link rel="stylesheet" href="../staticResource/adminlte/dist/css/skins/_all-skins.css">
     <link rel="stylesheet" href="../staticResource/adminlte/bootstrap/css/bootstrap.min.css">
 
-    <link rel="stylesheet" type="text/css" href="../staticResource/adminlte/plugins/datatables/dataTables.bootstrap.css  "/>
+    <link rel="stylesheet" type="text/css"
+          href="../staticResource/adminlte/plugins/datatables/dataTables.bootstrap.css  "/>
     <link rel="stylesheet" type="text/css" href="../staticResource/adminlte/plugins/select2/select2.min.css  "/>
 
     <script src="../staticResource/adminlte/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -33,8 +34,9 @@
 
     <script src="../staticResource/adminlte/plugins/iCheck/icheck.js"></script>
     <link rel="stylesheet" href="../staticResource/adminlte/plugins/select2/select2.min.css">
-<#--treeview 插件-->
-    <link href="../staticResource/adminlte/plugins/treeview/css/bootstrap-treeview.min.css" rel="stylesheet" type="text/css"/>
+    <#--treeview 插件-->
+    <link href="../staticResource/adminlte/plugins/treeview/css/bootstrap-treeview.min.css" rel="stylesheet"
+          type="text/css"/>
     <script src="../staticResource/adminlte/plugins/treeview/js/bootstrap-treeview.min.js"></script>
 
 </head>
@@ -265,12 +267,15 @@
                             <h3 class="box-title"><i class="fa fa-user"></i>角色列表</h3>
                         </div>
                         <div class="box-body">
-                            <table id="roleAuthList" class="table table-bordered table-striped table-hover dataTable no-footer"
+                            <table id="roleAuthList"
+                                   class="table table-bordered table-striped table-hover dataTable no-footer"
                                    style="overflow: visible;">
                                 <thead>
                                 <tr>
-                                    <th aria-sort="none" aria-label="" width="60px"><input type="checkbox" id="AllChange"
-                                                                                           onclick="SelectAll(this)"/></th>
+                                    <th aria-sort="none" aria-label="" width="60px"><input type="checkbox"
+                                                                                           id="AllChange"
+                                                                                           onclick="SelectAll(this)"/>
+                                    </th>
                                     <th>角色编号</th>
                                     <th>角色名称</th>
                                     <th>创建时间</th>
@@ -295,7 +300,8 @@
                         <div class="box-body">
                             <div id="rftree" class="treeview">
                                 <ul class="list-group">
-                                    <li class="list-group-item node-rftree" data-nodeid="1" style="color:undefined;background-color:undefined;">
+                                    <li class="list-group-item node-rftree" data-nodeid="1"
+                                        style="color:undefined;background-color:undefined;">
                                         <div id="tree" class="treeview"></div>
                                     </li>
                                 </ul>
@@ -314,9 +320,13 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button id="btnSave" type="button" class="btn btn-default glyphicon glyphicon-ok">&nbsp;保存</button>
+                                            <button id="btnSave" type="button"
+                                                    class="btn btn-default glyphicon glyphicon-ok">&nbsp;保存
+                                            </button>
                                             &nbsp;
-                                            <button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">&nbsp;关闭</button>
+                                            <button type="button" class="btn btn-default glyphicon glyphicon-remove"
+                                                    data-dismiss="modal">&nbsp;关闭
+                                            </button>
                                         </div>
                                     </div>
                                     <!-- /.modal-content -->

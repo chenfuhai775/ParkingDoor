@@ -9,8 +9,8 @@
         <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
     </resultMap>
     <sql id="Base_Column_List">
-    guid, clientcode, sn, creator, createtime
-  </sql>
+        guid, clientcode, sn, creator, createtime
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -18,17 +18,17 @@
         where guid = #{guid,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from dev_deviceaccess
-    where guid = #{guid,jdbcType=VARCHAR}
-  </delete>
+        delete from dev_deviceaccess
+        where guid = #{guid,jdbcType=VARCHAR}
+    </delete>
     <insert id="insert" parameterType="com.security.door.entity.devDeviceaccess">
-    insert into dev_deviceaccess (guid, clientcode,
-      sn, creator, createtime
-      )
-    values (#{guid,jdbcType=VARCHAR}, #{clientcode,jdbcType=VARCHAR},
-      #{sn,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
-      )
-  </insert>
+        insert into dev_deviceaccess (guid, clientcode,
+        sn, creator, createtime
+        )
+        values (#{guid,jdbcType=VARCHAR}, #{clientcode,jdbcType=VARCHAR},
+        #{sn,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
+        )
+    </insert>
     <insert id="insertSelective" parameterType="com.security.door.entity.devDeviceaccess">
         insert into dev_deviceaccess
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -85,13 +85,13 @@
         where guid = #{guid,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.security.door.entity.devDeviceaccess">
-    update dev_deviceaccess
-    set clientcode = #{clientcode,jdbcType=VARCHAR},
-      sn = #{sn,jdbcType=VARCHAR},
-      creator = #{creator,jdbcType=VARCHAR},
-      createtime = #{createtime,jdbcType=TIMESTAMP}
-    where guid = #{guid,jdbcType=VARCHAR}
-  </update>
+        update dev_deviceaccess
+        set clientcode = #{clientcode,jdbcType=VARCHAR},
+        sn = #{sn,jdbcType=VARCHAR},
+        creator = #{creator,jdbcType=VARCHAR},
+        createtime = #{createtime,jdbcType=TIMESTAMP}
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
 
     <insert id="batchInser" parameterType="java.util.List">
         insert into dev_deviceaccess (guid, clientcode,sn, creator,createtime)
@@ -107,7 +107,7 @@
     </insert>
 
     <delete id="deleteByClientCode" parameterType="java.lang.String">
-        DELETE  from dev_deviceaccess
+        DELETE from dev_deviceaccess
         where clientcode = #{clientcode,jdbcType=VARCHAR}
     </delete>
 

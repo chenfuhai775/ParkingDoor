@@ -22,7 +22,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="../staticResource/adminlte/dist/css/skins/_all-skins.css">
     <link rel="stylesheet" href="../staticResource/adminlte/bootstrap/css/bootstrap.min.css">
 
-    <link rel="stylesheet" type="text/css" href="../staticResource/adminlte/plugins/datatables/dataTables.bootstrap.css  "/>
+    <link rel="stylesheet" type="text/css"
+          href="../staticResource/adminlte/plugins/datatables/dataTables.bootstrap.css  "/>
     <link rel="stylesheet" type="text/css" href="../staticResource/adminlte/plugins/select2/select2.min.css  "/>
 
     <script src="../staticResource/adminlte/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -34,7 +35,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="../staticResource/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
 
     <#--treeview 插件-->
-    <link  href="../staticResource/adminlte/plugins/treeview/css/bootstrap-treeview.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../staticResource/adminlte/plugins/treeview/css/bootstrap-treeview.min.css" rel="stylesheet"
+          type="text/css"/>
     <script src="../staticResource/adminlte/plugins/treeview/js/bootstrap-treeview.min.js"></script>
 
     <script src="../staticResource/js/base-form.js"></script>
@@ -216,7 +218,7 @@ desired effect
                                     <a href="#" class="btn btn-default btn-flat">设置</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a id="existSytem" class="btn btn-default btn-flat">退出登录</a>                                </div>
+                                    <a id="existSytem" class="btn btn-default btn-flat">退出登录</a></div>
                             </li>
                         </ul>
                     </li>
@@ -325,15 +327,16 @@ desired effect
                             <h4 class="modal-title" id="editModalLabel">Default Modal</h4>
                         </div>
                         <div class="modal-body">
-                            <input type="hidden" id="typecode" name="typecode" value="" >
+                            <input type="hidden" id="typecode" name="typecode" value="">
                             <form class="form-horizontal bv-form" id="function-form" novalidate="novalidate">
-                                <input type="hidden" id="hidGuid" name="hidGuid" value="" >
+                                <input type="hidden" id="hidGuid" name="hidGuid" value="">
 
                                 <div class="form-group">
                                     <label for="parentName" class="col-sm-2 control-label">功能名称</label>
 
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control"  id="txtActiveName" name="txtActiveName" placeholder="功能名称" readonly="readonly">
+                                        <input type="text" class="form-control" id="txtActiveName" name="txtActiveName"
+                                               placeholder="功能名称" readonly="readonly">
                                     </div>
                                 </div>
 
@@ -341,26 +344,31 @@ desired effect
                                     <label for="name" class="col-sm-2 control-label">功能编码</label>
 
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="txtActiveCode" name="txtActiveCode" placeholder="功能编码" readonly="readonly">
-                                    <#--<i class="form-control-feedback" data-bv-icon-for="text" style="display: none;"></i>-->
+                                        <input type="text" class="form-control" id="txtActiveCode" name="txtActiveCode"
+                                               placeholder="功能编码" readonly="readonly">
+                                        <#--<i class="form-control-feedback" data-bv-icon-for="text" style="display: none;"></i>-->
                                     </div>
                                 </div>
                                 <div class="form-group has-feedback">
                                     <label for="name" class="col-sm-2 control-label">功能序号</label>
 
                                     <div class="col-sm-9">
-                                        <input type="number" class="form-control" id="txtActiveNo" name="txtActiveNo" placeholder="功能序号(0-24)">
-                                    <#--<i class="form-control-feedback" data-bv-icon-for="text" style="display: none;"></i>-->
+                                        <input type="number" class="form-control" id="txtActiveNo" name="txtActiveNo"
+                                               placeholder="功能序号(0-24)">
+                                        <#--<i class="form-control-feedback" data-bv-icon-for="text" style="display: none;"></i>-->
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="icon" class="col-sm-2 control-label">图标</label>
                                     <div class="col-sm-7">
-                                        <i data-bv-icon-for="icon" id="icon_i" class="form-control-feedback fa fa-table" style="right:15px"></i>
-                                        <input type="text" class="form-control" id="txtIcon" name="txtIcon" placeholder="图标" readonly="readonly" data-bv-field="icon">
+                                        <i data-bv-icon-for="icon" id="icon_i" class="form-control-feedback fa fa-table"
+                                           style="right:15px"></i>
+                                        <input type="text" class="form-control" id="txtIcon" name="txtIcon"
+                                               placeholder="图标" readonly="readonly" data-bv-field="icon">
                                     </div>
                                     <div class="col-sm-2">
-                                        <button type="button" id="selectIcon" class="btn btn-primary disabled" data-btn-type="selectIcon">
+                                        <button type="button" id="selectIcon" class="btn btn-primary disabled"
+                                                data-btn-type="selectIcon">
                                             <i class="fa fa-hand-pointer-o">&nbsp;选择图标</i>
                                         </button>
                                     </div>
@@ -369,7 +377,8 @@ desired effect
                                     <label for="levelCode" class="col-sm-2 control-label">报文</label>
 
                                     <div class="col-sm-9">
-                                        <textarea rows="6" class="form-control" id="txtExpression" name="txtExpression" placeholder="报文" readonly="readonly" data-bv-field="template">
+                                        <textarea rows="6" class="form-control" id="txtExpression" name="txtExpression"
+                                                  placeholder="报文" readonly="readonly" data-bv-field="template">
                                         </textarea>
                                         </i>
                                     </div>
@@ -377,9 +386,12 @@ desired effect
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button id="btnSave" type="button" class="btn btn-default glyphicon glyphicon-ok">&nbsp;保存</button>
+                            <button id="btnSave" type="button" class="btn btn-default glyphicon glyphicon-ok">&nbsp;保存
+                            </button>
                             &nbsp;
-                            <button type="button" class="btn btn-default glyphicon glyphicon-remove" data-dismiss="modal">&nbsp;关闭</button>
+                            <button type="button" class="btn btn-default glyphicon glyphicon-remove"
+                                    data-dismiss="modal">&nbsp;关闭
+                            </button>
                         </div>
                     </div>
                     <!-- /.modal-content -->

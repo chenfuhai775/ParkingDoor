@@ -10,29 +10,29 @@
         <result column="remark" jdbcType="VARCHAR" property="remark"/>
     </resultMap>
     <sql id="Base_Column_List">
-    guid, rolename, rolecode, creator, creatdate, remark
-  </sql>
+        guid, rolename, rolecode, creator, creatdate, remark
+    </sql>
     <delete id="deleteByGuid" parameterType="java.lang.String">
-    delete from base_role
-    WHERE guid in ( ${value} )
-  </delete>
+        delete from base_role
+        WHERE guid in ( ${value} )
+    </delete>
     <delete id="deleteByRoleCode" parameterType="java.lang.Integer">
-    delete from base_role
-    WHERE  rolecode = #{rolecode,jdbcType=INTEGER}
-  </delete>
+        delete from base_role
+        WHERE rolecode = #{rolecode,jdbcType=INTEGER}
+    </delete>
     <insert id="insert" parameterType="com.security.door.entity.baseRole">
-    insert into base_role (guid, rolename, rolecode,
-      creator, creatdate, remark)
-    values (#{guid,jdbcType=VARCHAR}, #{rolename,jdbcType=VARCHAR}, #{rolecode,jdbcType=INTEGER},
-       #{creator,jdbcType=VARCHAR}, #{creatdate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
-  </insert>
+        insert into base_role (guid, rolename, rolecode,
+        creator, creatdate, remark)
+        values (#{guid,jdbcType=VARCHAR}, #{rolename,jdbcType=VARCHAR}, #{rolecode,jdbcType=INTEGER},
+        #{creator,jdbcType=VARCHAR}, #{creatdate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+    </insert>
     <update id="update" parameterType="com.security.door.entity.baseRole">
-    update base_role
-    SET rolename = #{rolename,jdbcType=VARCHAR},
+        update base_role
+        SET rolename = #{rolename,jdbcType=VARCHAR},
         rolecode = #{rolecode,jdbcType=INTEGER},
         remark = #{remark,jdbcType=VARCHAR}
         WHERE guid = #{guid,jdbcType=VARCHAR}
-  </update>
+    </update>
     <select id="selectList" parameterType="com.security.door.pager.DatatablesView" resultMap="BaseResultMap">
         SELECT * FROM (SELECT
         <include refid="Base_Column_List"/>
@@ -45,12 +45,12 @@
         limit #{start},#{length}
     </select>
     <select id="getMaxID" resultType="java.lang.Integer">
-    SELECT MAX(rolecode) + 1
-    FROM base_role
-  </select>
+        SELECT MAX(rolecode) + 1
+        FROM base_role
+    </select>
     <select id="checkCode" parameterType="java.lang.String" resultType="java.lang.Integer">
-    SELECT count(*)
-    FROM base_role
-    WHERE rolecode = #{rolecode,jdbcType=INTEGER}
-  </select>
+        SELECT count(*)
+        FROM base_role
+        WHERE rolecode = #{rolecode,jdbcType=INTEGER}
+    </select>
 </mapper>

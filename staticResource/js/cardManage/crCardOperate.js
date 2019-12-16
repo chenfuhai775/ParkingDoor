@@ -79,8 +79,8 @@ function initCardList(clientcode) {
             }
         },
         "dom": "<'row'<'col-xs-2'l><'#cardtool.col-xs-7'><'col-xs-3'f>r>" +
-        "t" +
-        "<'row'<'col-xs-6'i><'col-xs-6'p>>",
+            "t" +
+            "<'row'<'col-xs-6'i><'col-xs-6'p>>",
         "initComplete": function () {
             $("#cardtool").append('<button id="dataCardDel" style="float: right" type="button" class="btn btn-flat btn-default glyphicon glyphicon-minus" data-toggle="modal" data-target="#myModal">&nbsp;删除</button>');
             $("#cardtool").append('<button id="dataCardEdit" style="float: right" type="button" class="btn btn-flat btn-default glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal">&nbsp;修改</button>');
@@ -156,15 +156,14 @@ function initCardType(data) {
             placeholder: "- - 卡类型 - -",
             allowClear: false
         });
-    }
-    else {
+    } else {
         $("#ddlCardtype").empty();
         $.ajax({
             url: "/baseMenu/selectDictByPK/" + data,
             type: "get",
             dataType: "json",
             data: "data",
-            async:false,
+            async: false,
             success: function (data) {
                 $("#ddlCardtype").select2({
                     data: data,
@@ -205,15 +204,12 @@ function editCardRowData(row) {
     if (undefined != row) {
         var tds = table.row($(row).closest('tr')).data();
         setCardValue(tds);
-    }
-
-    else {
+    } else {
         var row = $("#cardlist").find("tbody tr input[type='checkbox']:checked");
         if (0 == row.length) {
             modals.info("请选择一条记录");
             return false;
-        }
-        else {
+        } else {
             var tds = table.row($(row[0]).closest('tr')).data();
 
             setCardValue(tds);
@@ -280,8 +276,7 @@ function SaveCard() {
             if (result.result) {
                 $("#editCardModal").modal('hide');
                 $("#cardlist").dataTable().fnDraw(false);
-            }
-            else
+            } else
                 modals.info(result.msg);
         },
         error: function (result) {

@@ -21,17 +21,17 @@
         where guid = #{guid,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from dev_deviceparam
-    where guid = #{guid,jdbcType=VARCHAR}
-  </delete>
+        delete from dev_deviceparam
+        where guid = #{guid,jdbcType=VARCHAR}
+    </delete>
     <insert id="insert" parameterType="com.security.door.entity.devDeviceparam">
-    insert into dev_deviceparam (guid, sn, activecode,
-    displaykey, createtime, creater
-    )
-    values (#{guid,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR}, #{activecode,jdbcType=VARCHAR},
-    #{displaykey,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, #{creater,jdbcType=VARCHAR}
-    )
-  </insert>
+        insert into dev_deviceparam (guid, sn, activecode,
+        displaykey, createtime, creater
+        )
+        values (#{guid,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR}, #{activecode,jdbcType=VARCHAR},
+        #{displaykey,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, #{creater,jdbcType=VARCHAR}
+        )
+    </insert>
     <insert id="insertSelective" parameterType="com.security.door.entity.devDeviceparam">
         insert into dev_deviceparam
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -106,15 +106,15 @@
         where guid = #{guid,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.security.door.entity.devDeviceparam">
-    update dev_deviceparam
-    set sn = #{sn,jdbcType=VARCHAR},
-    activecode = #{activecode,jdbcType=VARCHAR},
-    displayname = #{displayname,jdbcType=VARCHAR},
-    displaykey = #{displaykey,jdbcType=VARCHAR},
-    createtime = #{createtime,jdbcType=DATE},
-    creater = #{creater,jdbcType=VARCHAR}
-    where guid = #{guid,jdbcType=VARCHAR}
-  </update>
+        update dev_deviceparam
+        set sn = #{sn,jdbcType=VARCHAR},
+        activecode = #{activecode,jdbcType=VARCHAR},
+        displayname = #{displayname,jdbcType=VARCHAR},
+        displaykey = #{displaykey,jdbcType=VARCHAR},
+        createtime = #{createtime,jdbcType=DATE},
+        creater = #{creater,jdbcType=VARCHAR}
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
     <insert id="insertBatch">
         insert into dev_deviceparam (guid, sn, activecode,displayname,
         displaykey, displayvalue,
@@ -129,15 +129,16 @@
         </foreach>
     </insert>
     <delete id="deleteByDeviceGuid" parameterType="com.security.door.entity.devDeviceparam">
-      delete from dev_deviceparam  where sn = #{sn,jdbcType=VARCHAR} and activecode = #{activecode,jdbcType=VARCHAR}
+        delete from dev_deviceparam where sn = #{sn,jdbcType=VARCHAR} and activecode = #{activecode,jdbcType=VARCHAR}
     </delete>
     <select id="dataCount" parameterType="com.security.door.entity.devDeviceparam" resultMap="BaseResultMap">
-    SELECT COUNT(*) FROM dev_deviceparam
-    WHERE sn = #{sn,jdbcType=VARCHAR} and activecode = #{activecode,jdbcType=VARCHAR}
-  </select>
-    <select id="selectParamsByActiveCode" parameterType="com.security.door.entity.devDeviceparam" resultMap="BaseResultMap">
+        SELECT COUNT(*) FROM dev_deviceparam
+        WHERE sn = #{sn,jdbcType=VARCHAR} and activecode = #{activecode,jdbcType=VARCHAR}
+    </select>
+    <select id="selectParamsByActiveCode" parameterType="com.security.door.entity.devDeviceparam"
+            resultMap="BaseResultMap">
         select displaykey,displayvalue,displayname from dev_deviceparam
-        where sn = #{sn,jdbcType=VARCHAR}  and  activecode = #{activecode,jdbcType=VARCHAR}
+        where sn = #{sn,jdbcType=VARCHAR} and activecode = #{activecode,jdbcType=VARCHAR}
     </select>
     <delete id="deleteBySn" parameterType="java.lang.String">
         delete from dev_deviceparam

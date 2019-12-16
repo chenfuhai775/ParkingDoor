@@ -314,17 +314,19 @@ desired effect
                                 <tr>
                                     <td class="col-sm-2">父级编号</td>
                                     <td class="col-sm-3">
-                                        <select id="parentid" class="form-control select" style="width:100%;height: 100%"></select>
+                                        <select id="parentid" class="form-control select"
+                                                style="width:100%;height: 100%"></select>
                                     </td>
                                     <td class="col-sm-2">菜单类型</td>
                                     <td class="col-sm-3">
-                                        <select id="menutype" class="form-control select"  style="width:100%;height: 100%"></select>
+                                        <select id="menutype" class="form-control select"
+                                                style="width:100%;height: 100%"></select>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col-sm-2">菜单名称</td>
                                     <td class="col-sm-3">
-                                        <input type="text" class="form-control" id="menuname"  placeholder="菜单名称">
+                                        <input type="text" class="form-control" id="menuname" placeholder="菜单名称">
                                     </td>
                                     <td class="col-sm-2">是否启用</td>
                                     <td class="col-sm-3">
@@ -342,7 +344,8 @@ desired effect
                                     <td class="col-sm-2">菜单图标</td>
                                     <td class="col-sm-4" colspan="3">
                                         <div class="col-sm-9" style="padding-left: 0px">
-                                            <i data-bv-icon-for="icon" id="icon_i" class="form-control-feedback fa fa-table" style="right: 15px"></i>
+                                            <i data-bv-icon-for="icon" id="icon_i"
+                                               class="form-control-feedback fa fa-table" style="right: 15px"></i>
                                             <input type="text" class="form-control" id="txtIcon" name="txtIcon"
                                                    placeholder="图标" readonly="readonly">
                                         </div>

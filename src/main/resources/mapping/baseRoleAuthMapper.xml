@@ -16,8 +16,8 @@
         <result column="pid" jdbcType="VARCHAR" property="pid"/>
     </resultMap>
     <sql id="Base_Column_List">
-    guid, rolecode, menuid, creator, creatdate, remark
-  </sql>
+        guid, rolecode, menuid, creator, creatdate, remark
+    </sql>
 
     <insert id="insertAuth" parameterType="java.util.List">
         insert into base_roleauth (guid, rolecode, menuid,
@@ -35,10 +35,10 @@
         </foreach>
     </insert>
     <delete id="deleteMore" parameterType="java.util.Map">
-      DELETE FROM base_roleauth
-      WHERE
-       rolecode=#{rolecode} AND menuid in (${menuidlist})
-  </delete>
+        DELETE FROM base_roleauth
+        WHERE
+        rolecode=#{rolecode} AND menuid in (${menuidlist})
+    </delete>
     <insert id="insertSelective" parameterType="com.security.door.entity.baseRoleAuth">
         insert into base_roleauth
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -83,23 +83,24 @@
         </trim>
     </insert>
     <delete id="deleteByRoleCode" parameterType="java.lang.String">
-    DELETE FROM base_roleauth
-    WHERE rolecode=#{rolecode,jdbcType=VARCHAR}
-  </delete>
+        DELETE FROM base_roleauth
+        WHERE rolecode=#{rolecode,jdbcType=VARCHAR}
+    </delete>
     <select id="selectAuth" parameterType="java.lang.String" resultMap="TreeBaseResultMap">
-    select bm.guid as guid,br.menuid as id,bm.menuname as text,bm.parentid as pid FROM base_menu bm
-    join base_roleauth br
-    on bm.guid = br.menuid
-    where br.rolecode = #{rolecode,jdbcType=VARCHAR}
-  </select>
+        select bm.guid as guid,br.menuid as id,bm.menuname as text,bm.parentid as pid FROM base_menu bm
+        join base_roleauth br
+        on bm.guid = br.menuid
+        where br.rolecode = #{rolecode,jdbcType=VARCHAR}
+    </select>
     <delete id="deleteByMenuId" parameterType="com.security.door.entity.baseRoleAuth">
-    DELETE FROM base_roleauth
-    WHERE rolecode=#{rolecode,jdbcType=VARCHAR} AND menuid=#{menuid,jdbcType=VARCHAR}
-  </delete>
+        DELETE FROM base_roleauth
+        WHERE rolecode=#{rolecode,jdbcType=VARCHAR} AND menuid=#{menuid,jdbcType=VARCHAR}
+    </delete>
     <select id="selectTree" resultMap="TreeBaseResultMap" parameterType="java.lang.String">
-    select bm.guid as guid,bm.menuid as id ,bm.menuname as text ,bm.parentid as pid from base_menu bm join base_roleauth br on bm.guid = br.menuid where br.rolecode = #{rolecode,jdbcType=VARCHAR}
-  </select>
-    <select id="selectAllTree" parameterType="java.util.Map"  resultMap="TreeBaseResultMap">
+        select bm.guid as guid,bm.menuid as id ,bm.menuname as text ,bm.parentid as pid from base_menu bm join
+        base_roleauth br on bm.guid = br.menuid where br.rolecode = #{rolecode,jdbcType=VARCHAR}
+    </select>
+    <select id="selectAllTree" parameterType="java.util.Map" resultMap="TreeBaseResultMap">
         SELECT guid as guid,menuid as id,menuname as text,parentid as pid
         from base_menu
         WHERE 1=1

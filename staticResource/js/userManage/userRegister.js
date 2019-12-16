@@ -44,8 +44,8 @@ $(function () {
             }
         },
         "dom": "<'row'<'col-xs-2'l><'#mytool.col-xs-8'><'col-xs-2'f>r>" +
-        "t" +
-        "<'row'<'col-xs-6'i><'col-xs-6'p>>",
+            "t" +
+            "<'row'<'col-xs-6'i><'col-xs-6'p>>",
         "initComplete": function () {
             $("#mytool").append('<button id="dataDel" style="float: right" type="button" class="btn btn-flat btn-default glyphicon glyphicon-minus" data-toggle="modal" data-target="#myModal">&nbsp;删除</button>');
             $("#mytool").append('<button id="dataEdit" style="float: right" type="button" class="btn btn-flat btn-default glyphicon glyphicon-pencil" data-toggle="modal" data-target="#myModal">&nbsp;修改</button>');
@@ -276,8 +276,7 @@ function initCity(data) {
             placeholder: "- - 市区 - -",
             allowClear: true
         });
-    }
-    else {
+    } else {
         $("#ddlCity").empty();
         $.ajax({
             url: "/baseMenu/selectDictByPK/" + data,
@@ -314,8 +313,7 @@ function editRowData(row) {
         if (0 == row.length) {
             modals.info("请选择一条记录");
             return false;
-        }
-        else {
+        } else {
             var tds = table.row($(row).closest('tr')).data();
             setValue(tds);
         }
@@ -384,8 +382,8 @@ function Save() {
     $.ajax({
         dataType: "json",
         async: false,
-        type:"POST",
-        contentType : 'application/json',
+        type: "POST",
+        contentType: 'application/json',
         url: "/userRegister/Add",
         data: JSON.stringify(JsonData),
         success: function (result) {
@@ -393,8 +391,7 @@ function Save() {
                 $("#logo").fileinput("reset");
                 $("#editModal").modal('hide');
                 $("#PersonnelList").dataTable().fnDraw(false);
-            }
-            else
+            } else
                 modals.info(result.msg);
         },
         error: function (result) {
@@ -499,8 +496,7 @@ function downLoadPermission(clientcode, devices) {
     if (null == clientcode || "" == clientcode) {
         modals.info("请选择人员");
         return false;
-    }
-    else {
+    } else {
         $.ajax({
             datetype: "json",
             async: false,
@@ -514,8 +510,7 @@ function downLoadPermission(clientcode, devices) {
                         modals.info(result.data);
                     else
                         modals.info("用户权限为空");
-                }
-                else
+                } else
                     modals.info(result.msg);
             },
             error: function (data) {

@@ -11,8 +11,8 @@
         <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
     </resultMap>
     <sql id="Base_Column_List">
-    guid, orggroupname, orggroupcode, clientcode,remark, creator, createtime
-  </sql>
+        guid, orggroupname, orggroupcode, clientcode,remark, creator, createtime
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -20,17 +20,18 @@
         where guid = #{guid,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from cr_accessgroup
+        delete from cr_accessgroup
         where guid in ( ${value} )
-  </delete>
+    </delete>
     <insert id="insert" parameterType="com.security.door.entity.crAccessgroup">
-    insert into cr_accessgroup (guid, orggroupname, orggroupcode,
-      clientcode, remark,creator, createtime
-      )
-    values (#{guid,jdbcType=VARCHAR}, #{orggroupname,jdbcType=VARCHAR}, #{orggroupcode,jdbcType=VARCHAR},
-      #{clientcode,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
-      )
-  </insert>
+        insert into cr_accessgroup (guid, orggroupname, orggroupcode,
+        clientcode, remark,creator, createtime
+        )
+        values (#{guid,jdbcType=VARCHAR}, #{orggroupname,jdbcType=VARCHAR}, #{orggroupcode,jdbcType=VARCHAR},
+        #{clientcode,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR},
+        #{createtime,jdbcType=TIMESTAMP}
+        )
+    </insert>
     <insert id="insertSelective" parameterType="com.security.door.entity.crAccessgroup">
         insert into cr_accessgroup
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -105,15 +106,15 @@
         where guid = #{guid,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.security.door.entity.crAccessgroup">
-    update cr_accessgroup
-    set orggroupname = #{orggroupname,jdbcType=VARCHAR},
-      orggroupcode = #{orggroupcode,jdbcType=VARCHAR},
-      clientcode = #{clientcode,jdbcType=BIT},
-      creator = #{creator,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=VARCHAR},
-      createtime = #{createtime,jdbcType=TIMESTAMP}
-    where guid = #{guid,jdbcType=VARCHAR}
-  </update>
+        update cr_accessgroup
+        set orggroupname = #{orggroupname,jdbcType=VARCHAR},
+        orggroupcode = #{orggroupcode,jdbcType=VARCHAR},
+        clientcode = #{clientcode,jdbcType=BIT},
+        creator = #{creator,jdbcType=VARCHAR},
+        remark = #{remark,jdbcType=VARCHAR},
+        createtime = #{createtime,jdbcType=TIMESTAMP}
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
 
 
     <select id="selectList" parameterType="com.security.door.pager.DatatablesView" resultMap="BaseResultMap">
@@ -130,13 +131,13 @@
         limit #{start},#{length}
     </select>
     <select id="getCount" resultType="java.lang.Integer">
-    select count(0) from cr_accessgroup
-  </select>
+        select count(0) from cr_accessgroup
+    </select>
     <select id="getMaxID" resultType="java.lang.Integer">
         SELECT MAX(orggroupcode) + 1
         FROM cr_accessgroup
     </select>
     <select id="checkcode" parameterType="java.lang.String" resultType="java.lang.Integer">
-    select count(*) from cr_accessgroup where orggroupcode = #{orggroupcode,jdbcType=VARCHAR}
-  </select>
+        select count(*) from cr_accessgroup where orggroupcode = #{orggroupcode,jdbcType=VARCHAR}
+    </select>
 </mapper>

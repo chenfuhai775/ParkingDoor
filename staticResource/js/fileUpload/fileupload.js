@@ -5,11 +5,11 @@ $("#input-fa").fileinput({
     browseClass: "btn btn-success",
     removeClass: "btn btn-danger",
     uploadClass: "btn btn-info",
-    isAjaxUpload:true,
+    isAjaxUpload: true,
     minFileCount: 1,
-    maxFileCount :1,
-    uploadExtraData : function() {  //传递参数
-        return {"id":"1"} ;
+    maxFileCount: 1,
+    uploadExtraData: function () {  //传递参数
+        return {"id": "1"};
     }
 });
 // //上传前

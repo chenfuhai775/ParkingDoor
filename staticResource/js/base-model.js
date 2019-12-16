@@ -28,7 +28,7 @@
  */
 
 (function ($, window, document, undefined) {
-    window.modals = window.modals||{};
+    window.modals = window.modals || {};
 
     function _modal_structure(config, ok, cancel) {
         // <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
@@ -41,10 +41,12 @@
 
         // <div class="modal-dialog" role="document">
         var dialog = document.createElement('DIV');
-        dialog.className = 'modal-dialog modal-'+(config.large?'lg':'sm');
+        dialog.className = 'modal-dialog modal-' + (config.large ? 'lg' : 'sm');
 
         //update for HANZO, 2016/12/28
-        if (config.width) { dialog.style.width = config.width+'px'; }
+        if (config.width) {
+            dialog.style.width = config.width + 'px';
+        }
 
         dialog.role = 'document';
         modal.appendChild(dialog);
@@ -85,7 +87,7 @@
 
         //update for HANZO, 2016/12/28
         if (config.src) {
-            body.style.height = config.height+'px';
+            body.style.height = config.height + 'px';
 
             var frame = document.createElement('iframe');
             frame.style.margin = 0;
@@ -96,7 +98,7 @@
             frame.src = config.src;
             body.appendChild(frame);
         } else {
-            body.innerHTML = config.text||'';
+            body.innerHTML = config.text || '';
         }
 
         content.appendChild(body);
@@ -114,8 +116,10 @@
                 btn_close.type = 'button';
                 btn_close.setAttribute('data-dismiss', 'modal');
                 btn_close.innerHTML = config.cancel_label;
-                btn_close.onclick = function() {
-                    if (config.cancel_call) { config.cancel_call.call(this); }
+                btn_close.onclick = function () {
+                    if (config.cancel_call) {
+                        config.cancel_call.call(this);
+                    }
                 };
 
                 footer.appendChild(btn_close);
@@ -128,9 +132,11 @@
                 btn_ok.type = 'button';
                 //btn_ok.setAttribute('data-dismiss', 'modal');
                 btn_ok.innerHTML = config.ok_label;
-                btn_ok.onclick = function() {
+                btn_ok.onclick = function () {
                     $("#modal-tips-div").modal('hide');
-                    if (config.callback) { config.callback.call(this); }
+                    if (config.callback) {
+                        config.callback.call(this);
+                    }
                 };
 
                 footer.appendChild(btn_ok);
@@ -151,7 +157,7 @@
 
         $('#modal-tips-div').modal('show');
 
-        $('#modal-tips-div').on("hidden.bs.modal", function() {
+        $('#modal-tips-div').on("hidden.bs.modal", function () {
             modals.fixwyhtml5();
             _remove_modal();
             $(this).removeData("bs.modal");
@@ -168,22 +174,24 @@
 
     /**
      * 目前阶段涉及参数说明 { title: 'modal标题', text: '提示内容', ok_label: '确定按钮的内容',
-	 * cancel_label: '取消按钮的内容', callback: '确定按钮的回调函数', cancel_call: '取消按钮的回调函数',
-	 * large: 'modal大小模式' }
+     * cancel_label: '取消按钮的内容', callback: '确定按钮的回调函数', cancel_call: '取消按钮的回调函数',
+     * large: 'modal大小模式' }
      */
     var _CONFIG = {
         ok_label: '确定',
         cancel_label: '关闭',
         large: false
     };
+
     function modal_params(text, callback) {
-        return $.extend({}, _CONFIG, (typeof text != 'object')?{ text: text, callback: callback }:text);
+        return $.extend({}, _CONFIG, (typeof text != 'object') ? {text: text, callback: callback} : text);
     }
 
-    var _TITLE = { info: '提示', correct: '成功', warn: '警告', error: '错误' };
+    var _TITLE = {info: '提示', correct: '成功', warn: '警告', error: '错误'};
+
     function _alert(args, type) {
         var cfg = modal_params.apply(this, args);
-        cfg.title = cfg.title||_TITLE[type];
+        cfg.title = cfg.title || _TITLE[type];
 
         return _create_modal(cfg, false, true);
     }
@@ -195,19 +203,19 @@
      *
      * @returns {*}
      */
-    modals.info = function() {
+    modals.info = function () {
         return _alert.call(this, arguments, 'info');
     };
 
-    modals.correct = function() {
+    modals.correct = function () {
         return _alert.call(this, arguments, 'correct');
     };
 
-    modals.warn = function() {
+    modals.warn = function () {
         return _alert.call(this, arguments, 'warn');
     };
 
-    modals.error = function() {
+    modals.error = function () {
         return _alert.call(this, arguments, 'error');
     };
 
@@ -216,16 +224,16 @@
      *
      * @returns {*}
      */
-    modals.confirm = function() {
+    modals.confirm = function () {
         var cfg = modal_params.apply(this, arguments);
-        cfg.title = cfg.title||'确认提示';
-        cfg.cancel_label = cfg.cancel_label==_CONFIG.cancel_label?'取消':cfg.cancel_label;
+        cfg.title = cfg.title || '确认提示';
+        cfg.cancel_label = cfg.cancel_label == _CONFIG.cancel_label ? '取消' : cfg.cancel_label;
 
         return _create_modal(cfg, true, true);
     };
 
-    modals.popup = function(cfg) {
-        return _create_modal(cfg||{}, false, false);
+    modals.popup = function (cfg) {
+        return _create_modal(cfg || {}, false, false);
     };
 
 
@@ -233,39 +241,43 @@
      * @author bill qq:475572229 window
      ***************************************************************************/
         //{"backdrop":"static"}点击背景不会消失
-    var _win_config={winId:'user-win',backdrop:true,keyboard:true,width:900};
+    var _win_config = {winId: 'user-win', backdrop: true, keyboard: true, width: 900};
     //config={win:'userWin',top:'auto'/20,width:'900px',title:'新增用户'}
-    modals.openWin=function(config){
-        var winId=config.winId||_win_config.winId;
+    modals.openWin = function (config) {
+        var winId = config.winId || _win_config.winId;
         this.closeWin(winId);
         /*if($("#"+winId).length>0){
             this.showWin(winId);
             return false;
         }*/
-        config=$.extend({},_win_config,config);
+        config = $.extend({}, _win_config, config);
         this._create_modal(config);
-        if(!config.url&&!config.loadContent){
+        if (!config.url && !config.loadContent) {
             this.error('未配置url');
         }
-        $("#"+winId).modal({remote:config.url,backdrop:config.backdrop||_win_config.backdrop,keyboard:config.keyboard||_win_config.keyboard});
-        if(config.loadContent){
+        $("#" + winId).modal({
+            remote: config.url,
+            backdrop: config.backdrop || _win_config.backdrop,
+            keyboard: config.keyboard || _win_config.keyboard
+        });
+        if (config.loadContent) {
             config.loadContent();
         }
-        this.showWin(config.winId||_win_config.winId);
+        this.showWin(config.winId || _win_config.winId);
         //attach show event
-        $("#"+winId).on('shown.bs.modal',function(){
+        $("#" + winId).on('shown.bs.modal', function () {
             /*if(config.top=="auto"){
                 var height=$(window).height()>$(this).find(".modal-dialog").eq(0).height()?($(window).height()-$(this).find(".modal-dialog").eq(0).height())/2:0;
                 $(this).find(".modal-dialog").eq(0).css("margin-top",height);
             }*/
             $(this).find(".modal-title").html(config.title);
-            if(config.showFunc)
+            if (config.showFunc)
                 config.showFunc.call(this);
         });
         //attach hidden event
-        $("#"+winId).on("hidden.bs.modal", function() {
+        $("#" + winId).on("hidden.bs.modal", function () {
             modals.closeWin(winId);
-            if(config.hideFunc)
+            if (config.hideFunc)
                 config.hideFunc.call(this);
             modals.fixwyhtml5();
             $(this).removeData("bs.modal");
@@ -273,30 +285,30 @@
         });
     }
     //add by billjiang fix the wyhtml5 problem: wyhtml has the modal class,make the scrollbar hidden
-    modals.fixwyhtml5=function(){
-        if($(".wysihtml5-editor")){
+    modals.fixwyhtml5 = function () {
+        if ($(".wysihtml5-editor")) {
             $(document.body).removeClass('modal-open');
-            $(document.body).css("padding-right","0px");
+            $(document.body).css("padding-right", "0px");
         }
     }
-    modals._create_modal=function(config){
+    modals._create_modal = function (config) {
         var modal = document.createElement('DIV');
         modal.id = config.winId;
         modal.className = 'modal fade';
         modal.tabindex = -1;
         modal.role = 'dialog';
         modal.setAttribute('aria-labelledby', 'myModalLabel');
-        modal.setAttribute('aria-hidden',true);
+        modal.setAttribute('aria-hidden', true);
 
         // <div class="modal-dialog" role="document">
         var dialog = document.createElement('DIV');
         dialog.className = 'modal-dialog';
         dialog.role = 'document';
-        if(isNaN(config.width)&&config.width.indexOf("px")>0)
-            $(dialog).css('width',config.width);
+        if (isNaN(config.width) && config.width.indexOf("px") > 0)
+            $(dialog).css('width', config.width);
         //dialog.style='width:'+config.width+';';
         else
-            $(dialog).css('width',config.width+"px");
+            $(dialog).css('width', config.width + "px");
         //dialog.style='width:'+config.width+'px;';
         modal.appendChild(dialog);
 
@@ -308,8 +320,8 @@
         document.body.appendChild(modal);
     }
 
-    modals.closeWin=function(winId){
-        winId=winId||_win_config.winId;
+    modals.closeWin = function (winId) {
+        winId = winId || _win_config.winId;
         var win = document.getElementById(winId);
         if (win) {
             $(win).remove();
@@ -317,20 +329,20 @@
         }
     }
 
-    modals.hideWin=function(winId){
-        winId=winId||_win_config.winId;
-        $("#"+winId).modal('hide');
+    modals.hideWin = function (winId) {
+        winId = winId || _win_config.winId;
+        $("#" + winId).modal('hide');
     }
 
-    modals.showWin=function(winId){
-        winId=winId||_win_config.winId;
-        $("#"+winId).modal('show');
+    modals.showWin = function (winId) {
+        winId = winId || _win_config.winId;
+        $("#" + winId).modal('show');
     }
 
-    modals.removeData=function(winId){
-        winId=winId||_win_config.winId;
+    modals.removeData = function (winId) {
+        winId = winId || _win_config.winId;
         //$("#myModal").on("hidden.bs.modal", function() {
-        $("#"+winId).removeData("bs.modal");
+        $("#" + winId).removeData("bs.modal");
         //});
     }
 })(jQuery, window, document);

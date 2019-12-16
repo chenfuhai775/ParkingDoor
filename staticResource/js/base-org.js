@@ -1,6 +1,6 @@
 /**
  * Created by billJiang on 2017/6/19.
- * 组织机构选择�?
+ * 组织机构选择�?
  */
 (function ($, window, document, undefined) {
     'use strict';
@@ -40,7 +40,7 @@
     //加载组织结构内容结构
     BaseOrg.prototype.loadContent = function () {
         this.treeId = this.orgId + "_tree";
-        //header �? content
+        //header �? content
         $("#" + this.orgId).find("div.modal-content").append('<div class="modal-header">' +
             '<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><li class="fa fa-remove"></li></button>' +
             '<h5 class="modal-title"><i class="fa fa-edit"></i>&nbsp;' + this.options.title + '</h5></div><div class="modal-body"><div id="' + this.treeId + '"></div></div>');
@@ -119,7 +119,7 @@
 
     }
 
-    //清除后关�?
+    //清除后关�?
     BaseOrg.prototype.clearOrg = function () {
         var selectedNode = $("#" + this.treeId).data("treeview").getSelected();
         for (var i = 0; i < selectedNode.length; i++)
@@ -130,16 +130,16 @@
             this.options.nameField.val("");
         modals.hideWin(this.orgId);
     }
-    //取消，关闭窗�?
+    //取消，关闭窗�?
     BaseOrg.prototype.cancelOrg = function () {
         modals.hideWin(this.orgId);
     }
 
 
-    //组织机构选择器默认配�?
+    //组织机构选择器默认配�?
     BaseOrg.prototype.default = {
         orgId: "orgWin",
-        title: '组织机构选择�?',
+        title: '组织机构选择�?',
         levels: 2,
         minHeight: 300
     }
@@ -151,7 +151,6 @@
         });
         return treeData;
     }
-
 
 
 })(jQuery, window, document)

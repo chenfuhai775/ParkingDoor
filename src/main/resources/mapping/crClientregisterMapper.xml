@@ -24,12 +24,12 @@
         <result column="pem" jdbcType="LONGVARCHAR" property="pem"/>
     </resultMap>
     <sql id="Base_Column_List">
-    guid, clientname, loginname, password, clientcode, phone, pclientcode, province, city, address, logo, pem,
-    routerule, rolecode, creator, createtime
-  </sql>
+        guid, clientname, loginname, password, clientcode, phone, pclientcode, province, city, address, logo, pem,
+        routerule, rolecode, creator, createtime
+    </sql>
     <sql id="Blob_Column_List">
-    pem
-  </sql>
+        pem
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
         select
         <include refid="Base_Column_List"/>
@@ -39,22 +39,22 @@
         where guid = #{guid,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from cr_clientregister
-    where guid = #{guid,jdbcType=VARCHAR}
-  </delete>
+        delete from cr_clientregister
+        where guid = #{guid,jdbcType=VARCHAR}
+    </delete>
     <insert id="insert" parameterType="com.security.door.entity.crClientregister">
-    insert into cr_clientregister (guid, clientname, loginname,
-    password, clientcode, phone,
-    pclientcode, province, city, address, logo,
-    routerule, rolecode, creator,
-    createtime, pem)
-    values (#{guid,jdbcType=VARCHAR}, #{clientname,jdbcType=VARCHAR}, #{loginname,jdbcType=VARCHAR},
-    #{password,jdbcType=VARCHAR}, #{clientcode,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
-    #{pclientcode,jdbcType=VARCHAR},#{province,jdbcType=INTEGER}, #{city,jdbcType=INTEGER},
-     #{address,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR},
-    #{routerule,jdbcType=VARCHAR}, #{rolecode,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR},
-    #{createtime,jdbcType=TIMESTAMP}, #{pem,jdbcType=LONGVARCHAR})
-  </insert>
+        insert into cr_clientregister (guid, clientname, loginname,
+        password, clientcode, phone,
+        pclientcode, province, city, address, logo,
+        routerule, rolecode, creator,
+        createtime, pem)
+        values (#{guid,jdbcType=VARCHAR}, #{clientname,jdbcType=VARCHAR}, #{loginname,jdbcType=VARCHAR},
+        #{password,jdbcType=VARCHAR}, #{clientcode,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+        #{pclientcode,jdbcType=VARCHAR},#{province,jdbcType=INTEGER}, #{city,jdbcType=INTEGER},
+        #{address,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR},
+        #{routerule,jdbcType=VARCHAR}, #{rolecode,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR},
+        #{createtime,jdbcType=TIMESTAMP}, #{pem,jdbcType=LONGVARCHAR})
+    </insert>
     <insert id="insertSelective" parameterType="com.security.door.entity.crClientregister">
         insert into cr_clientregister
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -210,43 +210,43 @@
         where guid = #{guid,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.security.door.entity.crClientregister">
-    update cr_clientregister
-    set clientname = #{clientname,jdbcType=VARCHAR},
-    loginname = #{loginname,jdbcType=VARCHAR},
-    password = #{password,jdbcType=VARCHAR},
-    clientcode = #{clientcode,jdbcType=VARCHAR},
-    phone = #{phone,jdbcType=VARCHAR},
-    pclientcode = #{pclientcode,jdbcType=VARCHAR},
-    province = #{province,jdbcType=INTEGER},
-    city = #{city,jdbcType=INTEGER},
-    address = #{address,jdbcType=VARCHAR},
-    logo = #{logo,jdbcType=VARCHAR},
-    routerule = #{routerule,jdbcType=VARCHAR},
-    rolecode = #{rolecode,jdbcType=VARCHAR},
-    creator = #{creator,jdbcType=VARCHAR},
-    createtime = #{createtime,jdbcType=TIMESTAMP},
-    pem = #{pem,jdbcType=LONGVARCHAR}
-    where guid = #{guid,jdbcType=VARCHAR}
-  </update>
+        update cr_clientregister
+        set clientname = #{clientname,jdbcType=VARCHAR},
+        loginname = #{loginname,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR},
+        clientcode = #{clientcode,jdbcType=VARCHAR},
+        phone = #{phone,jdbcType=VARCHAR},
+        pclientcode = #{pclientcode,jdbcType=VARCHAR},
+        province = #{province,jdbcType=INTEGER},
+        city = #{city,jdbcType=INTEGER},
+        address = #{address,jdbcType=VARCHAR},
+        logo = #{logo,jdbcType=VARCHAR},
+        routerule = #{routerule,jdbcType=VARCHAR},
+        rolecode = #{rolecode,jdbcType=VARCHAR},
+        creator = #{creator,jdbcType=VARCHAR},
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+        pem = #{pem,jdbcType=LONGVARCHAR}
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
     <update id="updateByPrimaryKey" parameterType="com.security.door.entity.crClientregister">
-    update cr_clientregister
-    set clientname = #{clientname,jdbcType=VARCHAR},
-    loginname = #{loginname,jdbcType=VARCHAR},
-    password = #{password,jdbcType=VARCHAR},
-    clientcode = #{clientcode,jdbcType=VARCHAR},
-    phone = #{phone,jdbcType=VARCHAR},
-    pclientcode = #{pclientcode,jdbcType=VARCHAR},
-    province = #{province,jdbcType=INTEGER},
-    city = #{city,jdbcType=INTEGER},
-    address = #{address,jdbcType=VARCHAR},
-    pem = #{pem,jdbcType=VARCHAR},
-    logo = #{logo,jdbcType=VARCHAR},
-    routerule = #{routerule,jdbcType=VARCHAR},
-    rolecode = #{rolecode,jdbcType=VARCHAR},
-    creator = #{creator,jdbcType=VARCHAR},
-    createtime = #{createtime,jdbcType=TIMESTAMP}
-    where guid = #{guid,jdbcType=VARCHAR}
-  </update>
+        update cr_clientregister
+        set clientname = #{clientname,jdbcType=VARCHAR},
+        loginname = #{loginname,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR},
+        clientcode = #{clientcode,jdbcType=VARCHAR},
+        phone = #{phone,jdbcType=VARCHAR},
+        pclientcode = #{pclientcode,jdbcType=VARCHAR},
+        province = #{province,jdbcType=INTEGER},
+        city = #{city,jdbcType=INTEGER},
+        address = #{address,jdbcType=VARCHAR},
+        pem = #{pem,jdbcType=VARCHAR},
+        logo = #{logo,jdbcType=VARCHAR},
+        routerule = #{routerule,jdbcType=VARCHAR},
+        rolecode = #{rolecode,jdbcType=VARCHAR},
+        creator = #{creator,jdbcType=VARCHAR},
+        createtime = #{createtime,jdbcType=TIMESTAMP}
+        where guid = #{guid,jdbcType=VARCHAR}
+    </update>
     <select id="getCount" parameterType="com.security.door.pager.DatatablesView" resultType="java.lang.Integer">
         SELECT COUNT(*) FROM cr_clientregister
         WHERE 1 = 1
@@ -293,14 +293,14 @@
         where clientsrc = #{src,jdbcType=VARCHAR}
     </select>
     <delete id="deleteMore" parameterType="java.util.Map">
-    delete from cr_clientregister
-    where guid in (${guid})
-  </delete>
+        delete from cr_clientregister
+        where guid in (${guid})
+    </delete>
     <select id="hasRoleCode" parameterType="java.lang.Integer" resultType="java.lang.Integer">
-      select
-       COUNT(0)
-       from cr_clientregister
-       where rolecode = #{rolecode,jdbcType=INTEGER}
+        select
+        COUNT(0)
+        from cr_clientregister
+        where rolecode = #{rolecode,jdbcType=INTEGER}
     </select>
     <select id="selectOneByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
         select

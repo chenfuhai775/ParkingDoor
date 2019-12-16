@@ -347,7 +347,7 @@ function deleteRoleFunc() {
         $.ajax({
             dataType: "json",
             async: false,
-            type:"POST",
+            type: "POST",
             contentType: 'application/json',
             data: JSON.stringify(obj),
             url: "/Role/deleteByMenuId/",

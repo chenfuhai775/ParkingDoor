@@ -58,7 +58,7 @@ jQuery.fn.load = function (url, params, callback) {
         type = "POST";
     }
     if (self.length > 0) {
-        jQuery.ajaxSetup({cache:true});
+        jQuery.ajaxSetup({cache: true});
         jQuery.ajax({
             url: url,
             beforeSend: function (xhr) {
@@ -97,8 +97,7 @@ function deleteEmptyProp(obj) {
     for (var a in obj) {
         if (typeof (obj[a]) == "object" && obj[a] != null) {
             deleteEmptyProp(obj[a]);
-        }
-        else {
+        } else {
             if (!obj[a]) {
                 delete obj[a];
             }
@@ -149,8 +148,7 @@ function ajaxPost(url, params, callback) {
                 if (sessionstatus == "timeout") {
                     //如果超时就处理 ，指定要跳转的页面
                     window.location.href = basePath + "/";
-                }
-                else if (err1 == "parsererror") {//csrf异常
+                } else if (err1 == "parsererror") {//csrf异常
                     var responseBody = err.responseText;
                     if (responseBody) {
                         responseBody = "{'retData':" + responseBody;
@@ -193,7 +191,7 @@ function getServerTime(base_path, format) {
  * 格式化日期
  */
 function formatDate(date, format) {
-    if (!date)return date;
+    if (!date) return date;
     date = (typeof date == "number") ? new Date(date) : date;
     return date.Format(format);
 }
@@ -236,10 +234,10 @@ function DateDiff(d1, d2) {
 String.prototype.strToDate = function () {
     if (this && this != "") {
         return Date.parse(this.replace(/-/g, "/"));
-    }
-    else
+    } else
         return "";
 }
+
 /**
  * 将map类型[name,value]的数据转化为对象类型
  */
@@ -268,7 +266,7 @@ function getNextCode(prefix, maxCode, length) {
         return prefix + str + 1;
     } else {
         var str = "";
-        maxCode +="";
+        maxCode += "";
         var sno = parseInt(maxCode.substring(prefix.length)) + 1;
         for (var i = 0; i < length - sno.toString().length; i++) {
             str += "0";
@@ -305,7 +303,7 @@ var HtmlUtil = {
         //1.首先动态创建一个容器标签元素，如DIV
         var temp = document.createElement("div");
         //2.然后将要转换的字符串设置为这个元素的innerText(ie支持)或者textContent(火狐，google支持)
-        (temp.textContent != undefined ) ? (temp.textContent = html) : (temp.innerText = html);
+        (temp.textContent != undefined) ? (temp.textContent = html) : (temp.innerText = html);
         //3.最后返回这个元素的innerHTML，即得到经过HTML编码转换的字符串了
         var output = temp.innerHTML;
         temp = null;

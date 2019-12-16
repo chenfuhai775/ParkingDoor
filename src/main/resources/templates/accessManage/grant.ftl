@@ -12,7 +12,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <link rel="stylesheet" href="../staticResource/adminlte/common/font-awesome/css/font-awesome.min.css">
-<#--<link rel="stylesheet" href="../adminlte/common/Ionicons/css/ionicons.min.css">-->
+    <#--<link rel="stylesheet" href="../adminlte/common/Ionicons/css/ionicons.min.css">-->
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -37,7 +37,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="../staticResource/adminlte/plugins/datatables/dataTables.bootstrap.min.js"></script>
     <script src="../staticResource/adminlte/plugins/jqueryMulti/js/jquery.multi-select.js"></script>
     <script src="../staticResource/adminlte/plugins/jqueryMulti/js/jquery.quicksearch.js"></script>
-<#--treeview 插件-->
+    <#--treeview 插件-->
     <link href="../staticResource/adminlte/plugins/treeview/css/bootstrap-treeview.min.css" rel="stylesheet"
           type="text/css"/>
     <script src="../staticResource/adminlte/plugins/treeview/js/bootstrap-treeview.min.js"></script>
@@ -286,11 +286,11 @@ desired effect
                 <!-- Create the tabs -->
                 <ul id="grantTab" class="nav nav-tabs">
                     <li class="active"><a href="#control-sidebar-user-tab" data-toggle="tab">
-                        <h5>用户列表</h5>
-                    </a></li>
+                            <h5>用户列表</h5>
+                        </a></li>
                     <li><a href="#control-sidebar-role-tab" data-toggle="tab">
-                        <h5>权限组</h5>
-                    </a></li>
+                            <h5>权限组</h5>
+                        </a></li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -487,15 +487,15 @@ desired effect
                             <tr>
                                 <td><select id="ddlTimeGroup" class="form-control select2 "
                                             style="display:none;width:100%;margin-bottom: 5px;">
-                                    <option value="0">--请选择时间组--</option>
-                                    <option value="1">第一组</option>
-                                    <option value="2">第二组</option>
-                                    <option value="3">第三组</option>
-                                    <option value="4">第四组</option>
-                                    <option value="5">第五组</option>
-                                    <option value="6">第六组</option>
-                                    <option value="7">第七组</option>
-                                </select></td>
+                                        <option value="0">--请选择时间组--</option>
+                                        <option value="1">第一组</option>
+                                        <option value="2">第二组</option>
+                                        <option value="3">第三组</option>
+                                        <option value="4">第四组</option>
+                                        <option value="5">第五组</option>
+                                        <option value="6">第六组</option>
+                                        <option value="7">第七组</option>
+                                    </select></td>
                             </tr>
                             <tr>
                                 <td><select id='activeSelected' multiple='multiple'></select></td>
