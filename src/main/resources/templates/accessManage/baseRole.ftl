@@ -38,7 +38,6 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-
     <!-- Main Header -->
     <header class="main-header">
 
@@ -238,7 +237,6 @@
         </section>
         <!-- /.sidebar -->
     </aside>
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -283,7 +281,7 @@
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title"><i class="glyphicon glyphicon-user"></i>角色人员</h3>
-                            <span  style="float: right" >
+                            <span style="float: right">
                                 <input type="hidden" name="roleId" id="roleId">
                                 <button type="button" class="btn btn-default" onclick="authRoleFunc()">授权</button>
                                 <button type="button" class="btn btn-default" onclick="deleteRoleFunc()">移除</button>
@@ -292,14 +290,13 @@
                         <div class="box-body">
                             <table id="baseUserList" class="table table-bordered table-hover dataTable"
                                    style="overflow: visible;">
+                                <span type="hidden" id="roleid"></span>
+                                <span type="hidden" id="userid"></span>
                                 <thead>
                                 <tr>
-                                    <th aria-sort="none" aria-label="">
-                                        <input type="checkbox" id="AllChange" onclick="SelectList(this)"/></th>
                                     <th>用户名</th>
                                     <th>系统名称</th>
                                     <th>用户编码</th>
-                                    <th>权限下载</th>
                                 </tr>
                                 </thead>
                             </table>
@@ -352,7 +349,6 @@
         </section>
     </div>
     <!-- /.content-wrapper -->
-
     <!-- Main Footer -->
     <footer class="main-footer">
         <!-- To the right -->
@@ -362,7 +358,6 @@
         <!-- Default to the left -->
         <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
     </footer>
-
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Create the tabs -->
@@ -436,6 +431,49 @@
         </div>
     </aside>
     <div class="control-sidebar-bg"></div>
+</div>
+
+<div class="modal fade" id="grantModal" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" style="width: 1100px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="editModalLabel">人员角色</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class=" col-sm-12">
+                        <table id="baseUsersList" class="table table-bordered table-hover dataTable"
+                               style="overflow: visible;">
+                            <thead>
+                            <tr>
+                                <th aria-sort="none" aria-label="" width="60px">
+                                    <input type="checkbox" id="AllChange" onclick="SelectAll(this)"/>
+                                </th>
+                                <th>用户名</th>
+                                <th>系统名称</th>
+                                <th>用户编码</th>
+                                <th>创建时间</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnactiveAccessSave" type="button"
+                        class="btn btn-default glyphicon glyphicon-ok">
+                    &nbsp;保存
+                </button>
+                &nbsp;
+                <button type="button" class="btn btn-default glyphicon glyphicon-remove"
+                        data-dismiss="modal">
+                    &nbsp;关闭
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="../staticResource/js/commHelper.js"></script>

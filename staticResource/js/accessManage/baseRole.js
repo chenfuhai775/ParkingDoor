@@ -89,8 +89,8 @@ $(function () {
         if (undefined != row) {
             var tds = table.row($(this).closest('tr')).data();
         }
-        var rolecode = tds.rolecode;
-        selectUsers(rolecode);
+        var guid = tds.guid;
+        selectUsers(guid);
     });
 
 });
@@ -202,7 +202,69 @@ function Save() {
 }
 
 function selectUsers(roleId) {
-    console.info(roleId);
+    if (![null, undefined, ""].includes(roleId)) {
+        $("#roleid").val(roleId);
+        $("#baseUserList").dataTable({
+            "lengthChange": true,
+            "searching": false,
+            "destroy": true,
+            "ordering": true,
+            "info": true,
+            // "lengthMenu": [10, 15],
+            "autoWidth": false,
+            "pageLength": 10,
+            "pagingType": "full_numbers",
+            "serverSide": true,
+            "ajax": {
+                "url": "/UserRole/getUsers/" + roleId,
+                "cache": false,  //禁用缓存
+                "data": function (data) {
+                    return data;
+                },
+                "dataFilter": function (json) {//json是服务器端返回的数据
+                    json = JSON.parse(json);
+                    var returnData = {};
+                    returnData.draw = json.draw;
+                    returnData.recordsTotal = json.recordsTotal;//返回数据全部记录
+                    returnData.recordsFiltered = json.recordsTotal;//后台不实现过滤功能，每次查询均视作全部结果
+                    returnData.data = json.data;//返回的数据列表
+                    return JSON.stringify(returnData);//这几个参数都是datatable需要的，必须要
+                }
+            },
+            "language": {
+                "lengthMenu": "_MENU_ 条记录每页",
+                "zeroRecords": "没有找到记录",
+                "info": "当前 _START_ 条到 _END_ 条 共 _TOTAL_ 条 , 第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                "infoEmpty": "无记录",
+                "seach": "",
+                "infoFiltered": "(从 _MAX_ 条记录过滤)",
+                "paginate": {
+                    "previous": "上一页",
+                    "next": "下一页",
+                    "sFirst": "首页",
+                    "sLast": "末页"
+                }
+            },
+            "columns": [
+                {"data": "username"},
+                {"data": "realname"},
+                {"data": "usercode"}
+            ]
+        });
+
+        $("#baseUserList").delegate("tbody tr[role='row']", "click", function (row) {
+            var table = $('#baseUserList').DataTable();
+            var tr = $(this).closest("tr");
+            $("#baseUserList").find("tbody tr[role='row']").closest("tr").css("color", "#000000");
+            $("#baseUserList").find("tbody tr[role='row']").closest("tr").css("background-color", "#FFFFFF");
+            tr.css("color", "#FFFFFF");
+            tr.css("background-color", "#428bca");
+            if (undefined != row) {
+                var tds = table.row($(this).closest('tr')).data();
+            }
+            $("#userid").val(tds.userid);
+        });
+    }
 }
 
 function setValue(rowObject) {
@@ -228,4 +290,136 @@ function SelectAll(ckb) {
     $(ckbs).each(function () {
         $(this).prop('checked', isCk);
     })
+}
+
+function authRoleFunc() {
+    if ([null, undefined, ""].includes($("#roleid").val())) {
+        modals.info("请选择一个角色");
+        return false;
+    }
+
+    $("#baseUsersList").dataTable({
+        "lengthChange": true,
+        "searching": true,
+        "destroy": true,
+        "ordering": true,
+        "info": true,
+        "lengthMenu": [10, 15],
+        "autoWidth": false,
+        "pageLength": 10,
+        "pagingType": "full_numbers",
+        "serverSide": true,
+        "ajax": {
+            "url": "/Users/selectList",
+            "cache": false,  //禁用缓存
+            "contentType": 'application/json',
+            "data": function (data) {
+                return data;
+            },
+            "dataFilter": function (json) {//json是服务器端返回的数据
+                json = JSON.parse(json);
+                var returnData = {};
+                returnData.draw = json.draw;
+                returnData.recordsTotal = json.recordsTotal;//返回数据全部记录
+                returnData.recordsFiltered = json.recordsTotal;//后台不实现过滤功能，每次查询均视作全部结果
+                returnData.data = json.data;//返回的数据列表
+                return JSON.stringify(returnData);//这几个参数都是datatable需要的，必须要
+            }
+        },
+        "language": {
+            "lengthMenu": "_MENU_ 条记录每页",
+            "zeroRecords": "没有找到记录",
+            "info": "当前 _START_ 条到 _END_ 条 共 _TOTAL_ 条 , 第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "seach": "",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "paginate": {
+                "previous": "上一页",
+                "next": "下一页",
+                "sFirst": "首页",
+                "sLast": "末页"
+            }
+        },
+        "columns": [
+            {
+                "data": null, "orderable": false,
+                "render": function (data, type, row, meta) {
+                    var no = meta.settings._iDisplayStart + meta.row + 1;
+                    return no;
+                }
+            },
+            {"data": "username"},
+            {"data": "realname"},
+            {"data": "usercode"},
+            {
+                "data": null, "render": function (row) {
+                    return dateFtt("yyyy年MM月dd日", new Date(row.createtime));
+                }
+            }
+        ]
+    });
+
+    $("#baseUsersList").delegate("tbody tr[role='row']", "dblclick", function (row) {
+        var table = $('#baseUsersList').DataTable();
+        var tr = $(this).closest("tr");
+        $("#baseUsersList").find("tbody tr[role='row']").closest("tr").css("color", "#000000");
+        $("#baseUsersList").find("tbody tr[role='row']").closest("tr").css("background-color", "#FFFFFF");
+        tr.css("color", "#FFFFFF");
+        tr.css("background-color", "#428bca");
+        if (undefined != row) {
+            var tds = table.row($(this).closest('tr')).data();
+        }
+        var JsonData = {}
+        JsonData.roleid = $("#roleid").val();
+        JsonData.userid = tds.guid;
+        $.ajax({
+            dataType: "json",
+            async: false,
+            type: "POST",
+            data: JSON.stringify(JsonData),
+            contentType: 'application/json',
+            url: "/UserRole/addRoleUsers",
+            success: function (data) {
+                if (data.result) {
+                    $("#baseUserList").dataTable().fnDraw(false);
+                }
+            }, error: function () {
+                modals.info("程序出错");
+                return false;
+            }
+        });
+
+    });
+
+    $("#grantModal").modal();
+}
+
+function deleteRoleFunc() {
+    if ([null, undefined, ""].includes($("#roleid").val())) {
+        modals.info("请选择一个角色");
+        return false;
+    }
+
+    if ([null, undefined, ""].includes($("#userid").val())) {
+        modals.info("请选择一个用户");
+        return false;
+    }
+    var JsonData = {}
+    JsonData.roleid = $("#roleid").val();
+    JsonData.userid = $("#userid").val();
+    $.ajax({
+        dataType: "json",
+        async: false,
+        type: "POST",
+        data: JSON.stringify(JsonData),
+        contentType: 'application/json',
+        url: "/UserRole/delRoleUsers",
+        success: function (data) {
+            $("#baseUserList").dataTable().fnDraw(false);
+        }, error: function () {
+            modals.info("程序出错");
+            return false;
+        }
+    });
+
 }
